@@ -19,3 +19,7 @@ let package = Package(
 The Swift package contains multiple libraries. Each language is wrapped in its own Swift package so you don't need to import a whole suite of languages in case you only need a few.
 
 There are two packages for each language. There's the TreeSitterXYZ package and the TreeSitterXYZQueries package where XYS is the language. The former package exposes the C function for the language (i.e. `tree_sitter_xyz()`) and the latter contains the queries for the language. The only reason a language is split into two packages is that Swift Package Manager doesn't allow mixing C code and Swift code.
+
+## Compatability
+
+The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
