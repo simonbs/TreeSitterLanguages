@@ -1,0 +1,1 @@
+../../../tree-sitter-bash/src/tree_sitter/parser.h

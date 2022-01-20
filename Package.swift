@@ -6,6 +6,7 @@ import PackageDescription
 let package = Package(
     name: "TreeSitterLanguages",
     products: [
+        .library(name: "TreeSitterLanguagesCommon", targets: ["TreeSitterLanguagesCommon"]),
         .library(name: "TreeSitterBash", targets: ["TreeSitterBash"]),
         .library(name: "TreeSitterBashQueries", targets: ["TreeSitterBashQueries"]),
         .library(name: "TreeSitterC", targets: ["TreeSitterC"]),
@@ -57,6 +58,7 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
+        .target(name: "TreeSitterLanguagesCommon"),
         .target(name: "TreeSitterBash",
                 exclude: ["src/grammar.json", "src/node-types.json"],
                 cSettings: [.headerSearchPath("src")]),
