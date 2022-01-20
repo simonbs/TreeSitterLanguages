@@ -46,12 +46,14 @@ let package = Package(
         .library(name: "TreeSitterRubyQueries", targets: ["TreeSitterRubyQueries"]),
         .library(name: "TreeSitterRust", targets: ["TreeSitterRust"]),
         .library(name: "TreeSitterRustQueries", targets: ["TreeSitterRustQueries"]),
-        .library(name: "TreeSitterYAML", targets: ["TreeSitterYAML"]),
-        .library(name: "TreeSitterYAMLQueries", targets: ["TreeSitterYAMLQueries"]),
+        .library(name: "TreeSitterSwift", targets: ["TreeSitterSwift"]),
+        .library(name: "TreeSitterSwiftQueries", targets: ["TreeSitterSwiftQueries"]),
         .library(name: "TreeSitterTSX", targets: ["TreeSitterTSX"]),
         .library(name: "TreeSitterTSXQueries", targets: ["TreeSitterTSXQueries"]),
         .library(name: "TreeSitterTypeScript", targets: ["TreeSitterTypeScript"]),
         .library(name: "TreeSitterTypeScriptQueries", targets: ["TreeSitterTypeScriptQueries"]),
+        .library(name: "TreeSitterYAML", targets: ["TreeSitterYAML"]),
+        .library(name: "TreeSitterYAMLQueries", targets: ["TreeSitterYAMLQueries"])
     ],
     dependencies: [],
     targets: [
@@ -136,10 +138,8 @@ let package = Package(
                 exclude: ["src/grammar.json", "src/node-types.json"],
                 cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterRustQueries", resources: [.copy("queries")]),
-        .target(name: "TreeSitterYAML",
-                exclude: ["src/grammar.json", "src/node-types.json", "src/schema.generated.cc"],
-                cSettings: [.headerSearchPath("src")]),
-        .target(name: "TreeSitterYAMLQueries", resources: [.copy("queries")]),
+        .target(name: "TreeSitterSwift", cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterSwiftQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterTSX",
                 exclude: ["src/grammar.json", "src/node-types.json"],
                 cSettings: [.headerSearchPath("src")]),
@@ -148,5 +148,9 @@ let package = Package(
                 exclude: ["src/grammar.json", "src/node-types.json"],
                 cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterTypeScriptQueries", resources: [.copy("queries")]),
+        .target(name: "TreeSitterYAML",
+                exclude: ["src/grammar.json", "src/node-types.json", "src/schema.generated.cc"],
+                cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterYAMLQueries", resources: [.copy("queries")])
     ]
 )
