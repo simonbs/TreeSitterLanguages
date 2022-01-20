@@ -18,4 +18,5 @@ cd $SCRIPT_DIR/tree-sitter-swift
 npm install
 tree-sitter generate
 cp $SCRIPT_DIR/tree-sitter-swift/src/parser.c ../Sources/TreeSitterSwift/src
+cp $SCRIPT_DIR/tree-sitter-swift/src/scanner.c ../Sources/TreeSitterSwift/src
 cp -r $SCRIPT_DIR/tree-sitter-swift/src/tree_sitter ../Sources/TreeSitterSwift/src
