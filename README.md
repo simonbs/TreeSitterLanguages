@@ -6,6 +6,8 @@ Languages for the [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) pars
 
 The languages are distributed using the [Swift Package Manager](https://www.swift.org/package-manager/) as separated libraries in a single Swift package. Install the package in your project by adding it as a dependency in your Package.swift manifest or through "Package Dependencies" in your project settings.
 
+**NB:** Adding the package can take a a couple of minutes since it contains a lot of submodules that needs to be cloned.
+
 ```swift
 let package = Package(
     dependencies: [
