@@ -66,7 +66,7 @@ let package = Package(
                 cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterCQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterCSharp",
-                exclude: ["src/grammar.json", "src/node-types.json"],
+                exclude: ["src/grammar.json", "src/node-types.json", "src/binding.cc"],
                 cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterCSharpQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterCPP",
