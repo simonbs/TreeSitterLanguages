@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and test on iPhone 13
+    runs-on: macOS-11
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install jq
+        run: brew install jq
+      - name: Build
+        run: |
+          SCHEMES=`xcodebuild -list -json | jq -r '.workspace.schemes | .[]'`
+          for scheme in $SCHEMES; do
+            xcodebuild -scheme $scheme -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13'
+          done
