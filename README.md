@@ -29,13 +29,14 @@ let package = Package(
 
 The Swift package contains multiple libraries. Each language is wrapped in its own Swift package so you don't need to import a whole suite of languages in case you only need a few.
 
-The package contains the following libraries.
+The package contains the following threelibraries for each language.
 
-1. TreeSitterLanguagesCommon. This contains base types needed when referring to Tree-sitter. You will only need to import this when explicitly referring to any of Tree-sitter's types, for example when using the TSLanguage type.
-2. TreeSitterXYZ where XYZ is a language (e.g. Bash or JavaScript). These packages contain the Tree-sitter language.
-3. TreeSitterXYZQueries. These packages contain queries (e.g. highlights) for the language.
+|Name|Purpose|
+|TreeSitter{Language}|The C code for the generated Tree-sitter parser. Each package exposes a function named like `tree_sitter_{language}`.|
+|TreeSitter{Language}Queries|The queries to be used with the language. For more information on queries, please refer to [Tree-sitter's documentation](https://tree-sitter.github.io/tree-sitter/syntax-highlighting#queries). The only reason this is a separate library and not part of the TreeSitter{Language} library is that C code and Swift code cannot be mixed in a library using Swift Package Manager.|
+|TreeSitter{Language}Runestone|Exposes the language to be used with [Runestone](https://github.com/simonbs/runestone). This library depends on the TreeSitter{Language} and TreeSitter{Language}Queries libraries and it is the only library you need to import when using Runestone. The library exposes the language as an extension on [TreeSitterLanguage](https://github.com/simonbs/Runestone/blob/main/Sources/Runestone/Language/TreeSitter/TreeSitterLanguage.swift) (e.g. `TreeSitterLanguage.javaScript`) that's ready to be used in Runestone. It also includes the indentation specification for select languages.|
 
-The only reason a language and it's queries is in two different packages is that Swift Package Manager doesn't allow mixing C code and Swift code.
+Furthermore the package contains the TreeSitterLanguagesCommon library which exposes base types from Tree-sitter like `TSLanguage`. This is useful when you need to refer to these types in your source code, for example if you return a `TSLanguage` from a function.
 
 ## Compatibility
 
