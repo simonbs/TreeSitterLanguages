@@ -7,7 +7,7 @@ if ! [ -x "$(command -v tree-sitter)" ]; then
   exit 1
 fi
 # Check if npm is installed
-if ! [ -x "$(command -v tree-sitter)" ]; then
+if ! [ -x "$(command -v npm)" ]; then
   echo "npm is not installed or unavailable." >&2
   exit 1
 fi
