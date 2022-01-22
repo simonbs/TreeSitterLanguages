@@ -125,7 +125,7 @@ let package = Package(
         .target(name: "TreeSitterMarkdown", exclude: ["src/grammar.json", "src/node-types.json", "src/tree_sitter_markdown"], sources: ["src/scanner.cc", "src/parser.c"], cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterMarkdownQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterMarkdownRunestone", dependencies: ["Runestone", "TreeSitterMarkdown", "TreeSitterMarkdownQueries"]),
-        .target(name: "TreeSitterOCaml", exclude: ["src/grammar.json", "src/node-types.json"], cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterOCaml", exclude: ["src/grammar.json", "src/node-types.json"], cSettings: [.headerSearchPath("src"), .unsafeFlags(["-w"])]),
         .target(name: "TreeSitterOCamlQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterOCamlRunestone", dependencies: ["Runestone", "TreeSitterOCaml", "TreeSitterOCamlQueries"]),
         .target(name: "TreeSitterPerl", exclude: ["src/grammar.json", "src/node-types.json"], cSettings: [.headerSearchPath("src")]),
