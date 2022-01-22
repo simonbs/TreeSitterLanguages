@@ -5,7 +5,7 @@ import TreeSitterTypeScriptQueries
 
 public extension TreeSitterLanguage {
     static var typeScript: TreeSitterLanguage {
-        let highlightsQuery = combinedQuery(fromFilesAt: [TreeSitterJavaScriptQueries.Query.highlightsFileURLm TreeSitterTypeScriptQueries.Query.highlightsFileURL])
+        let highlightsQuery = combinedQuery(fromFilesAt: [TreeSitterTypeScriptQueries.Query.highlightsFileURL, TreeSitterTypeScriptQueries.Query.highlightsFileURL])
         return TreeSitterLanguage(tree_sitter_typescript(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
     }
 }
