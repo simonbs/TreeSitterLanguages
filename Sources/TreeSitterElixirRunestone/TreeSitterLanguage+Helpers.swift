@@ -1,6 +1,6 @@
 import Runestone
-import TreeSitterBash
-import TreeSitterBashQueries
+import TreeSitterElixir
+import TreeSitterElixirQueries
 
 public extension TreeSitterLanguage {
     static var elixir: TreeSitterLanguage {
