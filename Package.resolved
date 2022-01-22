@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Runestone",
+        "repositoryURL": "git@github.com:simonbs/Runestone.git",
+        "state": {
+          "branch": "main",
+          "revision": "bdcd5d9b37af6170ed9c38b1fb0c7c293780448c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
