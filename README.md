@@ -6,7 +6,7 @@ Languages for the [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) pars
 
 There are two reasons this package exists:
 
-1. As an easy way to add several Tree-sitter languges to an app and particularly to an app that uses the [Runestone](https://github.com/simonbs/runestone) framework.
+1. As an easy way to add several Tree-sitter languages to an app and particularly to an app that uses the [Runestone](https://github.com/simonbs/runestone) framework.
 2. To show how a Tree-sitter language can be wrapped in a Swift package.
 
 It is not recommended to use this package if you only ned to add a few Tree-sitter languages to your app. Instead you should add the languages manually.
@@ -14,8 +14,6 @@ It is not recommended to use this package if you only ned to add a few Tree-sitt
 ## Installation
 
 The languages are distributed using the [Swift Package Manager](https://www.swift.org/package-manager/) as separated libraries in a single Swift package. Install the package in your project by adding it as a dependency in your Package.swift manifest or through "Package Dependencies" in your project settings.
-
-**NB:** Adding the package can take a a couple of minutes since it contains a lot of submodules that needs to be cloned.
 
 ```swift
 let package = Package(
@@ -29,7 +27,7 @@ let package = Package(
 
 The Swift package contains multiple libraries. Each language is wrapped in its own Swift package so you don't need to import a whole suite of languages in case you only need a few.
 
-The package contains the following threelibraries for each language.
+The package contains the following three libraries for each language.
 
 |Name|Purpose|
 |-|-|
@@ -43,8 +41,33 @@ Furthermore the package contains the TreeSitterLanguagesCommon library which exp
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
 
-## Generate Languages
+## Acknowledgements
 
-TreeSitterLanguage refers to the generated parsers for most languages. However, [tree-sitter-swift](https://github.com/alex-pinkus/tree-sitter-swift) does not include the parser (parser.c file) in the repository. That decision is [explained here](https://github.com/alex-pinkus/tree-sitter-swift#where-is-your-parserc). The `generate.sh` script in this repository can be run to generate and copy the parser.c file for the Swift language.
+The TreeSitterLanguages repository contains files copied from the following repositories. I had originally added these repositories as submodules but it turned out to be very impractical when the package is used with Swift Package Manager because checking out the repository and all the submodules would take a long time and doing so on a slow connection (for example when commuting) would be unbearable.
 
-It's only necessary to run `generate.sh` when updating the version of tree-sitter-swift since the generated parser.c file is checked into this repository.
+Thanks to all the contributors to these repositories for their great effort in ensuring Tree-sitter supports a wide array of languages.
+
+- [tree-sitter-bash](https://github.com/tree-sitter/tree-sitter-bash)
+- [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c)
+- [tree-sitter-c-sharp](https://github.com/tree-sitter/tree-sitter-c-sharp)
+- [tree-sitter-cpp](https://github.com/tree-sitter/tree-sitter-cpp)
+- [tree-sitter-css](https://github.com/tree-sitter/tree-sitter-css)
+- [tree-sitter-elixir](https://github.com/elixir-lang/tree-sitter-elixir)
+- [tree-sitter-go](https://github.com/tree-sitter/tree-sitter-go)
+- [tree-sitter-html](https://github.com/tree-sitter/tree-sitter-html)
+- [tree-sitter-java](https://github.com/tree-sitter/tree-sitter-java)
+- [tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript)
+- [tree-sitter-jsdoc](https://github.com/tree-sitter/tree-sitter-jsdoc)
+- [tree-sitter-json](https://github.com/tree-sitter/tree-sitter-json)
+- [tree-sitter-markdown](https://github.com/ikatyang/tree-sitter-markdown)
+- [tree-sitter-ocaml](https://github.com/tree-sitter/tree-sitter-ocaml)
+- [tree-sitter-perl](https://github.com/ganezdragon/tree-sitter-perl)
+- [tree-sitter-php](https://github.com/tree-sitter/tree-sitter-php)
+- [tree-sitter-python](https://github.com/tree-sitter/tree-sitter-python)
+- [tree-sitter-regex](https://github.com/tree-sitter/tree-sitter-regex)
+- [tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby)
+- [tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)
+- [tree-sitter-swift](https://github.com/alex-pinkus/tree-sitter-swift)
+- [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
+- [tree-sitter-yaml](https://github.com/ikatyang/tree-sitter-yaml)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
