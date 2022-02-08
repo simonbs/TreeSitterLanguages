@@ -122,7 +122,7 @@ let package = Package(
         .target(name: "TreeSitterJSON", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterJSONQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterJSONRunestone", dependencies: ["Runestone", "TreeSitterJSON", "TreeSitterJSONQueries"]),
-        .target(name: "TreeSitterMarkdown", sources: ["src/scanner.cc", "src/parser.c"], cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterMarkdown", exclude: ["src/tree_sitter_markdown"], sources: ["src/scanner.cc", "src/parser.c"], cSettings: [.headerSearchPath("src"), .unsafeFlags(["-w"])]),
         .target(name: "TreeSitterMarkdownQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterMarkdownRunestone", dependencies: ["Runestone", "TreeSitterMarkdown", "TreeSitterMarkdownQueries"]),
         .target(name: "TreeSitterOCaml", cSettings: [.headerSearchPath("src"), .unsafeFlags(["-w"])]),
