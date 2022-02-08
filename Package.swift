@@ -155,7 +155,7 @@ let package = Package(
         .target(name: "TreeSitterTypeScript", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterTypeScriptQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterTypeScriptRunestone", dependencies: ["Runestone", "TreeSitterTypeScript", "TreeSitterTypeScriptQueries", "TreeSitterJavaScriptQueries"]),
-        .target(name: "TreeSitterYAML", cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterYAML", exclude: ["src/schema.generated.cc"], cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterYAMLQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterYAMLRunestone", dependencies: ["Runestone", "TreeSitterYAML", "TreeSitterYAMLQueries"])
     ]
