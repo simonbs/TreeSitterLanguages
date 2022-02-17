@@ -59,7 +59,7 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript)
 - [tree-sitter-jsdoc](https://github.com/tree-sitter/tree-sitter-jsdoc)
 - [tree-sitter-json](https://github.com/tree-sitter/tree-sitter-json)
-- [tree-sitter-markdown](https://github.com/ikatyang/tree-sitter-markdown)
+- [tree-sitter-markdown](https://github.com/MDeiml/tree-sitter-markdown)
 - [tree-sitter-ocaml](https://github.com/tree-sitter/tree-sitter-ocaml)
 - [tree-sitter-perl](https://github.com/ganezdragon/tree-sitter-perl)
 - [tree-sitter-php](https://github.com/tree-sitter/tree-sitter-php)
