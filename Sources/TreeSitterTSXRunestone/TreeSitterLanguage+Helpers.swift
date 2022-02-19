@@ -11,15 +11,15 @@ public extension TreeSitterLanguage {
             TreeSitterJavaScriptQueries.Query.highlightsJSXFileURL,
             TreeSitterTSXQueries.Query.highlightsFileURL
         ])
-        return TreeSitterLanguage(tree_sitter_tsx(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
+        return TreeSitterLanguage(tree_sitter_tsx(), highlightsQuery: highlightsQuery, indentationScopes: nil)
     }
 }
 
 private extension TreeSitterLanguage {
-    private static func combinedQuery(fromFilesAt fileURLs: [URL]) -> TreeSitterLanguage.Query? {
+    private static func combinedQuery(fromFilesAt fileURLs: [URL]) -> TreeSitterQuery? {
         let rawQuery = fileURLs.compactMap { try? String(contentsOf: $0) }.joined(separator: "\n")
         if !rawQuery.isEmpty {
-            return TreeSitterLanguage.Query(string: rawQuery)
+            return TreeSitterQuery(string: rawQuery)
         } else {
             return nil
         }
