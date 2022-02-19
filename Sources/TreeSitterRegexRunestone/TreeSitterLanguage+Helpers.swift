@@ -4,7 +4,7 @@ import TreeSitterRegexQueries
 
 public extension TreeSitterLanguage {
     static var regex: TreeSitterLanguage {
-        let highlightsQuery = TreeSitterQuery(contentsOf: TreeSitterRegexQueries.Query.highlightsFileURL)
-        return TreeSitterLanguage(tree_sitter_regex(), highlightsQuery: highlightsQuery, indentationScopes: nil)
+        let highlightsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterRegexQueries.Query.highlightsFileURL)
+        return TreeSitterLanguage(tree_sitter_regex(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
     }
 }

@@ -4,7 +4,7 @@ import TreeSitterCSSQueries
 
 public extension TreeSitterLanguage {
     static var css: TreeSitterLanguage {
-        let highlightsQuery = TreeSitterQuery(contentsOf: TreeSitterCSSQueries.Query.highlightsFileURL)
-        return TreeSitterLanguage(tree_sitter_css(), highlightsQuery: highlightsQuery, indentationScopes: .css)
+        let highlightsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterCSSQueries.Query.highlightsFileURL)
+        return TreeSitterLanguage(tree_sitter_css(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: .css)
     }
 }
