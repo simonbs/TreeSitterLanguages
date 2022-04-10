@@ -1,6 +1,8 @@
+[ "." ";" ":" "," ] @punctuation.delimiter
+[ "\\(" "(" ")" "[" "]" "{" "}"] @punctuation.bracket ; TODO: "\\(" ")" in interpolations should be @punctuation.special
+
 ; Identifiers
 (attribute) @variable
-(simple_identifier) @variable
 (type_identifier) @type
 (self_expression) @variable.builtin
 
@@ -15,18 +17,34 @@
   (inheritance_modifier)
 ] @keyword
 
-(function_declaration (simple_identifier) @function.method)
+(function_declaration (simple_identifier) @method)
 (function_declaration ["init" @constructor])
 (throws) @keyword
-(async) @keyword
+"async" @keyword
 (where_keyword) @keyword
 (parameter external_name: (simple_identifier) @parameter)
 (parameter name: (simple_identifier) @parameter)
 (type_parameter (type_identifier) @parameter)
 (inheritance_constraint (identifier (simple_identifier) @parameter))
 (equality_constraint (identifier (simple_identifier) @parameter))
+(non_binding_pattern bound_identifier: (simple_identifier)) @variable
 
-["typealias" "struct" "class" "enum" "protocol" "extension"] @keyword
+[
+  "typealias"
+  "struct"
+  "class"
+  "enum"
+  "protocol"
+  "extension"
+  "indirect"
+  "some"
+] @keyword
+
+[
+  (getter_specifier)
+  (setter_specifier)
+  (modify_specifier)
+] @keyword
 
 (class_body (property_declaration (value_binding_pattern (non_binding_pattern (simple_identifier) @property))))
 (protocol_property_declaration (value_binding_pattern (non_binding_pattern (simple_identifier) @property)))
@@ -42,7 +60,7 @@
     (navigation_suffix (simple_identifier) @function)))
 ((navigation_expression
    (simple_identifier) @type) ; SomeType.method(): highlight SomeType as a type
-   (#lua-match? @type "^[A-Z]"))
+   (#match? @type "^[A-Z]"))
 
 (directive) @function.macro
 (diagnostic) @function.macro
@@ -66,6 +84,8 @@
 (switch_entry ["fallthrough" @keyword])
 (switch_entry (default_keyword) @keyword)
 "return" @keyword.return
+(ternary_expression
+  ["?" ":"] @conditional)
 
 ["do" (throw_keyword) (catch_keyword)] @keyword
 
@@ -126,5 +146,13 @@
  "%="
  "!="
  "!=="
+ "=="
  "==="
+ "??"
+
+ "->"
+
+ "..<"
+ "..."
 ] @operator
+
