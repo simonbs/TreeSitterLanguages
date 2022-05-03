@@ -9,7 +9,7 @@ There are two reasons this package exists:
 1. As an easy way to add several Tree-sitter languages to an app and particularly to an app that uses the [Runestone](https://github.com/simonbs/runestone) framework.
 2. To show how a Tree-sitter language can be wrapped in a Swift package.
 
-It is not recommended to use this package if you only ned to add a few Tree-sitter languages to your app. Instead you should add the languages manually.
+It is not recommended to use this package if you only need to add a few Tree-sitter languages to your app. Instead you should add the languages manually.
 
 ## Installation
 
