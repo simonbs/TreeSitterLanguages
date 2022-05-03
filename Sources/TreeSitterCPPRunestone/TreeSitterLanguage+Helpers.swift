@@ -6,7 +6,10 @@ import TreeSitterCQueries
 
 public extension TreeSitterLanguage {
     static var cpp: TreeSitterLanguage {
-        let highlightsQuery = combinedQuery(fromFilesAt: [TreeSitterCQueries.Query.highlightsFileURL, TreeSitterCPPQueries.Query.highlightsFileURL])
+        let highlightsQuery = combinedQuery(fromFilesAt: [
+            TreeSitterCQueries.Query.highlightsFileURL,
+            TreeSitterCPPQueries.Query.highlightsFileURL
+        ])
         return TreeSitterLanguage(tree_sitter_cpp(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
     }
 }

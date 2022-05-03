@@ -11,7 +11,10 @@ public extension TreeSitterLanguage {
     }
 
     static var jsx: TreeSitterLanguage {
-        let highlightsQuery = combinedQuery(fromFilesAt: [TreeSitterJavaScriptQueries.Query.highlightsFileURL, TreeSitterJavaScriptQueries.Query.highlightsJSXFileURL])
+        let highlightsQuery = combinedQuery(fromFilesAt: [
+            TreeSitterJavaScriptQueries.Query.highlightsFileURL,
+            TreeSitterJavaScriptQueries.Query.highlightsJSXFileURL
+        ])
         let injectionsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterJavaScriptQueries.Query.injectionsFileURL)
         return TreeSitterLanguage(tree_sitter_javascript(), highlightsQuery: highlightsQuery, injectionsQuery: injectionsQuery, indentationScopes: .javaScript)
     }
