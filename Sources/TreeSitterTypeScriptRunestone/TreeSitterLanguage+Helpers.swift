@@ -2,10 +2,14 @@ import Foundation
 import Runestone
 import TreeSitterTypeScript
 import TreeSitterTypeScriptQueries
+import TreeSitterJavaScriptQueries
 
 public extension TreeSitterLanguage {
     static var typeScript: TreeSitterLanguage {
-        let highlightsQuery = combinedQuery(fromFilesAt: [TreeSitterTypeScriptQueries.Query.highlightsFileURL, TreeSitterTypeScriptQueries.Query.highlightsFileURL])
+        let highlightsQuery = combinedQuery(fromFilesAt: [
+            TreeSitterJavaScriptQueries.Query.highlightsFileURL,
+            TreeSitterTypeScriptQueries.Query.highlightsFileURL
+        ])
         return TreeSitterLanguage(tree_sitter_typescript(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
     }
 }
