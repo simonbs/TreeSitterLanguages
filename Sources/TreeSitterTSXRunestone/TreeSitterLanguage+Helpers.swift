@@ -11,7 +11,7 @@ public extension TreeSitterLanguage {
             TreeSitterJavaScriptQueries.Query.highlightsJSXFileURL,
             TreeSitterTSXQueries.Query.highlightsFileURL
         ])
-        return TreeSitterLanguage(tree_sitter_tsx(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
+        return TreeSitterLanguage(tree_sitter_tsx(), highlightsQuery: highlightsQuery)
     }
 }
 

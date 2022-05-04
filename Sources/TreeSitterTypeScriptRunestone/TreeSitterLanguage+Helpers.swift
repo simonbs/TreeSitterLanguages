@@ -10,7 +10,7 @@ public extension TreeSitterLanguage {
             TreeSitterJavaScriptQueries.Query.highlightsFileURL,
             TreeSitterTypeScriptQueries.Query.highlightsFileURL
         ])
-        return TreeSitterLanguage(tree_sitter_typescript(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
+        return TreeSitterLanguage(tree_sitter_typescript(), highlightsQuery: highlightsQuery)
     }
 }
 

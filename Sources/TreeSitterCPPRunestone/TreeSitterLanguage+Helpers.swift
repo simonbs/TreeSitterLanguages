@@ -10,7 +10,7 @@ public extension TreeSitterLanguage {
             TreeSitterCQueries.Query.highlightsFileURL,
             TreeSitterCPPQueries.Query.highlightsFileURL
         ])
-        return TreeSitterLanguage(tree_sitter_cpp(), highlightsQuery: highlightsQuery, injectionsQuery: nil, indentationScopes: nil)
+        return TreeSitterLanguage(tree_sitter_cpp(), highlightsQuery: highlightsQuery)
     }
 }
 
