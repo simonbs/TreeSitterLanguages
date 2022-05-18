@@ -1,6 +1,6 @@
 import Runestone
 import TreeSitterObjC
-import TreeSitterObjC
+import TreeSitterObjCQueries
 
 public extension TreeSitterLanguage {
     static var objc: TreeSitterLanguage {
