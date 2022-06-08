@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "Runestone",
-        "repositoryURL": "git@github.com:simonbs/Runestone.git",
+        "repositoryURL": "https://github.com/simonbs/Runestone",
         "state": {
-          "branch": "main",
-          "revision": "ed4f6b3cb9ff724405aa060c420eff256c4d6791",
-          "version": null
+          "branch": null,
+          "revision": "2cb46f942488629a991a8f26213f18a8f6d4ccdd",
+          "version": "0.1.1"
         }
       }
     ]
