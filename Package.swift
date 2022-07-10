@@ -8,6 +8,9 @@ let package = Package(
     platforms: [.iOS(.v14)],
     products: [
         .library(name: "TreeSitterLanguagesCommon", targets: ["TreeSitterLanguagesCommon"]),
+        .library(name: "TreeSitterAstro", targets: ["TreeSitterAstro"]),
+        .library(name: "TreeSitterAstroQueries", targets: ["TreeSitterAstroQueries"]),
+        .library(name: "TreeSitterAstroRunestone", targets: ["TreeSitterAstroRunestone"]),
         .library(name: "TreeSitterBash", targets: ["TreeSitterBash"]),
         .library(name: "TreeSitterBashQueries", targets: ["TreeSitterBashQueries"]),
         .library(name: "TreeSitterBashRunestone", targets: ["TreeSitterBashRunestone"]),
@@ -113,6 +116,9 @@ let package = Package(
     ],
     targets: [
         .target(name: "TreeSitterLanguagesCommon"),
+        .target(name: "TreeSitterAstro", cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterAstroQueries", resources: [.copy("queries")]),
+        .target(name: "TreeSitterAstroRunestone", dependencies: ["Runestone", "TreeSitterAstro", "TreeSitterAstroQueries"]),
         .target(name: "TreeSitterBash", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterBashQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterBashRunestone", dependencies: ["Runestone", "TreeSitterBash", "TreeSitterBashQueries"]),
