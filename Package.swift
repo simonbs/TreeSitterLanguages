@@ -112,7 +112,7 @@ let package = Package(
         .library(name: "TreeSitterYAMLRunestone", targets: ["TreeSitterYAMLRunestone"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/simonbs/Runestone", .upToNextMinor(from: "0.1.1"))
+        .package(url: "https://github.com/simonbs/Runestone", .upToNextMajor(from: "0.2.0"))
     ],
     targets: [
         .target(name: "TreeSitterLanguagesCommon"),
