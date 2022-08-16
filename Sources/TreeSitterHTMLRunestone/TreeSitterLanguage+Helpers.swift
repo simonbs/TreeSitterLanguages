@@ -2,6 +2,7 @@ import Runestone
 import TreeSitterHTML
 import TreeSitterHTMLQueries
 
+@available(iOS 14.0, *)
 public extension TreeSitterLanguage {
     static var html: TreeSitterLanguage {
         let highlightsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterHTMLQueries.Query.highlightsFileURL)
