@@ -1,5 +1,6 @@
 import Runestone
 
+@available(iOS 14.0, *)
 public extension TreeSitterIndentationScopes {
     static var javaScript: TreeSitterIndentationScopes {
         return TreeSitterIndentationScopes(

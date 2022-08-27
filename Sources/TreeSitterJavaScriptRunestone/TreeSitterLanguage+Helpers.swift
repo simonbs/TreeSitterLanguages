@@ -3,6 +3,7 @@ import Runestone
 import TreeSitterJavaScript
 import TreeSitterJavaScriptQueries
 
+@available(iOS 14.0, *)
 public extension TreeSitterLanguage {
     static var javaScript: TreeSitterLanguage {
         let highlightsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterJavaScriptQueries.Query.highlightsFileURL)
@@ -20,6 +21,7 @@ public extension TreeSitterLanguage {
     }
 }
 
+@available(iOS 14.0, *)
 private extension TreeSitterLanguage {
     private static func combinedQuery(fromFilesAt fileURLs: [URL]) -> TreeSitterLanguage.Query? {
         let rawQuery = fileURLs.compactMap { try? String(contentsOf: $0) }.joined(separator: "\n")
