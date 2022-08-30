@@ -5,9 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "TreeSitterLanguages",
-    platforms: [.iOS(.v12)],
+    platforms: [.iOS(.v14)],
     products: [
         .library(name: "TreeSitterLanguagesCommon", targets: ["TreeSitterLanguagesCommon"]),
+        .library(name: "TreeSitterGQL", targets: ["TreeSitterGQL"]),
+        .library(name: "TreeSitterGQLQueries", targets: ["TreeSitterGQLQueries"]),
+        .library(name: "TreeSitterGQLRunestone", targets: ["TreeSitterGQLRunestone"]),
         .library(name: "TreeSitterAstro", targets: ["TreeSitterAstro"]),
         .library(name: "TreeSitterAstroQueries", targets: ["TreeSitterAstroQueries"]),
         .library(name: "TreeSitterAstroRunestone", targets: ["TreeSitterAstroRunestone"]),
@@ -116,6 +119,9 @@ let package = Package(
     ],
     targets: [
         .target(name: "TreeSitterLanguagesCommon"),
+        .target(name: "TreeSitterGQL", cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterGQLQueries", resources: [.copy("queries")]),
+        .target(name: "TreeSitterGQLRunestone", dependencies: ["Runestone", "TreeSitterGQL", "TreeSitterGQLQueries"]),
         .target(name: "TreeSitterAstro", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterAstroQueries", resources: [.copy("queries")]),
         .target(name: "TreeSitterAstroRunestone", dependencies: ["Runestone", "TreeSitterAstro", "TreeSitterAstroQueries"]),
