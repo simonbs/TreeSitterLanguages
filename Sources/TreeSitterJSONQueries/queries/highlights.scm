@@ -1,21 +1,16 @@
-[
-  ":"
-  ","
-] @punctuation.delimiter
+(pair
+  key: (_) @string.special.key)
+
+(string) @string
+
+(number) @number
 
 [
-  "["
-  "]"
-  "{"
-  "}"
-] @punctuation.bracket
+  (null)
+  (true)
+  (false)
+] @constant.builtin
 
-(pair key: (string) @property)
+(escape_sequence) @escape
 
-(pair value: (string) @string)
-(pair value: (number) @number)
-(pair value: [(true) (false) (null)] @constant.builtin)
-
-(array (string) @string)
-(array (number) @number)
-(array [(true) (false) (null)] @constant.builtin)
+(comment) @comment
