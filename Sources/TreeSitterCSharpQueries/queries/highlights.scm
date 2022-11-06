@@ -7,9 +7,11 @@
 (enum_declaration name: (identifier) @type)
 (struct_declaration (identifier) @type)
 (record_declaration (identifier) @type)
+(record_struct_declaration (identifier) @type)
 (namespace_declaration name: (identifier) @type)
 
 (constructor_declaration name: (identifier) @type)
+(destructor_declaration name: (identifier) @type)
 
 [
   (implicit_type)
