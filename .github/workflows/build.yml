@@ -15,12 +15,5 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Install jq
-        run: brew install jq
       - name: Build
-        run: |
-          set -e
-          SCHEMES=`xcodebuild -list -json | jq -r '.workspace.schemes | .[]'`
-          for scheme in $SCHEMES; do
-            xcodebuild -scheme $scheme -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13'
-          done
+        run: xcodebuild -scheme TreeSitterLanguages-Package -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13'
