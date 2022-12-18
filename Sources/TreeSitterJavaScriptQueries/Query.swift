@@ -28,6 +28,6 @@ public enum Query {
 
 private extension Query {
     static func url(named filename: String) -> URL {
-        return Bundle.module.url(forResource: "queries/" + filename, withExtension: "scm")!
+        return Bundle.module.url(forResource: filename, withExtension: "scm")!
     }
 }
