@@ -20,5 +20,5 @@ jobs:
           set -e
           SCHEMES=`xcodebuild -list -json | jq -r '.workspace.schemes | .[]'`
           for scheme in $SCHEMES; do
-            xcodebuild -scheme $scheme -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13'
+            xcodebuild -scheme $scheme -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14'
           done
