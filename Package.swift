@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "TreeSitterLanguages",
-    platforms: [.iOS(.v14)],
+    platforms: [.iOS(.v14), .macOS(.v11)],
     products: [
         .library(name: "TreeSitterLanguagesCommon", targets: ["TreeSitterLanguagesCommon"]),
         .library(name: "TreeSitterAstro", targets: ["TreeSitterAstro"]),
@@ -124,7 +124,7 @@ let package = Package(
         .library(name: "TreeSitterYAMLRunestone", targets: ["TreeSitterYAMLRunestone"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/simonbs/Runestone", from: "0.2.10")
+        .package(url: "https://github.com/simonbs/Runestone", branch: "mac")
     ],
     targets: [
         .target(name: "TreeSitterLanguagesCommon"),
