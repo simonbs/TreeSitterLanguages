@@ -14,7 +14,9 @@ jobs:
         with:
           submodules: recursive
       - name: Use HTTPS
-        run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
+        run: |
+          git config --global url."https://github.com/".insteadOf git@github.com:
+          git config --global url."https://".insteadOf git://
       - name: Build
         run: |
           xcodebuild\
