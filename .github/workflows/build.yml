@@ -7,11 +7,19 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: macOS-12
+    runs-on: macos-14
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
+      - name: Use HTTPS
+        run: |
+          git config --global url."https://github.com/".insteadOf git@github.com:
+          git config --global url."https://".insteadOf git://
       - name: Build
-        run: xcodebuild -scheme TreeSitterLanguages-Package -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14'
+        run: |
+          xcodebuild\
+            -scheme TreeSitterLanguages-Package\
+            -sdk iphonesimulator\
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
