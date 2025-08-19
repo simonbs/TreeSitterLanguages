@@ -68,6 +68,7 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex)
 - [tree-sitter-lua](https://github.com/tjdevries/tree-sitter-lua)
 - [tree-sitter-markdown](https://github.com/MDeiml/tree-sitter-markdown)
+- [tree-sitter-nim](https://github.com/alaviss/tree-sitter-nim)
 - [tree-sitter-ocaml](https://github.com/tree-sitter/tree-sitter-ocaml)
 - [tree-sitter-perl](https://github.com/ganezdragon/tree-sitter-perl)
 - [tree-sitter-php](https://github.com/tree-sitter/tree-sitter-php)
