@@ -74,6 +74,9 @@ let package = Package(
         .library(name: "TreeSitterMarkdownInline", targets: ["TreeSitterMarkdownInline"]),
         .library(name: "TreeSitterMarkdownInlineQueries", targets: ["TreeSitterMarkdownInlineQueries"]),
         .library(name: "TreeSitterMarkdownInlineRunestone", targets: ["TreeSitterMarkdownInlineRunestone"]),
+        .library(name: "TreeSitterNix", targets: ["TreeSitterNix"]),
+        .library(name: "TreeSitterNixQueries", targets: ["TreeSitterNixQueries"]),
+        .library(name: "TreeSitterNixRunestone", targets: ["TreeSitterNixRunestone"]),
         .library(name: "TreeSitterOCaml", targets: ["TreeSitterOCaml"]),
         .library(name: "TreeSitterOCamlQueries", targets: ["TreeSitterOCamlQueries"]),
         .library(name: "TreeSitterOCamlRunestone", targets: ["TreeSitterOCamlRunestone"]),
@@ -119,6 +122,9 @@ let package = Package(
         .library(name: "TreeSitterTypeScript", targets: ["TreeSitterTypeScript"]),
         .library(name: "TreeSitterTypeScriptQueries", targets: ["TreeSitterTypeScriptQueries"]),
         .library(name: "TreeSitterTypeScriptRunestone", targets: ["TreeSitterTypeScriptRunestone"]),
+        .library(name: "TreeSitterXML", targets: ["TreeSitterXML"]),
+        .library(name: "TreeSitterXMLQueries", targets: ["TreeSitterXMLQueries"]),
+        .library(name: "TreeSitterXMLRunestone", targets: ["TreeSitterXMLRunestone"]),
         .library(name: "TreeSitterYAML", targets: ["TreeSitterYAML"]),
         .library(name: "TreeSitterYAMLQueries", targets: ["TreeSitterYAMLQueries"]),
         .library(name: "TreeSitterYAMLRunestone", targets: ["TreeSitterYAMLRunestone"]),
@@ -127,6 +133,9 @@ let package = Package(
         .package(url: "https://github.com/simonbs/Runestone", from: "0.4.1")
     ],
     targets: [
+        .testTarget(name: "RequestedLanguageHighlightTests", dependencies: [
+            "Runestone", "TreeSitterNixRunestone", "TreeSitterXMLRunestone"
+        ]),
         .target(name: "TreeSitterLanguagesCommon"),
         .target(name: "TreeSitterAstro", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterAstroQueries", resources: [.copy("highlights.scm"), .copy("injections.scm")]),
@@ -194,6 +203,9 @@ let package = Package(
         .target(name: "TreeSitterMarkdownInline", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterMarkdownInlineQueries", resources: [.copy("highlights.scm"), .copy("injections.scm")]),
         .target(name: "TreeSitterMarkdownInlineRunestone", dependencies: ["Runestone", "TreeSitterMarkdownInline", "TreeSitterMarkdownInlineQueries"]),
+        .target(name: "TreeSitterNix", cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterNixQueries", resources: [.copy("highlights.scm")]),
+        .target(name: "TreeSitterNixRunestone", dependencies: ["Runestone", "TreeSitterNix", "TreeSitterNixQueries"]),
         .target(name: "TreeSitterOCaml", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterOCamlQueries", resources: [.copy("highlights.scm"), .copy("locals.scm"), .copy("tags.scm")]),
         .target(name: "TreeSitterOCamlRunestone", dependencies: ["Runestone", "TreeSitterOCaml", "TreeSitterOCamlQueries"]),
@@ -239,6 +251,9 @@ let package = Package(
         .target(name: "TreeSitterTypeScript", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterTypeScriptQueries", resources: [.copy("highlights.scm"), .copy("locals.scm"), .copy("tags.scm")]),
         .target(name: "TreeSitterTypeScriptRunestone", dependencies: ["Runestone", "TreeSitterTypeScript", "TreeSitterTypeScriptQueries", "TreeSitterJavaScriptQueries"]),
+        .target(name: "TreeSitterXML", cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterXMLQueries", resources: [.copy("highlights.scm")]),
+        .target(name: "TreeSitterXMLRunestone", dependencies: ["Runestone", "TreeSitterXML", "TreeSitterXMLQueries"]),
         .target(name: "TreeSitterYAML", exclude: ["src/schema.generated.cc"], cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterYAMLQueries", resources: [.copy("highlights.scm")]),
         .target(name: "TreeSitterYAMLRunestone", dependencies: ["Runestone", "TreeSitterYAML", "TreeSitterYAMLQueries"])
