@@ -59,5 +59,25 @@
   "licenses": [
     "Licenses/Additional/ObjectiveC-BaseC.txt",
     "Licenses/Additional/ObjectiveC.txt"
+  ],
+  "additional_cases": [
+    {
+      "source": "#import <Foundation/Foundation.h>\n#define ANSWER 42\n@interface Example : NSObject\n@property(nonatomic, copy) NSString *name;\n- (NSString *)greet:(NSString *)name;\n@end\n@implementation Example\n- (NSString *)greet:(NSString *)name {\n  BOOL ready = YES; id missing = nil;\n  NSArray *items = @[@\"hello\", @42, @YES];\n  return [NSString stringWithFormat:@\"Hello %@ %d\", name, ANSWER];\n}\n@end\n",
+      "expected": [
+        [
+          "keyword",
+          "@property"
+        ],
+        [
+          "type",
+          "NSString"
+        ],
+        [
+          "keyword",
+          "return"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

@@ -69,5 +69,21 @@
   ],
   "licenses": [
     "Licenses/Additional/Glimmer-LICENSE.md"
+  ],
+  "additional_cases": [
+    {
+      "source": "<div class=\"card {{if @active 'active'}}\">\n  <Avatar @user={{@user}} />\n  <button {{on \"click\" this.save}}>Save</button>\n  {{#each @users as |user index|}}<p>{{user.name}}</p>{{else}}No users{{/each}}\n</div>",
+      "expected": [
+        [
+          "constructor",
+          "Avatar"
+        ],
+        [
+          "tag",
+          "button"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

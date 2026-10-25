@@ -55,5 +55,25 @@
   ],
   "licenses": [
     "Licenses/Additional/Scala.txt"
+  ],
+  "additional_cases": [
+    {
+      "source": "enum Color:\n  case Red, Green\ncase class User(name: String)\nobject Main:\n  def greet(name: String): String = s\"Hello $name: ${name.length}\"\n  val ratio = 3.14\n  val users = List(User(\"Ada\"))\n  users.map(_.name).foreach(println)\nend Main\n",
+      "expected": [
+        [
+          "keyword",
+          "enum"
+        ],
+        [
+          "function",
+          "greet"
+        ],
+        [
+          "number",
+          "3.14"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

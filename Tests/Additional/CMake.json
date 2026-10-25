@@ -39,5 +39,17 @@
   ],
   "query_adaptations": [
     "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions."
+  ],
+  "additional_cases": [
+    {
+      "source": "cmake_minimum_required(VERSION 3.28)\nproject(Example LANGUAGES CXX)\nset(CMAKE_CXX_STANDARD 20)\noption(BUILD_TESTING \"Build tests\" ON)\nfunction(add_widget name)\n  add_library(${name} STATIC widget.cpp)\n  target_compile_definitions(${name} PRIVATE \"$<$<CONFIG:Debug>:DEBUG=1>\")\nendfunction()\nif(BUILD_TESTING AND NOT WIN32)\n  add_widget(example)\n  message(STATUS \"Found ${CMAKE_CXX_COMPILER}\")\nendif()\n",
+      "expected": [
+        [
+          "function.builtin",
+          "project"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

@@ -196,9 +196,11 @@ def main():
         for title in options.language or CASES:
             try:
                 check(title, output / 'runtime', root, output, options.verbose)
-                if title == 'Jsonnet':
-                    subprocess.run([sys.executable, str(root / 'Tests/Additional/test-jsonnet-scanner.py'),
-                                    '--runtime', str(output / 'runtime')], check=True)
+                original = CASES[title]
+                for case in FIXTURES[title].get('additional_cases', []):
+                    CASES[title] = (case['source'], {tuple(x) for x in case['expected']}, {tuple(x) for x in case.get('forbidden', [])})
+                    check(title, output / 'runtime', root, output, options.verbose)
+                CASES[title] = original
                 if (root / 'Sources' / ('TreeSitter' + title + 'Queries') / 'injections.scm').exists():
                     check(title, output / 'runtime', root, output, options.verbose, 'injections')
             except (AssertionError, OSError, subprocess.CalledProcessError) as error:

@@ -47,5 +47,17 @@
   ],
   "licenses": [
     "Licenses/Additional/Pascal.txt"
+  ],
+  "additional_cases": [
+    {
+      "source": "program Example;\n{$mode objfpc}\nuses SysUtils;\ntype TPoint = record X, Y: Double; end;\nconst ANSWER = 42;\nfunction Square(Value: Double): Double;\nbegin\n  Result := Value * Value;\nend;\nvar Point: TPoint;\nbegin\n  Point.X := 3.14;\n  WriteLn('Hello ', Square(Point.X), ANSWER);\nend.\n",
+      "expected": [
+        [
+          "keyword",
+          "program"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

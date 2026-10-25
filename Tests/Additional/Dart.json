@@ -47,5 +47,25 @@
   ],
   "licenses": [
     "Licenses/Additional/Dart.txt"
+  ],
+  "additional_cases": [
+    {
+      "source": "sealed class Shape {}\nclass Circle extends Shape { final double radius; Circle(this.radius); }\ndouble area(Shape shape) => switch (shape) { Circle(radius: final r) when r > 0 => 3.14 * r * r, _ => 0 };\nvoid main() { final (name, count) = ('world', 2); print('Hello $name: ${count + 1}'); final pattern = RegExp(r'\\d+'); }\n",
+      "expected": [
+        [
+          "keyword",
+          "sealed"
+        ],
+        [
+          "keyword",
+          "switch"
+        ],
+        [
+          "number",
+          "3.14"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

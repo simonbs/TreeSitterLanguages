@@ -98,6 +98,6 @@ Thanks to all the contributors to these repositories for their great effort in e
 
 ## Additional adopted languages
 
-AWK, Bicep, CMake, CUE, D, Dart, Dockerfile, Erlang, Fish, Glimmer, GraphQL, Groovy, HCL, Jinja, Jsonnet, KDL, Liquid, MATLAB, Make, ObjectiveC, Pascal, Proto, RON, Scala, Starlark, Tcl, Twig, Vim, Vue, Zig.
+Bicep, CMake, Dart, Fish, Glimmer, HCL, ObjectiveC, Pascal, Proto, Scala.
 
 See [additional language sources and compatibility](ADDITIONAL_LANGUAGES.md) for pinned upstream revisions, licenses, query adaptations, runtime requirements, and validation commands.

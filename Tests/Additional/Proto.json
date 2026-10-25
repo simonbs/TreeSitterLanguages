@@ -38,5 +38,21 @@
   ],
   "query_adaptations": [
     "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions."
+  ],
+  "additional_cases": [
+    {
+      "source": "edition = \"2023\";\npackage example.v1;\nimport \"google/protobuf/timestamp.proto\";\nmessage Request {\n  string name = 1;\n  map<string, int64> counts = 2;\n  oneof result { string text = 3; bytes data = 4; }\n  enum Status { UNKNOWN = 0; READY = 1; }\n  double ratio = 5 [default = 1.5];\n}\nservice Greeter { rpc Get(Request) returns (stream Request); }\n",
+      "expected": [
+        [
+          "keyword.type",
+          "message"
+        ],
+        [
+          "keyword.function",
+          "rpc"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

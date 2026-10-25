@@ -34,5 +34,21 @@
   ],
   "query_adaptations": [
     "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions."
+  ],
+  "additional_cases": [
+    {
+      "source": "targetScope = 'resourceGroup'\n@description('Storage account name')\nparam storageName string = 'store${uniqueString(resourceGroup().id)}'\nparam enabled bool = true\nvar tags = { environment: 'dev' }\nresource account 'Microsoft.Storage/storageAccounts@2023-05-01' = if (enabled) {\n  name: storageName\n  location: resourceGroup().location\n  kind: 'StorageV2'\n  sku: { name: 'Standard_LRS' }\n  tags: tags\n}\noutput id string = account.id\n",
+      "expected": [
+        [
+          "keyword",
+          "param"
+        ],
+        [
+          "keyword",
+          "resource"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }

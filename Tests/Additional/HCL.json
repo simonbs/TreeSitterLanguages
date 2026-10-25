@@ -35,5 +35,21 @@
   ],
   "query_adaptations": [
     "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions."
+  ],
+  "additional_cases": [
+    {
+      "source": "terraform { required_version = \">= 1.5\" }\nvariable \"instances\" { default = 3 }\nlocals { names = [for i in range(var.instances) : \"web-${i}\" if i > 0] }\nresource \"aws_instance\" \"web\" {\n  count = var.instances\n  ami = null\n  tags = { Name = upper(\"web-${count.index}\") }\n  user_data = <<-EOT\n#!/bin/bash\necho \"${var.instances}\"\nEOT\n}\n",
+      "expected": [
+        [
+          "keyword.repeat",
+          "for"
+        ],
+        [
+          "function",
+          "upper"
+        ]
+      ],
+      "forbidden": []
+    }
   ]
 }
