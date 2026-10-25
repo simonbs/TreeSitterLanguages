@@ -1,0 +1,55 @@
+{
+  "title": "OCaml",
+  "member": "ocaml",
+  "symbol": "tree_sitter_ocaml",
+  "repo": "https://github.com/tree-sitter/tree-sitter-ocaml",
+  "revision": "3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/OCaml-LICENSE.txt"
+  ],
+  "source": "module Example = struct\n  type result = Success of int | Failure of string\n  let count values = List.fold_left (fun total value -> total + value) 0 values\n  let describe = function\n    | Success value -> Printf.sprintf \"value=%d\" value\n    | Failure message -> message\nend\n(* outer (* nested *) comment *)\n",
+  "expected": [
+    [
+      "keyword",
+      "module"
+    ],
+    [
+      "keyword",
+      "type"
+    ],
+    [
+      "keyword",
+      "let"
+    ],
+    [
+      "keyword",
+      "function"
+    ],
+    [
+      "number",
+      "0"
+    ],
+    [
+      "string",
+      "\"value=%d\""
+    ],
+    [
+      "comment",
+      "(* outer (* nested *) comment *)"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-ocaml",
+      "revision": "3b2e14e0697d405c9aa0beddfa09b71f45abc504",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence.",
+    "Includes upstream iterative nested-comment scanner fix; regression test covers deeply nested comments.",
+    "Shared scanner header relocated under src/common; scanner include path adjusted."
+  ]
+}

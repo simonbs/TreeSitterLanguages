@@ -1,30 +1,40 @@
+(identifier) @variable
+
 ;; Methods
-(method_declaration (identifier) @type (identifier) @function)
+
+(method_declaration name: (identifier) @function.definition)
+(local_function_statement name: (identifier) @function.definition)
 
 ;; Types
+
 (interface_declaration name: (identifier) @type)
 (class_declaration name: (identifier) @type)
 (enum_declaration name: (identifier) @type)
 (struct_declaration (identifier) @type)
 (record_declaration (identifier) @type)
-(record_struct_declaration (identifier) @type)
-(namespace_declaration name: (identifier) @type)
+(namespace_declaration name: (identifier) @namespace)
 
-(constructor_declaration name: (identifier) @type)
-(destructor_declaration name: (identifier) @type)
+(generic_name (identifier) @type)
+(type_parameter (identifier) @property.definition)
+(parameter type: (identifier) @type)
+(type_argument_list (identifier) @type)
+(as_expression right: (identifier) @type)
+(is_expression right: (identifier) @type)
 
-[
-  (implicit_type)
-  (nullable_type)
-  (pointer_type)
-  (function_pointer_type)
-  (predefined_type)
-] @type.builtin
+(constructor_declaration name: (identifier) @constructor)
+(destructor_declaration name: (identifier) @constructor)
+
+(_ type: (identifier) @type)
+
+(base_list (identifier) @type)
+
+(predefined_type) @type.builtin
 
 ;; Enum
 (enum_member_declaration (identifier) @property.definition)
 
 ;; Literals
+
 [
   (real_literal)
   (integer_literal)
@@ -33,25 +43,26 @@
 [
   (character_literal)
   (string_literal)
+  (raw_string_literal)
   (verbatim_string_literal)
-  (interpolated_string_text)
-  (interpolated_verbatim_string_text)
-  "\""
-  "$\""
-  "@$\""
-  "$@\""
+  (interpolated_string_expression)
+  (interpolation_start)
+  (interpolation_quote)
  ] @string
+
+(escape_sequence) @string.escape
 
 [
   (boolean_literal)
   (null_literal)
-  (void_keyword)
 ] @constant.builtin
 
 ;; Comments
+
 (comment) @comment
 
 ;; Tokens
+
 [
   ";"
   "."
@@ -63,29 +74,43 @@
   "-"
   "-="
   "&"
+  "&="
   "&&"
   "+"
   "++"
   "+="
   "<"
+  "<="
   "<<"
+  "<<="
   "="
   "=="
   "!"
   "!="
   "=>"
   ">"
+  ">="
   ">>"
+  ">>="
+  ">>>"
+  ">>>="
   "|"
+  "|="
   "||"
   "?"
   "??"
+  "??="
   "^"
+  "^="
   "~"
   "*"
+  "*="
   "/"
+  "/="
   "%"
+  "%="
   ":"
+  ".."
 ] @operator
 
 [
@@ -95,14 +120,20 @@
   "]"
   "{"
   "}"
+  (interpolation_brace)
 ]  @punctuation.bracket
 
 ;; Keywords
-(modifier) @keyword
-(this_expression) @keyword
-(escape_sequence) @keyword
 
 [
+  (modifier)
+  "this"
+  (implicit_type)
+] @keyword
+
+[
+  "add"
+  "alias"
   "as"
   "base"
   "break"
@@ -118,9 +149,11 @@
   "enum"
   "event"
   "explicit"
+  "extern"
   "finally"
   "for"
   "foreach"
+  "global"
   "goto"
   "if"
   "implicit"
@@ -128,11 +161,14 @@
   "is"
   "lock"
   "namespace"
+  "notnull"
   "operator"
   "params"
   "return"
+  "remove"
   "sizeof"
   "stackalloc"
+  "static"
   "struct"
   "switch"
   "throw"
@@ -157,84 +193,26 @@
   "init"
   "with"
   "let"
+  "unsafe"
 ] @keyword
 
-
-;; Linq
-(from_clause (identifier) @variable)
-(group_clause)
-(order_by_clause)
-(select_clause (identifier) @variable)
-(query_continuation (identifier) @variable) @keyword
-
-;; Record
-(with_expression
-  (with_initializer_expression
-    (simple_assignment_expression
-      (identifier) @variable)))
-
-;; Exprs
-(binary_expression (identifier) @variable (identifier) @variable)
-(binary_expression (identifier)* @variable)
-(conditional_expression (identifier) @variable)
-(prefix_unary_expression (identifier) @variable)
-(postfix_unary_expression (identifier)* @variable)
-(assignment_expression (identifier) @variable)
-(cast_expression (identifier) @type (identifier) @variable)
-
-;; Class
-(base_list (identifier) @type)
-(property_declaration (generic_name))
-(property_declaration
-  type: (nullable_type) @type
-  name: (identifier) @variable)
-(property_declaration
-  type: (predefined_type) @type
-  name: (identifier) @variable)
-(property_declaration
-  type: (identifier) @type
-  name: (identifier) @variable)
-
-;; Lambda
-(lambda_expression) @variable
-
 ;; Attribute
-(attribute) @type
 
-;; Parameter
+(attribute name: (identifier) @attribute)
+
+;; Parameters
+
 (parameter
-  type: (identifier) @type
   name: (identifier) @variable.parameter)
-(parameter (identifier) @variable.parameter)
-(parameter_modifier) @keyword
-
-;; Typeof
-(type_of_expression (identifier) @type)
-
-;; Variable
-(variable_declaration (identifier) @type)
-(variable_declarator (identifier) @variable)
-
-;; Return
-(return_statement (identifier) @variable)
-(yield_statement (identifier) @variable)
-
-;; Type
-(generic_name (identifier) @type)
-(type_parameter (identifier) @property.definition)
-(type_argument_list (identifier) @type)
 
 ;; Type constraints
+
 (type_parameter_constraints_clause (identifier) @property.definition)
-(type_constraint (identifier) @type)
 
-;; Exception
-(catch_declaration (identifier) @type (identifier) @variable)
-(catch_declaration (identifier) @type)
+;; Method calls
 
-;; Switch
-(switch_statement (identifier) @variable)
-(switch_expression (identifier) @variable)
+(invocation_expression (member_access_expression name: (identifier) @function.call))
 
-;; Lock statement
-(lock_statement (identifier) @variable)
+; Clear enclosing string style inside interpolation expressions.
+(interpolation) @none
+(invocation_expression function: (identifier) @function.call)

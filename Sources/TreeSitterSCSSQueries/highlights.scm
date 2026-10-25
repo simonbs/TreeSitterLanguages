@@ -61,3 +61,10 @@
 
 "#" @punctuation.delimiter
 "," @punctuation.delimiter
+
+; SCSS syntax absent from the upstream CSS-derived highlight query.
+[(variable) (variable_name) (variable_value)] @variable
+(single_line_comment) @comment
+["@mixin" "@include" "@function" "@return" "@use" "@forward" "@if" "@else" "@each" "@for" "@while" "@extend"] @keyword
+["{" "}" "(" ")"] @punctuation.bracket
+[":" ";"] @punctuation.delimiter

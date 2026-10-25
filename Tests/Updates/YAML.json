@@ -1,0 +1,69 @@
+{
+  "title": "YAML",
+  "member": "yaml",
+  "symbol": "tree_sitter_yaml",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-yaml",
+  "revision": "a1c4812a73ec5e089de8e441fdea3a921e8d5079",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/YAML.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-yaml",
+      "revision": "a1c4812a73ec5e089de8e441fdea3a921e8d5079",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Retain Runestone field/type names; add upstream full coverage for flow strings and block scalars; retain escape highlighting."
+  ],
+  "source": "---\n# deployment\ndefaults: &base\n  enabled: true\n  retries: 3\nservice:\n  <<: *base\n  tags: [web, \"api\"]\n  metadata: {owner: Ada, active: false}\n  script: |\n    echo hello\n    echo done\n",
+  "expected": [
+    [
+      "comment",
+      "# deployment"
+    ],
+    [
+      "field",
+      "defaults"
+    ],
+    [
+      "type",
+      "base"
+    ],
+    [
+      "boolean",
+      "true"
+    ],
+    [
+      "number",
+      "3"
+    ],
+    [
+      "string",
+      "web"
+    ],
+    [
+      "string",
+      "Ada"
+    ],
+    [
+      "string",
+      "|\n    echo hello\n    echo done\n"
+    ]
+  ],
+  "forbidden": [
+    [
+      "field",
+      "Ada"
+    ],
+    [
+      "string",
+      "true"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering."
+  ]
+}

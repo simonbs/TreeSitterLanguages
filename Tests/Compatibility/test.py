@@ -76,7 +76,7 @@ def main():
             public_header = (target / "include/public.h").read_text()
             factory = re.search(r"\b(tree_sitter_\w+)\(void\)", public_header).group(1)
             sources = [target / "src/parser.c"]
-            sources += sorted((target / "src").glob("scanner.*"))
+            sources += [p for p in sorted((target / "src").glob("scanner.*")) if p.suffix in (".c", ".cc", ".cpp")]
             objects = [runtime_object]
             for index, source in enumerate(sources + [ROOT / "Tests/Compatibility/test.c"]):
                 obj = directory / f"{index}.o"
@@ -113,9 +113,11 @@ def main():
         if failures:
             sys.exit(f"Failed: {', '.join(sorted(failures))}")
         print(f"All {len(samples)} languages passed.")
-    # Keep the added grammars in the existing CI job, with capture-level checks.
     if len(sys.argv) == 2:
-        run([sys.executable, ROOT / "Tests/Additional/test.py", "--runtime", Path(sys.argv[1]).resolve()])
+        run([sys.executable, ROOT / "Tests/Updates/test.py", "--runtime", runtime])
+        for script in ["markdown_scanner_regression.py", "test-ocaml-comments.py", "scanner_regressions_a.py"]:
+            run([sys.executable, ROOT / "Tests/Updates" / script, "--runtime", runtime])
+        run([sys.executable, ROOT / "Tests/Additional/test.py", "--runtime", runtime])
 
 
 if __name__ == "__main__":

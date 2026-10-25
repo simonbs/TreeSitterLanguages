@@ -1,0 +1,63 @@
+{
+  "title": "Go",
+  "member": "go",
+  "symbol": "tree_sitter_go",
+  "repo": "https://github.com/tree-sitter/tree-sitter-go",
+  "revision": "2346a3ab1bb3857b48b29d779a1ef9799a248cd7",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-go",
+      "revision": "2346a3ab1bb3857b48b29d779a1ef9799a248cd7",
+      "paths": [
+        "queries/tags.scm",
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
+    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation."
+  ],
+  "source": "package example\n// Generic type aliases\ntype Set[P comparable] = map[P]bool\nfunc compute(value int) string {\n values := []int{1, 42}\n println(len(values))\n return \"hello\"\n}\n",
+  "expected": [
+    [
+      "keyword",
+      "type"
+    ],
+    [
+      "keyword",
+      "func"
+    ],
+    [
+      "keyword",
+      "return"
+    ],
+    [
+      "function.definition",
+      "compute"
+    ],
+    [
+      "function.builtin",
+      "len"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "function.builtin",
+      "compute"
+    ],
+    [
+      "constant.builtin",
+      "value"
+    ]
+  ]
+}

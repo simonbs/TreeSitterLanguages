@@ -1,0 +1,65 @@
+{
+  "title": "Ruby",
+  "member": "ruby",
+  "symbol": "tree_sitter_ruby",
+  "repo": "https://github.com/tree-sitter/tree-sitter-ruby",
+  "revision": "ad907a69da0c8a4f7a943a7fe012712208da6dee",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-ruby",
+      "revision": "ad907a69da0c8a4f7a943a7fe012712208da6dee",
+      "paths": [
+        "queries/tags.scm",
+        "queries/locals.scm",
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
+    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.",
+    "Pinned revision includes upstream heredoc serialization bounds fix; dedicated native regression checks oversized delimiter handling and bounded roundtrip."
+  ],
+  "source": "# Endless methods, interpolation and heredocs\nclass Example\n  LIMIT = 42\n  def compute(value) = \"hello #{value}\"\n  def message\n    <<~TEXT\nhello\nTEXT\n  end\nend\nexample = Example.new\nexample.compute(1)\n",
+  "expected": [
+    [
+      "keyword",
+      "class"
+    ],
+    [
+      "keyword",
+      "def"
+    ],
+    [
+      "function.method",
+      "compute"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "constant",
+      "LIMIT"
+    ],
+    [
+      "string",
+      "\"hello #{value}\""
+    ],
+    [
+      "none",
+      "#{value}"
+    ]
+  ],
+  "forbidden": [
+    [
+      "constant.builtin",
+      "value"
+    ],
+    [
+      "keyword",
+      "compute"
+    ]
+  ]
+}

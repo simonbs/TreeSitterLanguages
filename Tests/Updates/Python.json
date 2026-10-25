@@ -1,0 +1,67 @@
+{
+  "title": "Python",
+  "member": "python",
+  "symbol": "tree_sitter_python",
+  "repo": "https://github.com/tree-sitter/tree-sitter-python",
+  "revision": "26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-python",
+      "revision": "26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64",
+      "paths": [
+        "queries/tags.scm",
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
+    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation."
+  ],
+  "source": "# Python 3.12 aliases, generic definitions and interpolation\ntype Point = tuple[float, float]\ndef identity[T](value: T) -> T:\n    message = f\"hello {value}\"\n    print(message, 42)\n    return value\n",
+  "expected": [
+    [
+      "keyword",
+      "type"
+    ],
+    [
+      "keyword",
+      "def"
+    ],
+    [
+      "keyword",
+      "return"
+    ],
+    [
+      "function.definition",
+      "identity"
+    ],
+    [
+      "function.builtin",
+      "print"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "none",
+      "{value}"
+    ],
+    [
+      "string",
+      "f\"hello {value}\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "function.builtin",
+      "identity"
+    ],
+    [
+      "constant",
+      "value"
+    ]
+  ]
+}

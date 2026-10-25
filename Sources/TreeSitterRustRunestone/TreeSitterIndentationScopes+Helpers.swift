@@ -14,7 +14,7 @@ public extension TreeSitterIndentationScopes {
                 "tuple_expression",
                 "match_arm",
                 "match_block",
-                "if_let_expression",
+                "if_expression",
                 "call_expression",
                 "assignment_expression",
                 "arguments",

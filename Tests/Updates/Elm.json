@@ -1,0 +1,49 @@
+{
+  "title": "Elm",
+  "member": "elm",
+  "symbol": "tree_sitter_elm",
+  "repo": "https://github.com/elm-tooling/tree-sitter-elm",
+  "revision": "e1e8fea161a1e66f3997855d316be2a43e4e956f",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Elm-LICENSE.md.txt"
+  ],
+  "source": "module Main exposing (Model, update)\nimport Html exposing (text)\ntype alias Model = { count : Int }\ntype Msg = Increment | Reset\nupdate msg model =\n    case msg of\n        Increment -> { model | count = model.count + 1 }\n        Reset -> { model | count = 0 }\nmain = text \"Hello\"\n-- normal comment\n",
+  "expected": [
+    [
+      "keyword.other.elm",
+      "module"
+    ],
+    [
+      "keyword.control.elm",
+      "case"
+    ],
+    [
+      "number",
+      "1"
+    ],
+    [
+      "constructor",
+      "Increment"
+    ],
+    [
+      "string.elm",
+      "Hello"
+    ],
+    [
+      "comment.elm",
+      "-- normal comment"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/elm-tooling/tree-sitter-elm",
+      "revision": "e1e8fea161a1e66f3997855d316be2a43e4e956f",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence."
+  ]
+}

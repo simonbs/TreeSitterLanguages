@@ -1,0 +1,59 @@
+{
+  "title": "Java",
+  "member": "java",
+  "symbol": "tree_sitter_java",
+  "repo": "https://github.com/tree-sitter/tree-sitter-java",
+  "revision": "e10607b45ff745f5f876bfa3e94fbcc6b44bdc11",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-java",
+      "revision": "e10607b45ff745f5f876bfa3e94fbcc6b44bdc11",
+      "paths": [
+        "queries/tags.scm",
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
+    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation."
+  ],
+  "source": "// Guarded patterns and text blocks\nclass Example {\n String text = \"\"\"\nhello\n\"\"\";\n static int compute(Object value) { return switch (value) {\n case String s when !s.isEmpty() -> s.length(); default -> 42; }; }\n}\n",
+  "expected": [
+    [
+      "keyword",
+      "when"
+    ],
+    [
+      "keyword",
+      "switch"
+    ],
+    [
+      "keyword",
+      "return"
+    ],
+    [
+      "function.method",
+      "compute"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"\"\"\nhello\n\"\"\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "constant",
+      "value"
+    ],
+    [
+      "constant",
+      "compute"
+    ]
+  ]
+}

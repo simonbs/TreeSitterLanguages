@@ -1,0 +1,82 @@
+{
+  "title": "Lua",
+  "member": "lua",
+  "symbol": "tree_sitter_lua",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-lua",
+  "revision": "10fe0054734eec83049514ea2e718b2a56acd0c9",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-lua",
+      "revision": "10fe0054734eec83049514ea2e718b2a56acd0c9",
+      "paths": [
+        "queries/highlights.scm",
+        "queries/injections.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
+    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.",
+    "Canonical Lua replaces old global scanner state with per-instance payload; local adaptation clears payload before deserialize, including length0 reset.",
+    "Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally."
+  ],
+  "source": "-- Attributes, long strings, methods and builtins\nlocal LIMIT <const> = 42\nlocal message = [=[hello]=]\nlocal object = {}\nfunction object:compute(value)\n print(message)\n return value + LIMIT\nend\nobject:compute(1)\n",
+  "expected": [
+    [
+      "keyword",
+      "local"
+    ],
+    [
+      "keyword.return",
+      "return"
+    ],
+    [
+      "function.method",
+      "compute"
+    ],
+    [
+      "function.method.call",
+      "compute"
+    ],
+    [
+      "function.builtin",
+      "print"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "[=[hello]=]"
+    ],
+    [
+      "attribute",
+      "const"
+    ]
+  ],
+  "forbidden": [
+    [
+      "function.builtin",
+      "compute"
+    ],
+    [
+      "constant",
+      "value"
+    ]
+  ],
+  "injection_source": "ffi.cdef[[int add(int a, int b);]]\nprint[[ordinary text]]\n",
+  "injection_expected": [
+    [
+      "c",
+      "int add(int a, int b);"
+    ]
+  ],
+  "injection_forbidden": [
+    [
+      "c",
+      "ordinary text"
+    ]
+  ]
+}

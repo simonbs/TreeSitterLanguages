@@ -1,0 +1,50 @@
+{
+  "title": "Haskell",
+  "member": "haskell",
+  "symbol": "tree_sitter_haskell",
+  "repo": "https://github.com/tree-sitter/tree-sitter-haskell",
+  "revision": "97288e585b0bd44199720280d067fa35bacd81ff",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Haskell-LICENSE.txt"
+  ],
+  "source": "{-# LANGUAGE GHC2021 #-}\nmodule Example where\nimport Data.List (sort)\ndata Result a = Success a | Failure String\ncount :: [Int] -> Int\ncount values = length [x | x <- values, x > 0]\nmain :: IO ()\nmain = do\n  let result = Success (count [1, 2, 3])\n  if True then print \"ready\" else pure ()\n-- normal comment\n",
+  "expected": [
+    [
+      "keyword.import",
+      "module"
+    ],
+    [
+      "keyword.import",
+      "import"
+    ],
+    [
+      "keyword.conditional",
+      "if"
+    ],
+    [
+      "number",
+      "3"
+    ],
+    [
+      "string",
+      "\"ready\""
+    ],
+    [
+      "comment",
+      "-- normal comment"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-haskell",
+      "revision": "97288e585b0bd44199720280d067fa35bacd81ff",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence.",
+    "Three cross-declaration equality heuristics omitted because Runestone currently compares the left capture to itself; direct declarations, signatures and calls remain highlighted."
+  ]
+}

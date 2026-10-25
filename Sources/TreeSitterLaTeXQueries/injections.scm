@@ -1,22 +1,7 @@
-
-[
- (line_comment)
- (block_comment)
- (comment_environment)
-] @comment
-
-(pycode_environment
-  code: (source_code) @python
-)
-
+(pycode_environment code: (source_code) @python)
 (minted_environment
-  (begin
-    language: (curly_group_text
-               (text) @language))
-  (source_code) @content)
+ (begin language: (curly_group_text (text) @injection.language))
+ (source_code) @injection.content)
 
-((generic_environment
-  (begin
-   name: (curly_group_text
-           (text) @_env))) @c
-   (#any-of? @_env "asy" "asydef"))
+; Asymptote retains the prior C-family fallback, limited to actual source code.
+[(asy_environment code: (source_code) @c) (asydef_environment code: (source_code) @c)]

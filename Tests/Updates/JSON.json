@@ -1,0 +1,61 @@
+{
+  "title": "JSON",
+  "member": "json",
+  "symbol": "tree_sitter_json",
+  "repo": "https://github.com/tree-sitter/tree-sitter-json",
+  "revision": "254c42a6476413b776221e03982ac8ae159eeb72",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/JSON.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-json",
+      "revision": "254c42a6476413b776221e03982ac8ae159eeb72",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Use current upstream highlights with Runestone-compatible captures."
+  ],
+  "source": "{\"name\":\"Ada\",\"active\":true,\"items\":[1,null,2.5],\"escape\":\"a\\nb\"}\n",
+  "expected": [
+    [
+      "string.special.key",
+      "\"name\""
+    ],
+    [
+      "string",
+      "\"Ada\""
+    ],
+    [
+      "constant.builtin",
+      "true"
+    ],
+    [
+      "constant.builtin",
+      "null"
+    ],
+    [
+      "number",
+      "2.5"
+    ],
+    [
+      "escape",
+      "\\n"
+    ]
+  ],
+  "forbidden": [
+    [
+      "string.special.key",
+      "\"Ada\""
+    ],
+    [
+      "string",
+      "true"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering."
+  ]
+}

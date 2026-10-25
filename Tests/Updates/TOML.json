@@ -1,0 +1,61 @@
+{
+  "title": "TOML",
+  "member": "toml",
+  "symbol": "tree_sitter_toml",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-toml",
+  "revision": "64b56832c2cffe41758f28e05c756a3a98d16f41",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/TOML.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-toml",
+      "revision": "64b56832c2cffe41758f28e05c756a3a98d16f41",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Retain property capture on key nodes rather than upstream whole-pair capture."
+  ],
+  "source": "# application\n[server.http]\nport = 8080\nenabled = true\nstarted = 2026-10-25T10:15:00Z\nlabels = { owner = \"Ada\", region = \"eu\" }\n[[routes]]\npath = \"/\"\n",
+  "expected": [
+    [
+      "comment",
+      "# application"
+    ],
+    [
+      "property",
+      "port"
+    ],
+    [
+      "number",
+      "8080"
+    ],
+    [
+      "boolean",
+      "true"
+    ],
+    [
+      "string.special",
+      "2026-10-25T10:15:00Z"
+    ],
+    [
+      "string",
+      "\"Ada\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "property",
+      "\"Ada\""
+    ],
+    [
+      "string",
+      "true"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering."
+  ]
+}
