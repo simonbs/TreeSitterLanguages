@@ -95,3 +95,9 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
 - [tree-sitter-yaml](https://github.com/tree-sitter-grammars/tree-sitter-yaml)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+
+## Additional adopted languages
+
+Bicep, CMake, Dart, Fish, Glimmer, HCL, ObjectiveC, Pascal, Proto, Scala.
+
+See [additional language sources and compatibility](ADDITIONAL_LANGUAGES.md) for pinned upstream revisions, licenses, query adaptations, runtime requirements, and validation commands.

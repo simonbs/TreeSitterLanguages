@@ -117,6 +117,7 @@ def main():
         run([sys.executable, ROOT / "Tests/Updates/test.py", "--runtime", runtime])
         for script in ["markdown_scanner_regression.py", "test-ocaml-comments.py", "scanner_regressions_a.py"]:
             run([sys.executable, ROOT / "Tests/Updates" / script, "--runtime", runtime])
+        run([sys.executable, ROOT / "Tests/Additional/test.py", "--runtime", runtime])
 
 
 if __name__ == "__main__":
