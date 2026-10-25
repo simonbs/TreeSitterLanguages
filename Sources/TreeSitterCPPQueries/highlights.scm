@@ -1,28 +1,26 @@
+; inherits: c
+
 ; Functions
 
 (call_expression
   function: (qualified_identifier
-    name: (identifier) @function))
+    name: (identifier) @function.call))
 
 (template_function
-  name: (identifier) @function)
+  name: (identifier) @function.call)
 
 (template_method
-  name: (field_identifier) @function)
+  name: (field_identifier) @function.call)
 
 (template_function
-  name: (identifier) @function)
+  name: (identifier) @function.call)
 
 (function_declarator
   declarator: (qualified_identifier
-    name: (identifier) @function))
+    name: (identifier) @function.definition))
 
 (function_declarator
-  declarator: (qualified_identifier
-    name: (identifier) @function))
-
-(function_declarator
-  declarator: (field_identifier) @function)
+  declarator: (field_identifier) @function.definition)
 
 ; Types
 
@@ -34,7 +32,11 @@
 ; Constants
 
 (this) @variable.builtin
-(nullptr) @constant
+(null "nullptr" @constant)
+
+; Modules
+(module_name
+  (identifier) @namespace)
 
 ; Keywords
 
@@ -64,9 +66,12 @@
  "try"
  "typename"
  "using"
- "virtual"
  "concept"
  "requires"
+ "virtual"
+ "import"
+ "export"
+ "module"
 ] @keyword
 
 ; Strings

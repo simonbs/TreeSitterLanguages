@@ -1,0 +1,50 @@
+{
+  "title": "Elixir",
+  "member": "elixir",
+  "symbol": "tree_sitter_elixir",
+  "repo": "https://github.com/elixir-lang/tree-sitter-elixir",
+  "revision": "cb32ccbe17c67037b09e31bf9beb22cdae6ed8e9",
+  "license": "Apache-2.0",
+  "licenses": [
+    "Licenses/Updates/Elixir-LICENSE.txt"
+  ],
+  "source": "defmodule Example do\n  @moduledoc \"Utilities\"\n  @spec greet(String.t()) :: String.t()\n  def greet(name) when is_binary(name) do\n    message = \"Hello #{name}\"\n    Enum.map([1, 2, 3], fn value -> value * 2 end)\n    {:ok, message, true, nil}\n  end\nend\n# normal comment\n",
+  "expected": [
+    [
+      "keyword.elixir",
+      "defmodule"
+    ],
+    [
+      "keyword.elixir",
+      "def"
+    ],
+    [
+      "number",
+      "2"
+    ],
+    [
+      "constant.builtin",
+      "true"
+    ],
+    [
+      "constant.builtin",
+      "nil"
+    ],
+    [
+      "comment",
+      "# normal comment"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/elixir-lang/tree-sitter-elixir",
+      "revision": "cb32ccbe17c67037b09e31bf9beb22cdae6ed8e9",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence.",
+    "Keyword captures use a language suffix so they override generic function captures; booleans and nil use constant.builtin."
+  ]
+}

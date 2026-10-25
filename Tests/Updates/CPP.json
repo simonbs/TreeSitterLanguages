@@ -1,0 +1,73 @@
+{
+  "title": "CPP",
+  "member": "cpp",
+  "symbol": "tree_sitter_cpp",
+  "repo": "https://github.com/tree-sitter/tree-sitter-cpp",
+  "revision": "c009222808634c1014f82438d4883753516a2c24",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-cpp",
+      "revision": "c009222808634c1014f82438d4883753516a2c24",
+      "paths": [
+        "queries/highlights.scm"
+      ]
+    },
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-c",
+      "revision": "b780e47fc780ddc8da13afa35a3f4ed5c157823d",
+      "paths": [
+        "queries/highlights.scm"
+      ],
+      "usage": "Inherited highlights"
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
+  ],
+  "source": "// Concepts, constraints, and raw literals\n#include <string>\ntemplate<typename T> concept Sized = requires(T x) { x.size(); };\nconstexpr int LIMIT = 4;\nint compute(int value) { auto text = R\"(hello)\"; return value + LIMIT; }\n",
+  "expected": [
+    [
+      "keyword",
+      "concept"
+    ],
+    [
+      "keyword",
+      "requires"
+    ],
+    [
+      "keyword",
+      "constexpr"
+    ],
+    [
+      "function.definition",
+      "compute"
+    ],
+    [
+      "string",
+      "R\"(hello)\""
+    ],
+    [
+      "number",
+      "4"
+    ]
+  ],
+  "forbidden": [
+    [
+      "constant",
+      "value"
+    ],
+    [
+      "constant",
+      "compute"
+    ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Continue combining C highlights before C++ highlights; normalize module to namespace."
+  ],
+  "license_files": [
+    "Licenses/Updates/CPP.txt"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "title": "CSS",
+  "member": "css",
+  "symbol": "tree_sitter_css",
+  "repo": "https://github.com/tree-sitter/tree-sitter-css",
+  "revision": "dda5cfc5722c429eaba1c910ca32c2c0c5bb1a3f",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/CSS.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-css",
+      "revision": "dda5cfc5722c429eaba1c910ca32c2c0c5bb1a3f",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Use current upstream highlights with Runestone-compatible captures."
+  ],
+  "source": "/* layout */\n@layer components {\n.card { --accent: #f00; color: var(--accent); &:hover { display: grid; gap: 1.5rem; } }\n}\n@container (min-width: 30rem) { .card { padding: 2rem; } }\n",
+  "expected": [
+    [
+      "comment",
+      "/* layout */"
+    ],
+    [
+      "property",
+      "card"
+    ],
+    [
+      "variable",
+      "--accent"
+    ],
+    [
+      "function",
+      "var"
+    ],
+    [
+      "number",
+      "1.5rem"
+    ],
+    [
+      "type",
+      "rem"
+    ],
+    [
+      "punctuation.bracket",
+      "{"
+    ]
+  ],
+  "forbidden": [
+    [
+      "variable",
+      "color"
+    ],
+    [
+      "variable",
+      "padding"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering.",
+    "Upstream still rejects container range syntax (width > 30rem); traditional min-width query covered."
+  ]
+}

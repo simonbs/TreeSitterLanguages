@@ -1,3 +1,4 @@
+; Adapted for Runestone; pinned provenance and licenses: Tests/Updates/Elm.json
 ; Keywords
 [
     "if"
@@ -26,9 +27,9 @@
 (function_declaration_left(lower_case_identifier) @function.elm)
 (function_call_expr target: (value_expr) @function.elm)
 
-(field_access_expr(value_expr(value_qid)) @local.function.elm)
-(lower_pattern) @local.function.elm
-(record_base_identifier) @local.function.elm
+(field_access_expr(value_expr(value_qid)) @variable)
+(lower_pattern) @variable
+(record_base_identifier) @variable
 
 
 (operator_identifier) @keyword.operator.elm
@@ -41,36 +42,36 @@
 "|" @keyword.other.elm
 "," @punctuation.separator.comma.elm
 
-(import) @meta.import.elm
+(import) @keyword.import
 (module) @keyword.other.elm
 
-(number_constant_expr) @constant.numeric.elm
+(number_constant_expr) @number
 
 
 (type) @keyword.type.elm
 
-(type_declaration(upper_case_identifier) @storage.type.elm)
-(type_ref) @storage.type.elm
-(type_alias_declaration name: (upper_case_identifier) @storage.type.elm)
+(type_declaration(upper_case_identifier) @type)
+(type_ref) @type
+(type_alias_declaration name: (upper_case_identifier) @type)
 
-(union_variant(upper_case_identifier) @union.elm)
-(union_pattern) @union.elm
-(value_expr(upper_case_qid(upper_case_identifier)) @union.elm)
+(union_variant(upper_case_identifier) @constructor)
+(union_pattern) @constructor
+(value_expr(upper_case_qid(upper_case_identifier)) @constructor)
 
 ; comments
 (line_comment) @comment.elm
 (block_comment) @comment.elm
 
 ; strings
-(string_escape) @character.escape.elm
+(string_escape) @string.escape
 
 (open_quote) @string.elm
 (close_quote) @string.elm
 (regular_string_part) @string.elm
 
-(open_char) @char.elm
-(close_char) @char.elm
+(open_char) @constant.character
+(close_char) @constant.character
 
 
 ; glsl
-(glsl_content) @source.glsl
+(glsl_content) @string

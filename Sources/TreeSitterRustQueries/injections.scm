@@ -1,9 +1,3 @@
-((macro_invocation
-  (token_tree) @injection.content)
- (#set! injection.language "rust")
- (#set! injection.include-children))
-
-((macro_rule
-  (token_tree) @injection.content)
- (#set! injection.language "rust")
- (#set! injection.include-children))
+; Token trees parsed as Rust, including their children. Runestone injects whole captured ranges.
+(macro_invocation (token_tree) @rust)
+(macro_rule (token_tree) @rust)

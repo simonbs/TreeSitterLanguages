@@ -1,0 +1,45 @@
+{
+  "title": "Regex",
+  "member": "regex",
+  "symbol": "tree_sitter_regex",
+  "repo": "https://github.com/tree-sitter/tree-sitter-regex",
+  "revision": "b2ac15e27fce703d2f37a79ccd94a5c0cbe9720b",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Regex-LICENSE.txt"
+  ],
+  "source": "^(?<name>[A-Za-z_][A-Za-z0-9_]*)(?:\\s+|,)(foo|bar){2,4}\\p{L}+$",
+  "expected": [
+    [
+      "escape",
+      "^"
+    ],
+    [
+      "escape",
+      "$"
+    ],
+    [
+      "operator",
+      "+"
+    ],
+    [
+      "number",
+      "2"
+    ],
+    [
+      "number",
+      "4"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-regex",
+      "revision": "b2ac15e27fce703d2f37a79ccd94a5c0cbe9720b",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence."
+  ]
+}

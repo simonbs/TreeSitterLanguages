@@ -6,17 +6,8 @@
         "repositoryURL": "https://github.com/simonbs/Runestone",
         "state": {
           "branch": null,
-          "revision": "d867010db11271c15192bcba29bb07f3f13f63bc",
-          "version": "0.4.1"
-        }
-      },
-      {
-        "package": "TreeSitter",
-        "repositoryURL": "https://github.com/tree-sitter/tree-sitter",
-        "state": {
-          "branch": null,
-          "revision": "98be227227af10cc7a269cb3ffb23686c0610b17",
-          "version": "0.20.9"
+          "revision": "31f640bf39917d1e5fd8e6bf1b065e42b0e57c4a",
+          "version": null
         }
       }
     ]

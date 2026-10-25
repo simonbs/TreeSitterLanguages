@@ -55,7 +55,7 @@
 
 (theorem_definition
  command: _ @function.macro
- name: (curly_group_text (_) @text.environment.name))
+ name: (curly_group_text_list (_) @text.environment.name))
 
 (paired_delimiter_definition
  command: _ @function.macro
@@ -63,17 +63,17 @@
 
 (label_definition
  command: _ @function.macro
- name: (curly_group_text (_) @text.reference))
+ name: (curly_group_label (_) @text.reference))
 (label_reference_range
  command: _ @function.macro
- from: (curly_group_text (_) @text.reference)
- to: (curly_group_text (_) @text.reference))
+ from: (curly_group_label (_) @text.reference)
+ to: (curly_group_label (_) @text.reference))
 (label_reference
  command: _ @function.macro
- names: (curly_group_text_list (_) @text.reference))
+ names: (curly_group_label_list (_) @text.reference))
 (label_number
  command: _ @function.macro
- name: (curly_group_text (_) @text.reference)
+ name: (curly_group_label (_) @text.reference)
  number: (_) @text.reference)
 
 (citation
@@ -172,7 +172,7 @@
   (begin
     name: (curly_group_text
             (text) @text.environment.name)
-    (#any-of? @text.environment.name "frame"))
+    (#eq? @text.environment.name "frame"))
   .
   (curly_group (_) @text.title))
 
@@ -223,7 +223,7 @@
 
 (bibtex_include
   command: _ @include
-  path: (curly_group_path) @string)
+  paths: (curly_group_path_list) @string)
 (biblatex_include
   "\\addbibresource" @include
   glob: (curly_group_glob_pattern) @string.regex)
@@ -234,3 +234,6 @@
 (tikz_library_import
   command: _ @include
   paths: (curly_group_path_list) @string)
+
+; Current grammar gives hyperlinks their own node rather than generic_command.
+(hyperlink command: _ @function uri: (curly_group_uri (uri) @text.uri))

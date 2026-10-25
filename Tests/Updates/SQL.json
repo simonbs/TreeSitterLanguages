@@ -1,0 +1,75 @@
+{
+  "title": "SQL",
+  "member": "sql",
+  "symbol": "tree_sitter_sql",
+  "repo": "https://github.com/DerekStride/tree-sitter-sql",
+  "revision": "e038788e5d4daba82dea35676bf49a216629e141",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/SQL-LICENSE.txt"
+  ],
+  "source": "WITH ranked AS (\n  SELECT u.id, u.name, ROW_NUMBER() OVER (PARTITION BY u.team ORDER BY u.score DESC) AS rank\n  FROM users AS u WHERE u.active = TRUE AND u.score >= 1.5\n)\nSELECT id, name FROM ranked WHERE rank = 1 ORDER BY name;\nCREATE TABLE events (id BIGINT PRIMARY KEY, payload JSONB, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);\n-- normal comment\nSELECT 1e3, '123', 42;\n",
+  "expected": [
+    [
+      "keyword",
+      "SELECT"
+    ],
+    [
+      "keyword",
+      "FROM"
+    ],
+    [
+      "keyword",
+      "WHERE"
+    ],
+    [
+      "constant.builtin",
+      "TRUE"
+    ],
+    [
+      "number.float",
+      "1.5"
+    ],
+    [
+      "comment",
+      "-- normal comment"
+    ],
+    [
+      "number.float",
+      "1e3"
+    ],
+    [
+      "number.integer",
+      "42"
+    ],
+    [
+      "string",
+      "'123'"
+    ],
+    [
+      "function.call",
+      "ROW_NUMBER"
+    ]
+  ],
+  "forbidden": [
+    [
+      "number.integer",
+      "'123'"
+    ],
+    [
+      "number.float",
+      "'123'"
+    ]
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/DerekStride/tree-sitter-sql",
+      "revision": "e038788e5d4daba82dea35676bf49a216629e141",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence.",
+    "Lua digit-class predicates replaced by regular expressions, including exponent literals. Numeric captures specialize the upstream broad literal-string capture."
+  ]
+}

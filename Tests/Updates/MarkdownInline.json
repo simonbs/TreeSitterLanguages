@@ -1,0 +1,74 @@
+{
+  "title": "MarkdownInline",
+  "member": "markdownInline",
+  "symbol": "tree_sitter_markdown_inline",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+  "revision": "41ff24a6c775492c543b09228aeb98d1cd2b3a0f",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/MarkdownInline.txt",
+    "Licenses/Updates/MarkdownInline-nvim-treesitter.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+      "revision": "41ff24a6c775492c543b09228aeb98d1cd2b3a0f",
+      "path": "tree-sitter-markdown-inline/queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Preserve Runestone text.* captures, restore right-parenthesis punctuation, add strikethrough/email/entity captures."
+  ],
+  "source": "Text *emphasis* and **strong**, `code`, [site](https://example.com), ![image](image.png), ~~old~~ and $x^2$.",
+  "expected": [
+    [
+      "text.emphasis",
+      "*emphasis*"
+    ],
+    [
+      "text.strong",
+      "**strong**"
+    ],
+    [
+      "text.literal",
+      "`code`"
+    ],
+    [
+      "text.uri",
+      "https://example.com"
+    ],
+    [
+      "text.reference",
+      "image"
+    ],
+    [
+      "punctuation.delimiter",
+      ")"
+    ],
+    [
+      "text.strike",
+      "~~old~~"
+    ]
+  ],
+  "forbidden": [
+    [
+      "text.strong",
+      "*emphasis*"
+    ],
+    [
+      "text.emphasis",
+      "**strong**"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering.",
+    "Upstream highlight query credits nvim-treesitter; its Apache-2.0 notice is retained in addition to the grammar MIT license."
+  ],
+  "injection_expected": [
+    [
+      "injection.content",
+      "$x^2$"
+    ]
+  ],
+  "injection_forbidden": []
+}

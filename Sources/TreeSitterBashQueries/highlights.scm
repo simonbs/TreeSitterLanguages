@@ -1,3 +1,4 @@
+; Adapted for Runestone; pinned provenance and licenses: Tests/Updates/Bash.json
 [
   (string)
   (raw_string)
@@ -22,9 +23,11 @@
   "function"
   "if"
   "in"
-  "unset"
-  "while"
+  "select"
   "then"
+  "unset"
+  "until"
+  "while"
 ] @keyword
 
 (comment) @comment
@@ -37,7 +40,7 @@
   (command_substitution)
   (process_substitution)
   (expansion)
-]@embedded
+]@none
 
 [
   "$"

@@ -1,34 +1,45 @@
-;; Copyright 2022 nvim-treesitter
-;;
-;; Licensed under the Apache License, Version 2.0 (the "License");
-;; you may not use this file except in compliance with the License.
-;; You may obtain a copy of the License at
-;;
-;;     http://www.apache.org/licenses/LICENSE-2.0
-;;
-;; Unless required by applicable law or agreed to in writing, software
-;; distributed under the License is distributed on an "AS IS" BASIS,
-;; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-;; See the License for the specific language governing permissions and
-;; limitations under the License.
+; Adapted for Runestone; pinned provenance and licenses: Tests/Updates/Haskell.json
+; ----------------------------------------------------------------------------
+; Parameters and variables
+; NOTE: These are at the top, so that they have low priority,
+; and don't override destructured parameters
+(variable) @variable
 
-;; ----------------------------------------------------------------------------
-;; Literals and comments
+(pattern/wildcard) @variable
 
+(decl/function
+  patterns: (patterns
+    (_) @variable.parameter))
+
+(expression/lambda
+  (_)+ @variable.parameter
+  "->")
+
+(decl/function
+  (infix
+    (pattern) @variable.parameter))
+
+; ----------------------------------------------------------------------------
+; Literals and comments
 (integer) @number
-(exp_negation) @number
-(exp_literal (float)) @float
-(char) @character
+
+(negation) @number
+
+(expression/literal
+  (float)) @number.float
+
+(char) @constant.character
+
 (string) @string
 
-(con_unit) @symbol  ; unit, as in ()
+(unit) @string.special.symbol ; unit, as in ()
 
 (comment) @comment
 
+((haddock) @comment.documentation)
 
-;; ----------------------------------------------------------------------------
-;; Punctuation
-
+; ----------------------------------------------------------------------------
+; Punctuation
 [
   "("
   ")"
@@ -39,43 +50,41 @@
 ] @punctuation.bracket
 
 [
-  (comma)
+  ","
   ";"
 ] @punctuation.delimiter
 
-
-;; ----------------------------------------------------------------------------
-;; Keywords, operators, includes
-
+; ----------------------------------------------------------------------------
+; Keywords, operators, includes
 [
   "forall"
-  "∀"
-] @repeat
+  ; "∀" ; utf-8 is not cross-platform safe
+] @keyword.repeat
 
-(pragma) @constant.macro
+(pragma) @keyword.directive
 
 [
   "if"
   "then"
   "else"
   "case"
+  "cases"
   "of"
-] @conditional
+] @keyword.conditional
 
 [
   "import"
   "qualified"
   "module"
-] @include
+] @keyword.import
 
 [
   (operator)
   (constructor_operator)
-  (type_operator)
-  (tycon_arrow)
-  (qualified_module)  ; grabs the `.` (dot), ex: import System.IO
   (all_names)
   (wildcard)
+  "."
+  ".."
   "="
   "|"
   "::"
@@ -87,14 +96,22 @@
   "@"
 ] @operator
 
-(module) @namespace
+; TODO broken, also huh?
+; ((qualified_module
+;   (module) @constructor)
+;   .
+;   (module))
+
+(module
+  (module_id) @type)
 
 [
-  (where)
+  "where"
   "let"
   "in"
   "class"
   "instance"
+  "pattern"
   "data"
   "newtype"
   "family"
@@ -113,42 +130,290 @@
   "infixr"
 ] @keyword
 
+; ----------------------------------------------------------------------------
+; Functions and variables
+[
+  (decl/function name: (variable) @function)
+  (decl/signature name: (variable) @function)
+  (decl/signature names: (binding_list (variable) @function))
+]
 
-;; ----------------------------------------------------------------------------
-;; Functions and variables
+(decl/bind
+  name: (variable) @variable)
 
-(variable) @variable
-(pat_wildcard) @variable
+; Consider signatures (and accompanying functions)
+; with only one value on the rhs as variables
+(decl/signature
+  name: (variable) @variable
+  type: (type))
 
-(signature name: (variable) @type)
-(function
+; Cross-declaration equality heuristic omitted: Runestone cannot evaluate it reliably.
+
+
+; but consider a type that involves 'IO' a decl/function
+(decl/signature
   name: (variable) @function
-  patterns: (patterns))
-((signature (fun)) . (function (variable) @function))
-((signature (context (fun))) . (function (variable) @function))
-((signature (forall (context (fun)))) . (function (variable) @function))
+  type: (type/apply
+    constructor: (name) @_type)
+  (#eq? @_type "IO"))
 
-(exp_infix (variable) @operator)  ; consider infix functions as operators
-
-(exp_infix (exp_name) @function (#set! "priority" 101))
-(exp_apply . (exp_name (variable) @function))
-(exp_apply . (exp_name (qualified_variable (variable) @function)))
+; Cross-declaration equality heuristic omitted: Runestone cannot evaluate it reliably.
 
 
-;; ----------------------------------------------------------------------------
-;; Types
+((decl/signature) @function
+  .
+  (decl/function
+    name: (variable) @function))
 
-(type) @type
-(type_variable) @type
+(decl/bind
+  name: (variable) @function
+  (match
+    expression: (expression/lambda)))
+
+; view patterns
+(view_pattern
+  [
+    (expression/variable) @function
+    (expression/qualified
+      (variable) @function)
+  ])
+
+; consider infix functions as operators
+(infix_id
+  [
+    (variable) @operator
+    (qualified
+      (variable) @operator)
+  ])
+
+; decl/function calls with an infix operator
+; e.g. func <$> a <*> b
+(infix
+  [
+    (variable) @function
+    (qualified
+      ((module) @type
+        (variable) @function))
+  ]
+  .
+  (operator))
+
+; infix operators applied to variables
+((expression/variable) @variable
+  .
+  (operator))
+
+((operator)
+  .
+  [
+    (expression/variable) @variable
+    (expression/qualified
+      (variable) @variable)
+  ])
+
+; decl/function calls with infix operators
+([
+    (expression/variable) @function
+    (expression/qualified
+      (variable) @function)
+  ]
+  .
+  (operator) @_op
+  (#match? @_op "^(?:\\$|<\\$>|>>=|=<<)$"))
+
+; right hand side of infix operator
+((infix
+  [
+    (operator)
+    (infix_id (variable))
+  ] ; infix or `func`
+  .
+  [
+    (variable) @function
+    (qualified
+      (variable) @function)
+  ])
+  .
+  (operator) @_op
+  (#match? @_op "^(?:\\$|<\\$>|=<<)$"))
+
+; decl/function composition, arrows, monadic composition (lhs)
+(
+  [
+    (expression/variable) @function
+    (expression/qualified
+      (variable) @function)
+  ]
+  .
+  (operator) @_op
+  (#match? @_op "^(?:\\.|>>>|\\*\\*\\*|>=>|<=<)$"))
+
+; right hand side of infix operator
+((infix
+  [
+    (operator)
+    (infix_id (variable))
+  ] ; infix or `func`
+  .
+  [
+    (variable) @function
+    (qualified
+      (variable) @function)
+  ])
+  .
+  (operator) @_op
+  (#match? @_op "^(?:\\.|>>>|\\*\\*\\*|>=>|<=<)$"))
+
+; function composition, arrows, monadic composition (rhs)
+((operator) @_op
+  .
+  [
+    (expression/variable) @function
+    (expression/qualified
+      (variable) @function)
+  ]
+  (#match? @_op "^(?:\\.|>>>|\\*\\*\\*|>=>|<=<)$"))
+
+; function defined in terms of a function composition
+(decl/function
+  name: (variable) @function
+  (match
+    expression: (infix
+      operator: (operator) @_op
+      (#match? @_op "^(?:\\.|>>>|\\*\\*\\*|>=>|<=<)$"))))
+
+(apply
+  [
+    (expression/variable) @function
+    (expression/qualified
+      (variable) @function)
+  ])
+
+; function compositions, in parentheses, applied
+; lhs
+(apply
+  .
+  (expression/parens
+    (infix
+      [
+        (variable) @function
+        (qualified
+          (variable) @function)
+      ]
+      .
+      (operator))))
+
+; rhs
+(apply
+  .
+  (expression/parens
+    (infix
+      (operator)
+      .
+      [
+        (variable) @function
+        (qualified
+          (variable) @function)
+      ])))
+
+; variables being passed to a function call
+(apply
+  (_)
+  .
+  [
+    (expression/variable) @variable
+    (expression/qualified
+      (variable) @variable)
+  ])
+
+; main is always a function
+; (this prevents `main = undefined` from being highlighted as a variable)
+(decl/bind
+  name: (variable) @function
+  (#eq? @function "main"))
+
+; scoped function types (func :: a -> b)
+(signature
+  pattern: (pattern/variable) @function
+  type: (quantified_type))
+
+; signatures that have a function type
+; + binds that follow them
+(decl/signature
+  name: (variable) @function
+  type: (quantified_type))
+
+; Cross-declaration equality heuristic omitted: Runestone cannot evaluate it reliably.
+
+
+; ----------------------------------------------------------------------------
+; Types
+(name) @type
+
+(type/star) @type
+
+(variable) @type
 
 (constructor) @constructor
 
 ; True or False
-((constructor) @_bool (#match? @_bool "(True|False)")) @boolean
+((constructor) @constant.builtin
+  (#match? @constant.builtin "^(?:True|False)$"))
 
+; otherwise (= True)
+((variable) @constant.builtin
+  (#eq? @constant.builtin "otherwise"))
 
-;; ----------------------------------------------------------------------------
-;; Quasi-quotes
-
+; ----------------------------------------------------------------------------
+; Quasi-quotes
 (quoter) @function
-; Highlighting of quasiquote_body is handled by injections.scm
+
+(quasiquote
+  [
+    (quoter) @_name
+    (_
+      (variable) @_name)
+  ]
+  (#eq? @_name "qq")
+  (quasiquote_body) @string)
+
+(quasiquote
+  (_
+    (variable) @_name)
+  (#eq? @_name "qq")
+  (quasiquote_body) @string)
+
+; namespaced quasi-quoter
+(quasiquote
+  (_
+    (module) @type
+    .
+    (variable) @function))
+
+; Highlighting of quasiquote_body for other languages is handled by injections.scm
+; ----------------------------------------------------------------------------
+; Exceptions/error handling
+((variable) @keyword.exception
+  (#match? @keyword.exception "^(?:error|undefined|try|tryJust|tryAny|catch|catches|catchJust|handle|handleJust|throw|throwIO|throwTo|throwError|ioError|mask|mask_|uninterruptibleMask|uninterruptibleMask_|bracket|bracket_|bracketOnErrorSource|finally|fail|onException|expectationFailure)$"))
+
+; ----------------------------------------------------------------------------
+; Debugging
+((variable) @keyword.debug
+  (#match? @keyword.debug "^(?:trace|traceId|traceShow|traceShowId|traceWith|traceShowWith|traceStack|traceIO|traceM|traceShowM|traceEvent|traceEventWith|traceEventIO|flushEventLog|traceMarker|traceMarkerIO)$"))
+
+; ----------------------------------------------------------------------------
+; Fields
+
+(field_name
+  (variable) @property)
+
+(import_name
+  (name)
+  .
+  (children
+    (variable) @property))
+
+
+; ----------------------------------------------------------------------------
+; Spell checking
+(comment)

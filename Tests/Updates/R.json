@@ -1,0 +1,53 @@
+{
+  "title": "R",
+  "member": "r",
+  "symbol": "tree_sitter_r",
+  "repo": "https://github.com/r-lib/tree-sitter-r",
+  "revision": "58a22794466c0fc15b0d3b40531db751593721e8",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/R-LICENSE.txt"
+  ],
+  "source": "library(stats)\ntransform_values <- function(values, scale = 2) {\n  result <- values |> sqrt() |> round(digits = 2)\n  if (length(result) > 0) return(result * scale)\n  NULL\n}\ntext <- r\"(raw \\ string)\"\nmapper <- \\(x) x + 1\nflag <- TRUE\n# normal comment\n",
+  "expected": [
+    [
+      "keyword.function",
+      "function"
+    ],
+    [
+      "keyword.conditional",
+      "if"
+    ],
+    [
+      "keyword.return",
+      "return"
+    ],
+    [
+      "constant.builtin",
+      "NULL"
+    ],
+    [
+      "constant.builtin",
+      "TRUE"
+    ],
+    [
+      "number",
+      "2"
+    ],
+    [
+      "comment",
+      "# normal comment"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/r-lib/tree-sitter-r",
+      "revision": "58a22794466c0fc15b0d3b40531db751593721e8",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence."
+  ]
+}

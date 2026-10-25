@@ -1,0 +1,49 @@
+{
+  "title": "Bash",
+  "member": "bash",
+  "symbol": "tree_sitter_bash",
+  "repo": "https://github.com/tree-sitter/tree-sitter-bash",
+  "revision": "a06c2e4415e9bc0346c6b86d401879ffb44058f7",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Bash-LICENSE.txt"
+  ],
+  "source": "#!/usr/bin/env bash\nset -euo pipefail\nname=\"world\"\ngreet() {\n  local value=\"${name^^}\"\n  if [[ -n \"$value\" ]]; then\n    printf '%s\\n' \"$value\"\n  fi\n}\nfor file in *.txt; do greet \"$file\"; done\ncat <<EOF\nHello $name\nEOF\n# normal comment\n",
+  "expected": [
+    [
+      "keyword",
+      "if"
+    ],
+    [
+      "keyword",
+      "for"
+    ],
+    [
+      "function",
+      "greet"
+    ],
+    [
+      "property",
+      "name"
+    ],
+    [
+      "string",
+      "'%s\\n'"
+    ],
+    [
+      "comment",
+      "# normal comment"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-bash",
+      "revision": "a06c2e4415e9bc0346c6b86d401879ffb44058f7",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence."
+  ]
+}
