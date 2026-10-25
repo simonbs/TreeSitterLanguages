@@ -35,11 +35,62 @@ The package contains the following three libraries for each language.
 |TreeSitter{Language}Queries|The queries to be used with the language. For more information on queries, please refer to [Tree-sitter's documentation](https://tree-sitter.github.io/tree-sitter/syntax-highlighting#queries). The only reason this is a separate library and not part of the TreeSitter{Language} library is that C code and Swift code cannot be mixed in a library using Swift Package Manager.|
 |TreeSitter{Language}Runestone|Exposes the language to be used with [Runestone](https://github.com/simonbs/runestone). This library depends on the TreeSitter{Language} and TreeSitter{Language}Queries libraries and it is the only library you need to import when using Runestone. The library exposes the language as an extension on [TreeSitterLanguage](https://github.com/simonbs/Runestone/blob/main/Sources/Runestone/Language/TreeSitter/TreeSitterLanguage.swift) (e.g. `TreeSitterLanguage.javaScript`) that's ready to be used in Runestone. It also includes the indentation specification for select languages.|
 
-Furthermore the package contains the TreeSitterLanguagesCommon library which exposes base types from Tree-sitter like `TSLanguage`. This is useful when you need to refer to these types in your source code, for example if you return a `TSLanguage` from a function.
+Furthermore the package contains the TreeSitterLanguagesCommon library which exposes Tree-sitter's scalar types and an opaque `TSLanguage` declaration. The language structure belongs to the runtime and must not be accessed directly. With Tree-sitter 0.27.1, Swift APIs that pass languages use `OpaquePointer`, including the values returned by `tree_sitter_{language}()`.
+
+Nix and XML are also available using these three products. Their pinned sources, licenses, and query adaptations are documented in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
+
+### All Runestone languages
+
+Apps that use the full collection can depend on the `RunestoneLanguageSupport`
+product instead of listing every `TreeSitter{Language}Runestone` product:
+
+```swift
+.target(
+    name: "MyEditor",
+    dependencies: [
+        .product(name: "Runestone", package: "Runestone"),
+        .product(name: "RunestoneLanguageSupport", package: "TreeSitterLanguages")
+    ]
+)
+```
+
+Then import the umbrella to make every bundled language extension available:
+
+```swift
+import Runestone
+import RunestoneLanguageSupport
+
+let language = TreeSitterLanguage.swift
+```
+
+This opt-in product includes all grammar and query resource dependencies, including
+languages added to future package revisions. Use the individual products when you
+want to limit build time and bundled resources. The umbrella does not provide file
+extension detection or register injected languages; those remain the app's responsibility.
+Runestone itself remains independent of this package.
+
+The pinned Runestone revision includes the UTF-8 query-length fix required by
+Haskell highlights and other queries containing Unicode.
+
+Swift's `@_exported import` provides the re-exports. It is an underscored compiler
+feature, so the consumer tests cover its behavior with the supported toolchain.
+Run the iOS `RunestoneLanguageSupportTests` test target to check every factory and
+`python3 scripts/check-language-support.py` to check that exports stay complete.
 
 ## Compatibility
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
+
+The refreshed grammars include language ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. The package pins the merged Runestone revision until a release containing it is available. See [the existing-language refresh](UPDATED_LANGUAGES.md) for exact source revisions, query adaptations, license notices, and validation. Each grammar retains its private generated parser header.
+
+The compatibility check compiles every bundled grammar against Tree-sitter 0.27.1, parses a representative sample, and compiles and executes every bundled query, including inherited highlight queries. Run it with a checkout of that Tree-sitter release:
+
+```sh
+git clone --depth 1 --branch v0.27.1 https://github.com/tree-sitter/tree-sitter.git /tmp/tree-sitter
+python3 Tests/Compatibility/test.py /tmp/tree-sitter
+```
+
+Pass language names after the checkout path to rerun a subset, for example `JSON Swift SCSS`. This checks runtime and query compatibility; the iOS package build separately checks the Swift Runestone integrations.
 
 ## Acknowledgements
 
@@ -47,6 +98,7 @@ The TreeSitterLanguages repository contains files copied from the following repo
 
 Thanks to all the contributors to these repositories for their great effort in ensuring Tree-sitter supports a wide array of languages.
 
+- [tree-sitter-astro](https://github.com/virchau13/tree-sitter-astro)
 - [tree-sitter-bash](https://github.com/tree-sitter/tree-sitter-bash)
 - [tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c)
 - [tree-sitter-comment](https://github.com/stsewd/tree-sitter-comment)
@@ -56,24 +108,38 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-elixir](https://github.com/elixir-lang/tree-sitter-elixir)
 - [tree-sitter-elm](https://github.com/elm-tooling/tree-sitter-elm)
 - [tree-sitter-go](https://github.com/tree-sitter/tree-sitter-go)
+- [tree-sitter-haskell](https://github.com/tree-sitter/tree-sitter-haskell)
 - [tree-sitter-html](https://github.com/tree-sitter/tree-sitter-html)
 - [tree-sitter-java](https://github.com/tree-sitter/tree-sitter-java)
 - [tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript)
 - [tree-sitter-jsdoc](https://github.com/tree-sitter/tree-sitter-jsdoc)
 - [tree-sitter-json](https://github.com/tree-sitter/tree-sitter-json)
 - [tree-sitter-json5](https://github.com/Joakker/tree-sitter-json5)
-- [tree-sitter-markdown](https://github.com/MDeiml/tree-sitter-markdown)
+- [tree-sitter-julia](https://github.com/tree-sitter/tree-sitter-julia)
+- [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex)
+- [tree-sitter-lua](https://github.com/tjdevries/tree-sitter-lua)
+- [tree-sitter-markdown](https://github.com/tree-sitter-grammars/tree-sitter-markdown)
 - [tree-sitter-ocaml](https://github.com/tree-sitter/tree-sitter-ocaml)
 - [tree-sitter-perl](https://github.com/ganezdragon/tree-sitter-perl)
 - [tree-sitter-php](https://github.com/tree-sitter/tree-sitter-php)
 - [tree-sitter-python](https://github.com/tree-sitter/tree-sitter-python)
+- [tree-sitter-r](https://github.com/r-lib/tree-sitter-r)
 - [tree-sitter-regex](https://github.com/tree-sitter/tree-sitter-regex)
 - [tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby)
 - [tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)
 - [tree-sitter-scss](https://github.com/serenadeai/tree-sitter-scss)
+- [tree-sitter-sql](https://github.com/DerekStride/tree-sitter-sql)
 - [tree-sitter-svelte](https://github.com/Himujjal/tree-sitter-svelte)
 - [tree-sitter-swift](https://github.com/alex-pinkus/tree-sitter-swift)
 - [tree-sitter-toml](https://github.com/ikatyang/tree-sitter-toml)
 - [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
-- [tree-sitter-yaml](https://github.com/ikatyang/tree-sitter-yaml)
+- [tree-sitter-yaml](https://github.com/tree-sitter-grammars/tree-sitter-yaml)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [tree-sitter-nix](https://github.com/nix-community/tree-sitter-nix)
+- [tree-sitter-xml](https://github.com/tree-sitter-grammars/tree-sitter-xml)
+
+## Additional adopted languages
+
+Bicep, CMake, Dart, Fish, Glimmer, HCL, ObjectiveC, Pascal, Proto, Scala.
+
+See [additional language sources and compatibility](ADDITIONAL_LANGUAGES.md) for pinned upstream revisions, licenses, query adaptations, runtime requirements, and validation commands.

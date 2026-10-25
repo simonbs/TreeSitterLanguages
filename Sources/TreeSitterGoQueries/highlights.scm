@@ -1,7 +1,11 @@
 ; Function calls
 
 (call_expression
-  function: (identifier) @function)
+  function: (identifier) @function.call)
+
+(call_expression
+  function: (identifier) @function.builtin
+  (#match? @function.builtin "^(append|cap|close|complex|copy|delete|imag|len|make|new|panic|print|println|real|recover)$"))
 
 (call_expression
   function: (selector_expression
@@ -10,7 +14,7 @@
 ; Function definitions
 
 (function_declaration
-  name: (identifier) @function)
+  name: (identifier) @function.definition)
 
 (method_declaration
   name: (field_identifier) @function.method)
@@ -101,7 +105,7 @@
   (rune_literal)
 ] @string
 
-(escape_sequence) @escape
+(escape_sequence) @string.escape
 
 [
   (int_literal)

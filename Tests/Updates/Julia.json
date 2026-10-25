@@ -1,0 +1,87 @@
+{
+  "title": "Julia",
+  "member": "julia",
+  "symbol": "tree_sitter_julia",
+  "repo": "https://github.com/tree-sitter/tree-sitter-julia",
+  "revision": "e0f9dcd180fdcfcfa8d79a3531e11d99e79321d3",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Julia-LICENSE.txt"
+  ],
+  "source": "module Example\npublic greet\nstruct Person\n    name::String\nend\nfunction greet(person::Person, values::Vector{Int})\n    selected = values[begin:end]\n    message = \"Hello $(person.name)\"\n    kind = typeof(person)\n    return sum(x^2 for x in selected if x > 0), true, nothing\nend\n# normal comment\nend\n",
+  "expected": [
+    [
+      "keyword.import",
+      "public"
+    ],
+    [
+      "keyword.type",
+      "struct"
+    ],
+    [
+      "keyword.function",
+      "function"
+    ],
+    [
+      "keyword.return",
+      "return"
+    ],
+    [
+      "type.builtin",
+      "String"
+    ],
+    [
+      "constant.builtin",
+      "true"
+    ],
+    [
+      "constant.builtin",
+      "nothing"
+    ],
+    [
+      "variable.builtin",
+      "begin"
+    ],
+    [
+      "function.builtin.julia",
+      "typeof"
+    ],
+    [
+      "function.call",
+      "sum"
+    ]
+  ],
+  "forbidden": [
+    [
+      "constant.builtin",
+      "person"
+    ],
+    [
+      "type.builtin",
+      "Person"
+    ]
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-julia",
+      "revision": "e0f9dcd180fdcfcfa8d79a3531e11d99e79321d3",
+      "path": "queries/highlights.scm"
+    },
+    {
+      "repo": "https://github.com/simonbs/TreeSitterLanguages",
+      "revision": "9adbb839524e47e0eee8803f8e02d81b78ad1847",
+      "path": "Sources/TreeSitterJuliaQueries/injections.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence.",
+    "Preserves comment-language injections. Replaces has-ancestor? predicate with structural index-expression query.",
+    "Function calls specialize field/member styling; builtin functions use a more-specific capture to win over generic calls."
+  ],
+  "injection_expected": [
+    [
+      "comment",
+      "# normal comment"
+    ]
+  ]
+}

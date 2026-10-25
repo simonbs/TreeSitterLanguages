@@ -1,0 +1,74 @@
+{
+  "title": "Python",
+  "member": "python",
+  "symbol": "tree_sitter_python",
+  "repo": "https://github.com/tree-sitter/tree-sitter-python",
+  "revision": "26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-python",
+      "revision": "26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64",
+      "paths": [
+        "queries/tags.scm",
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
+  ],
+  "source": "# Python 3.12 aliases, generic definitions and interpolation\ntype Point = tuple[float, float]\ndef identity[T](value: T) -> T:\n    message = f\"hello {value}\"\n    print(message, 42)\n    return value\n",
+  "expected": [
+    [
+      "keyword",
+      "type"
+    ],
+    [
+      "keyword",
+      "def"
+    ],
+    [
+      "keyword",
+      "return"
+    ],
+    [
+      "function.definition",
+      "identity"
+    ],
+    [
+      "function.builtin",
+      "print"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "none",
+      "{value}"
+    ],
+    [
+      "string",
+      "f\"hello {value}\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "function.builtin",
+      "identity"
+    ],
+    [
+      "constant",
+      "value"
+    ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Map escape to string.escape and embedded interpolation to none; add Python 3.12 type-alias soft-keyword capture."
+  ],
+  "license_files": [
+    "Licenses/Updates/Python.txt"
+  ]
+}

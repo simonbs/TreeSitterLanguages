@@ -1,0 +1,88 @@
+{
+  "title": "ObjectiveC",
+  "member": "objectiveC",
+  "symbol": "tree_sitter_objc",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-objc",
+  "revision": "181a81b8f23a2d593e7ab4259981f50122909fda",
+  "license": "MIT",
+  "source": "@interface Example\n- (int)answer;\n@end\n@implementation Example\n- (int)answer { id value = @\"hello\"; return 42; }\n@end\n",
+  "expected": [
+    [
+      "keyword",
+      "@interface"
+    ],
+    [
+      "keyword",
+      "return"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "@\"hello\""
+    ],
+    [
+      "function.method",
+      "answer"
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "\"hello\""
+    ],
+    [
+      "variable.builtin",
+      "value"
+    ],
+    [
+      "constant",
+      "value"
+    ]
+  ],
+  "notes": [],
+  "query_provenance": [
+    {
+      "path": "queries/highlights.scm",
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-objc",
+      "revision": "181a81b8f23a2d593e7ab4259981f50122909fda"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted.",
+    "Inlined existing Runestone C highlight queries (base repository revision 9adbb839524e47e0eee8803f8e02d81b78ad1847).",
+    "Replaced unsupported has-ancestor? identifier heuristic with structural struct-field declarator captures; intentionally avoids treating arbitrary expressions/types within a struct as properties.",
+    "Converted any-of? to anchored match? alternations, retaining exact string membership.",
+    "Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged."
+  ],
+  "licenses": [
+    "Licenses/Additional/ObjectiveC-BaseC.txt",
+    "Licenses/Additional/ObjectiveC.txt"
+  ],
+  "additional_cases": [
+    {
+      "source": "#import <Foundation/Foundation.h>\n#define ANSWER 42\n@interface Example : NSObject\n@property(nonatomic, copy) NSString *name;\n- (NSString *)greet:(NSString *)name;\n@end\n@implementation Example\n- (NSString *)greet:(NSString *)name {\n  BOOL ready = YES; id missing = nil;\n  NSArray *items = @[@\"hello\", @42, @YES];\n  return [NSString stringWithFormat:@\"Hello %@ %d\", name, ANSWER];\n}\n@end\n",
+      "expected": [
+        [
+          "keyword",
+          "@property"
+        ],
+        [
+          "type",
+          "NSString"
+        ],
+        [
+          "keyword",
+          "return"
+        ]
+      ],
+      "forbidden": []
+    }
+  ]
+}

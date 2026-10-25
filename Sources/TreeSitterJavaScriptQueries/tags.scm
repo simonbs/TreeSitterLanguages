@@ -4,8 +4,8 @@
   (method_definition
     name: (property_identifier) @name) @definition.method
   (#not-eq? @name "constructor")
-  (#strip! @doc "^[\\s\\*/]+|^[\\s\\*/]$")
-  (#select-adjacent! @doc @definition.method)
+
+
 )
 
 (
@@ -17,15 +17,15 @@
     (class_declaration
       name: (_) @name)
   ] @definition.class
-  (#strip! @doc "^[\\s\\*/]+|^[\\s\\*/]$")
-  (#select-adjacent! @doc @definition.class)
+
+
 )
 
 (
   (comment)* @doc
   .
   [
-    (function
+    (function_expression
       name: (identifier) @name)
     (function_declaration
       name: (identifier) @name)
@@ -34,8 +34,8 @@
     (generator_function_declaration
       name: (identifier) @name)
   ] @definition.function
-  (#strip! @doc "^[\\s\\*/]+|^[\\s\\*/]$")
-  (#select-adjacent! @doc @definition.function)
+
+
 )
 
 (
@@ -44,9 +44,9 @@
   (lexical_declaration
     (variable_declarator
       name: (identifier) @name
-      value: [(arrow_function) (function)]) @definition.function)
-  (#strip! @doc "^[\\s\\*/]+|^[\\s\\*/]$")
-  (#select-adjacent! @doc @definition.function)
+      value: [(arrow_function) (function_expression)]) @definition.function)
+
+
 )
 
 (
@@ -55,9 +55,9 @@
   (variable_declaration
     (variable_declarator
       name: (identifier) @name
-      value: [(arrow_function) (function)]) @definition.function)
-  (#strip! @doc "^[\\s\\*/]+|^[\\s\\*/]$")
-  (#select-adjacent! @doc @definition.function)
+      value: [(arrow_function) (function_expression)]) @definition.function)
+
+
 )
 
 (assignment_expression
@@ -66,12 +66,12 @@
     (member_expression
       property: (property_identifier) @name)
   ]
-  right: [(arrow_function) (function)]
+  right: [(arrow_function) (function_expression)]
 ) @definition.function
 
 (pair
   key: (property_identifier) @name
-  value: [(arrow_function) (function)]) @definition.function
+  value: [(arrow_function) (function_expression)]) @definition.function
 
 (
   (call_expression
@@ -86,3 +86,14 @@
 
 (new_expression
   constructor: (_) @name) @reference.class
+
+(export_statement value: (assignment_expression left: (identifier) @name right: ([
+ (number)
+ (string)
+ (identifier)
+ (undefined)
+ (null)
+ (new_expression)
+ (binary_expression)
+ (call_expression)
+]))) @definition.constant

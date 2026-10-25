@@ -1,0 +1,41 @@
+{
+  "title": "JSDoc",
+  "member": "jsDoc",
+  "symbol": "tree_sitter_jsdoc",
+  "repo": "https://github.com/tree-sitter/tree-sitter-jsdoc",
+  "revision": "658d18dcdddb75c760363faa4963427a7c6b52db",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/JSDoc-LICENSE.txt"
+  ],
+  "source": "/**\n * Build a greeting.\n * @param {string} name Person to greet.\n * @param {Array<number>} values Input values.\n * @returns {Promise<string>} The greeting.\n * @deprecated Use greetAsync instead.\n */\n",
+  "expected": [
+    [
+      "keyword",
+      "@param"
+    ],
+    [
+      "keyword",
+      "@returns"
+    ],
+    [
+      "type",
+      "string"
+    ],
+    [
+      "type",
+      "Array<number>"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-jsdoc",
+      "revision": "658d18dcdddb75c760363faa4963427a7c6b52db",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence."
+  ]
+}

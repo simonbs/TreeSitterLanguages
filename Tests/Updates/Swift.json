@@ -1,0 +1,74 @@
+{
+  "title": "Swift",
+  "member": "swift",
+  "symbol": "tree_sitter_swift",
+  "repo": "https://github.com/alex-pinkus/tree-sitter-swift",
+  "revision": "9e3b87f66f1fd2f3b931376fd3723ab788e337c3",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/alex-pinkus/tree-sitter-swift",
+      "revision": "9e3b87f66f1fd2f3b931376fd3723ab788e337c3",
+      "paths": [
+        "queries/locals.scm",
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
+  ],
+  "source": "// Swift 6 isolation and ordinary syntax\nnonisolated(unsafe) var cache: Int = 0\nstruct Example {\n var value: Int = 42\n func compute(_ input: Int) async -> String {\n   let greeting = \"hello\"\n   return greeting\n }\n}\n",
+  "expected": [
+    [
+      "keyword",
+      "var"
+    ],
+    [
+      "keyword.function",
+      "func"
+    ],
+    [
+      "keyword.coroutine",
+      "async"
+    ],
+    [
+      "function.method",
+      "compute"
+    ],
+    [
+      "keyword.return",
+      "return"
+    ],
+    [
+      "string",
+      "hello"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "keyword.modifier",
+      "nonisolated(unsafe)"
+    ]
+  ],
+  "forbidden": [
+    [
+      "type",
+      "greeting"
+    ],
+    [
+      "constant.builtin",
+      "input"
+    ]
+  ],
+  "query_adaptations": [
+    "Generate parser.c from pinned upstream HEAD with official Tree-sitter CLI 0.27.1, ABI15.",
+    "Map variable.member to property, boolean to constant.builtin, and number.float to float; omit unsupported spell metadata capture."
+  ],
+  "license_files": [
+    "Licenses/Updates/Swift.txt"
+  ]
+}

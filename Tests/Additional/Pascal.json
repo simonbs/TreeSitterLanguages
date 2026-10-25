@@ -1,0 +1,89 @@
+{
+  "title": "Pascal",
+  "member": "pascal",
+  "symbol": "tree_sitter_pascal",
+  "repo": "https://github.com/Isopod/tree-sitter-pascal",
+  "revision": "042119eca2e18a60e56317fb06ee3ba5c32cb447",
+  "license": "MIT",
+  "source": "program Example;\nvar value: Integer;\nbegin\n  value := 42;\n  WriteLn('hello');\nend.\n",
+  "expected": [
+    [
+      "keyword",
+      "begin"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "'hello'"
+    ],
+    [
+      "function.call",
+      "WriteLn"
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "'hello'"
+    ],
+    [
+      "keyword",
+      "WriteLn"
+    ]
+  ],
+  "notes": [],
+  "query_provenance": [
+    {
+      "path": "queries/highlights.scm",
+      "repo": "https://github.com/Isopod/tree-sitter-pascal",
+      "revision": "042119eca2e18a60e56317fb06ee3ba5c32cb447"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted.",
+    "Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged."
+  ],
+  "licenses": [
+    "Licenses/Additional/Pascal.txt"
+  ],
+  "additional_cases": [
+    {
+      "source": "program Example;\n{$mode objfpc}\nuses SysUtils;\ntype TPoint = record X, Y: Double; end;\nconst ANSWER = 42;\nfunction Square(Value: Double): Double;\nbegin\n  Result := Value * Value;\nend;\nvar Point: TPoint;\nbegin\n  Point.X := 3.14;\n  WriteLn('Hello ', Square(Point.X), ANSWER);\nend.\n",
+      "expected": [
+        [
+          "keyword",
+          "program"
+        ],
+        [
+          "function.definition",
+          "Square"
+        ],
+        [
+          "function.call",
+          "Square"
+        ],
+        [
+          "function.call",
+          "WriteLn"
+        ]
+      ],
+      "forbidden": [
+        [
+          "function",
+          "Square"
+        ],
+        [
+          "function",
+          "WriteLn"
+        ]
+      ]
+    }
+  ]
+}

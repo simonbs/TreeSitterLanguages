@@ -10,3 +10,7 @@
   ">"
   "</"
 ] @punctuation.bracket
+
+["{" "}" "/>" "---"] @punctuation.bracket
+
+(attribute_backtick_string) @string

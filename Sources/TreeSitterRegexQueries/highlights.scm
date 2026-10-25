@@ -1,14 +1,19 @@
+; Adapted for Runestone; pinned provenance and licenses: Tests/Updates/Regex.json
 [
   "("
   ")"
   "(?"
   "(?:"
   "(?<"
+  "(?P<"
+  "(?P="
   ">"
   "["
   "]"
   "{"
   "}"
+  "[:"
+  ":]"
 ] @punctuation.bracket
 
 (group_name) @property
@@ -30,9 +35,7 @@
   "?"
   "|"
   "="
-  "<="
   "!"
-  "<!"
 ] @operator
 
 (count_quantifier
@@ -41,12 +44,21 @@
     "," @punctuation.delimiter
   ])
 
+(inline_flags_group
+  "-"? @operator
+  ":"? @punctuation.delimiter)
+
+(flags) @constant.character
+
 (character_class
   [
     "^" @operator
     (class_range "-" @operator)
   ])
 
-(class_character) @constant.character
+[
+  (class_character)
+  (posix_class_name)
+] @constant.character
 
 (pattern_character) @string

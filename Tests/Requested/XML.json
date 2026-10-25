@@ -1,0 +1,126 @@
+[
+  {
+    "name": "basics",
+    "source": "<?xml version=\"1.0\"?><root name=\"test\"><child>Hello &amp; &custom;</child><![CDATA[<literal> & text]]><!-- comment --></root>\n",
+    "expected": [
+      [
+        "comment",
+        "<!-- comment -->"
+      ],
+      [
+        "constant",
+        "&custom;"
+      ],
+      [
+        "constant.builtin",
+        "&amp;"
+      ],
+      [
+        "property",
+        "name"
+      ],
+      [
+        "punctuation.delimiter",
+        "<![CDATA["
+      ],
+      [
+        "punctuation.delimiter",
+        "]]>"
+      ],
+      [
+        "string",
+        "\"test\""
+      ],
+      [
+        "tag",
+        "child"
+      ],
+      [
+        "tag",
+        "root"
+      ],
+      [
+        "text.literal",
+        "<literal> & text"
+      ]
+    ],
+    "forbidden": [
+      [
+        "constant.builtin",
+        "&custom;"
+      ]
+    ]
+  },
+  {
+    "name": "representative-document",
+    "source": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"style.xsl\"?>\n<!DOCTYPE note [\n<!ELEMENT note ANY>\n<!ENTITY custom \"Entity\">\n]>\n<note xmlns:x=\"urn:demo\" x:id=\"A&amp;B\" quoted='say \"hi\"'>\n  <x:child enabled=\"yes\">Hello &custom; &#x41; &amp;</x:child>\n  <![CDATA[<literal> & text]]>\n  <!-- comment -->\n</note>\n",
+    "expected": [
+      [
+        "comment",
+        "<!-- comment -->"
+      ],
+      [
+        "constant",
+        "&#x41;"
+      ],
+      [
+        "constant",
+        "&custom;"
+      ],
+      [
+        "constant.builtin",
+        "&amp;"
+      ],
+      [
+        "constant.builtin",
+        "yes"
+      ],
+      [
+        "keyword",
+        "DOCTYPE"
+      ],
+      [
+        "keyword",
+        "ENTITY"
+      ],
+      [
+        "keyword",
+        "xml"
+      ],
+      [
+        "keyword",
+        "xml-stylesheet"
+      ],
+      [
+        "property",
+        "x:id"
+      ],
+      [
+        "property",
+        "xmlns:x"
+      ],
+      [
+        "string",
+        "\"A&amp;B\""
+      ],
+      [
+        "string",
+        "'say \"hi\"'"
+      ],
+      [
+        "tag",
+        "x:child"
+      ],
+      [
+        "text.literal",
+        "<literal> & text"
+      ]
+    ],
+    "forbidden": [
+      [
+        "constant.builtin",
+        "&custom;"
+      ]
+    ]
+  }
+]

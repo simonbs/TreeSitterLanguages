@@ -1,0 +1,79 @@
+{
+  "title": "Rust",
+  "member": "rust",
+  "symbol": "tree_sitter_rust",
+  "repo": "https://github.com/tree-sitter/tree-sitter-rust",
+  "revision": "77a3747266f4d621d0757825e6b11edcbf991ca5",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-rust",
+      "revision": "77a3747266f4d621d0757825e6b11edcbf991ca5",
+      "paths": [
+        "queries/highlights.scm",
+        "queries/injections.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
+  ],
+  "source": "// Async functions and macro token trees\nconst LIMIT: usize = 42;\nasync fn compute(value: usize) -> usize {\n let message = r#\"hello\"#;\n println!(\"{}\", message);\n value + LIMIT\n}\n",
+  "expected": [
+    [
+      "keyword",
+      "async"
+    ],
+    [
+      "keyword",
+      "fn"
+    ],
+    [
+      "function.definition",
+      "compute"
+    ],
+    [
+      "string",
+      "r#\"hello\"#"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "constant",
+      "LIMIT"
+    ]
+  ],
+  "forbidden": [
+    [
+      "constant",
+      "value"
+    ],
+    [
+      "constant",
+      "message"
+    ],
+    [
+      "constructor",
+      "LIMIT"
+    ]
+  ],
+  "injection_expected": [
+    [
+      "rust",
+      "(\"{}\", message)"
+    ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Fix upstream constant regexp trailing apostrophe and exclude all-cap constants from constructor heuristic.",
+    "Map integer and float literals to number and float rather than constant.builtin.",
+    "Use rust captures for complete macro token-tree ranges; unsupported injection.include-children metadata is unnecessary because Runestone includes the entire captured range.",
+    "Replace removed if_let_expression indentation node with if_expression."
+  ],
+  "license_files": [
+    "Licenses/Updates/Rust.txt"
+  ]
+}

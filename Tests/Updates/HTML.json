@@ -1,0 +1,77 @@
+{
+  "title": "HTML",
+  "member": "html",
+  "symbol": "tree_sitter_html",
+  "repo": "https://github.com/tree-sitter/tree-sitter-html",
+  "revision": "73a3947324f6efddf9e17c0ea58d454843590cc0",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/HTML.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-html",
+      "revision": "73a3947324f6efddf9e17c0ea58d454843590cc0",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Use script MIME type to distinguish JavaScript and JSON; do not inject JSON scripts as JavaScript."
+  ],
+  "source": "<!DOCTYPE html>\n<!-- page -->\n<main class=\"card\"><h1>Hello &amp; bye</h1><input disabled /></main>\n<script type=\"module\">const count = 2;</script>\n<script type=\"application/ld+json\">{\"name\":\"Ada\"}</script>\n<style>.card { color: red; }</style>\n",
+  "expected": [
+    [
+      "tag",
+      "main"
+    ],
+    [
+      "attribute",
+      "disabled"
+    ],
+    [
+      "string",
+      "card"
+    ],
+    [
+      "comment",
+      "<!-- page -->"
+    ],
+    [
+      "punctuation.bracket",
+      "/>"
+    ]
+  ],
+  "forbidden": [
+    [
+      "comment",
+      "Hello &amp; bye"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering."
+  ],
+  "injection_expected": [
+    [
+      "javascript",
+      "const count = 2;"
+    ],
+    [
+      "json",
+      "{\"name\":\"Ada\"}"
+    ],
+    [
+      "css",
+      ".card { color: red; }"
+    ]
+  ],
+  "injection_forbidden": [
+    [
+      "javascript",
+      "{\"name\":\"Ada\"}"
+    ],
+    [
+      "css",
+      "const count = 2;"
+    ]
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": "Perl",
+  "member": "perl",
+  "symbol": "tree_sitter_perl",
+  "repo": "https://github.com/tree-sitter-perl/tree-sitter-perl",
+  "revision": "775e75a51c1230fccbde7d607cd6d424b0ce1016",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Perl-LICENSE.txt"
+  ],
+  "source": "use v5.40;\nuse strict;\nuse warnings;\npackage Example;\nsub greet ($name) {\n    my @values = (1, 2, 3);\n    my $message = \"Hello $name\";\n    if ($name =~ /world/i) { say $message; }\n    return [map { $_ * 2 } @values];\n}\n# normal comment\n",
+  "expected": [
+    [
+      "keyword.import",
+      "use"
+    ],
+    [
+      "keyword.function",
+      "sub"
+    ],
+    [
+      "keyword",
+      "my"
+    ],
+    [
+      "keyword.conditional",
+      "if"
+    ],
+    [
+      "keyword.return",
+      "return"
+    ],
+    [
+      "number",
+      "3"
+    ],
+    [
+      "comment",
+      "# normal comment"
+    ]
+  ],
+  "forbidden": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-perl/tree-sitter-perl",
+      "revision": "775e75a51c1230fccbde7d607cd6d424b0ce1016",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "notes": [
+    "Upstream parser/scanner and highlighting queries updated together. Generic function captures remain less specific than builtin captures for Runestone precedence.",
+    "Parser generated from canonical upstream with Tree-sitter CLI 0.27.1 (ABI 15)."
+  ]
+}

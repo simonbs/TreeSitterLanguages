@@ -1,0 +1,89 @@
+{
+  "title": "Glimmer",
+  "member": "glimmer",
+  "symbol": "tree_sitter_glimmer",
+  "repo": "https://github.com/ember-tooling/tree-sitter-glimmer",
+  "revision": "c67a73679db2945a686ca45d3e5318d86138e72a",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/ember-tooling/tree-sitter-glimmer",
+      "revision": "c67a73679db2945a686ca45d3e5318d86138e72a",
+      "path": "queries/glimmer/highlights.scm"
+    },
+    {
+      "repo": "https://github.com/ember-tooling/tree-sitter-glimmer",
+      "revision": "c67a73679db2945a686ca45d3e5318d86138e72a",
+      "path": "queries/glimmer/injections.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Translate any-of?/not-any-of? into anchored match?/not-match? alternatives without removing conditions.",
+    "Map modern capture names to established Runestone names; remove spell/nospell editor controls.",
+    "Use direct language captures for injection regions; omit unsupported combined/include-children flags."
+  ],
+  "source": "<Widget @name=\"Ada\" />\n<div>{{this.name}}</div>\n{{#if ready}}yes{{else}}no{{/if}}\n",
+  "expected": [
+    [
+      "constructor",
+      "Widget"
+    ],
+    [
+      "tag",
+      "div"
+    ],
+    [
+      "variable.builtin",
+      "this"
+    ],
+    [
+      "conditional",
+      "if"
+    ]
+  ],
+  "forbidden": [
+    [
+      "constructor",
+      "div"
+    ],
+    [
+      "variable",
+      "else"
+    ],
+    [
+      "function",
+      "if"
+    ]
+  ],
+  "notes": [],
+  "injection_source": "<style>p { color: red; }</style>\n<script>const count = 1;</script>\n",
+  "injection_expected": [
+    [
+      "css",
+      "p { color: red; }"
+    ],
+    [
+      "javascript",
+      "const count = 1;"
+    ]
+  ],
+  "licenses": [
+    "Licenses/Additional/Glimmer-LICENSE.md"
+  ],
+  "additional_cases": [
+    {
+      "source": "<div class=\"card {{if @active 'active'}}\">\n  <Avatar @user={{@user}} />\n  <button {{on \"click\" this.save}}>Save</button>\n  {{#each @users as |user index|}}<p>{{user.name}}</p>{{else}}No users{{/each}}\n</div>",
+      "expected": [
+        [
+          "constructor",
+          "Avatar"
+        ],
+        [
+          "tag",
+          "button"
+        ]
+      ],
+      "forbidden": []
+    }
+  ]
+}

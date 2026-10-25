@@ -1,0 +1,73 @@
+{
+  "title": "Ruby",
+  "member": "ruby",
+  "symbol": "tree_sitter_ruby",
+  "repo": "https://github.com/tree-sitter/tree-sitter-ruby",
+  "revision": "ad907a69da0c8a4f7a943a7fe012712208da6dee",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-ruby",
+      "revision": "ad907a69da0c8a4f7a943a7fe012712208da6dee",
+      "paths": [
+        "queries/tags.scm",
+        "queries/locals.scm",
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
+  ],
+  "source": "# Endless methods, interpolation and heredocs\nclass Example\n  LIMIT = 42\n  def compute(value) = \"hello #{value}\"\n  def message\n    <<~TEXT\nhello\nTEXT\n  end\nend\nexample = Example.new\nexample.compute(1)\n",
+  "expected": [
+    [
+      "keyword",
+      "class"
+    ],
+    [
+      "keyword",
+      "def"
+    ],
+    [
+      "function.method",
+      "compute"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "constant",
+      "LIMIT"
+    ],
+    [
+      "string",
+      "\"hello #{value}\""
+    ],
+    [
+      "none",
+      "#{value}"
+    ]
+  ],
+  "forbidden": [
+    [
+      "constant.builtin",
+      "value"
+    ],
+    [
+      "keyword",
+      "compute"
+    ]
+  ],
+  "query_adaptations": [
+    "Use upstream C scanner (replacing old C++ scanner); pinned revision contains the heredoc serialization bounds fix. Sanitizer regression covers near-limit/oversized delimiter states and roundtrip.",
+    "Omit local-dependent catch-all identifier/function/reference patterns; structural method captures remain. Bare ambiguous identifiers use normal variable styling.",
+    "Map escape to string.escape and embedded interpolation to none; drop tag documentation transformations while preserving raw docs/tags."
+  ],
+  "license_files": [
+    "Licenses/Updates/Ruby.txt"
+  ],
+  "scanner_regression": "Tests/Updates/ruby_scanner_bounds.c"
+}

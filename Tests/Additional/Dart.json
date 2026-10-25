@@ -1,0 +1,100 @@
+{
+  "title": "Dart",
+  "member": "dart",
+  "symbol": "tree_sitter_dart",
+  "repo": "https://github.com/UserNobody14/tree-sitter-dart",
+  "revision": "0038280b774b65c1b89ba7fec50624d8baed9fe1",
+  "license": "MIT",
+  "source": "void main() { final count = 42; print(\"hello\"); }\n",
+  "expected": [
+    [
+      "keyword",
+      "final"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ],
+    [
+      "function.definition",
+      "main"
+    ],
+    [
+      "function.call",
+      "print"
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "\"hello\""
+    ],
+    [
+      "type",
+      "count"
+    ],
+    [
+      "function",
+      "main"
+    ],
+    [
+      "function",
+      "print"
+    ]
+  ],
+  "notes": [],
+  "query_provenance": [
+    {
+      "path": "queries/highlights.scm",
+      "repo": "https://github.com/UserNobody14/tree-sitter-dart",
+      "revision": "0038280b774b65c1b89ba7fec50624d8baed9fe1"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted.",
+    "Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged."
+  ],
+  "licenses": [
+    "Licenses/Additional/Dart.txt"
+  ],
+  "additional_cases": [
+    {
+      "source": "sealed class Shape {}\nclass Circle extends Shape { final double radius; Circle(this.radius); }\ndouble area(Shape shape) => switch (shape) { Circle(radius: final r) when r > 0 => 3.14 * r * r, _ => 0 };\nvoid main() { final (name, count) = ('world', 2); print('Hello $name: ${count + 1}'); final pattern = RegExp(r'\\d+'); }\n",
+      "expected": [
+        [
+          "keyword",
+          "sealed"
+        ],
+        [
+          "keyword",
+          "switch"
+        ],
+        [
+          "number",
+          "3.14"
+        ],
+        [
+          "function.definition",
+          "area"
+        ],
+        [
+          "function.definition",
+          "main"
+        ],
+        [
+          "function.call",
+          "print"
+        ]
+      ],
+      "forbidden": []
+    }
+  ]
+}

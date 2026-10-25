@@ -1,0 +1,114 @@
+[
+  {
+    "name": "basics",
+    "source": "# comment\n{ pkgs }: let count = 42; in { hello = pkgs.hello; enabled = true; value = builtins.toString count; custom = pkgs; }\n",
+    "expected": [
+      [
+        "comment",
+        "# comment"
+      ],
+      [
+        "keyword",
+        "let"
+      ],
+      [
+        "number",
+        "42"
+      ],
+      [
+        "variable.builtin",
+        "builtins"
+      ],
+      [
+        "variable.builtin",
+        "true"
+      ]
+    ],
+    "forbidden": [
+      [
+        "function.builtin",
+        "pkgs"
+      ],
+      [
+        "variable.builtin",
+        "pkgs"
+      ]
+    ]
+  },
+  {
+    "name": "representative-document",
+    "source": "{ pkgs, lib, config, ... }:\nlet\n  greet = name: \"Hello ${name}\";\n  script = ''echo \"${pkgs.hello}/bin/hello\"; echo ''${HOME}'';\n  custom = x: x;\nin rec {\n  imports = [ ./hardware-configuration.nix ];\n  environment.systemPackages = with pkgs; [ hello git ];\n  home.file.\"config\".text = script;\n  enabled = true;\n  value = builtins.map greet [ \"Ada\" ];\n  result = custom \"argument\";\n  check = config ? services.sshd.enable;\n  default = config.value or null;\n  packages = pkgs // { inherit greet; };\n}\n",
+    "expected": [
+      [
+        "escape",
+        "''"
+      ],
+      [
+        "function.builtin",
+        "map"
+      ],
+      [
+        "function.call",
+        "custom"
+      ],
+      [
+        "keyword",
+        "inherit"
+      ],
+      [
+        "keyword",
+        "let"
+      ],
+      [
+        "keyword",
+        "or"
+      ],
+      [
+        "keyword",
+        "rec"
+      ],
+      [
+        "keyword",
+        "with"
+      ],
+      [
+        "operator",
+        "//"
+      ],
+      [
+        "property",
+        "environment.systemPackages"
+      ],
+      [
+        "punctuation.special",
+        "${"
+      ],
+      [
+        "string.special.path",
+        "./hardware-configuration.nix"
+      ],
+      [
+        "variable.builtin",
+        "null"
+      ],
+      [
+        "variable.builtin",
+        "true"
+      ],
+      [
+        "variable.parameter",
+        "name"
+      ],
+      [
+        "variable.parameter",
+        "pkgs"
+      ]
+    ],
+    "forbidden": [
+      [
+        "function.builtin",
+        "custom"
+      ]
+    ]
+  }
+]

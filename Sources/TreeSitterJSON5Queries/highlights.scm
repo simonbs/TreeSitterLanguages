@@ -1,15 +1,7 @@
-(number) @number
-
-(comment) @comment
-
+(string) @string
 (member name: (_) @property)
-
-(member value: (string) @string)
-(member value: (number) @number)
-(member value: ["true" "false" "null"] @constant.builtin)
-
-(array ((string) @string))
-(array (number) @number)
-(array ["true" "false" "null"] @constant.builtin)
-
-(ERROR) @error
+(number) @number
+[(true) (false) (null)] @constant.builtin
+(comment) @comment
+["{" "}" "[" "]"] @punctuation.bracket
+["," ":"] @punctuation.delimiter

@@ -1,0 +1,93 @@
+{
+  "title": "Lua",
+  "member": "lua",
+  "symbol": "tree_sitter_lua",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-lua",
+  "revision": "10fe0054734eec83049514ea2e718b2a56acd0c9",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-lua",
+      "revision": "10fe0054734eec83049514ea2e718b2a56acd0c9",
+      "paths": [
+        "queries/highlights.scm",
+        "queries/injections.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
+  ],
+  "source": "-- Attributes, long strings, methods and builtins\nlocal LIMIT <const> = 42\nlocal message = [=[hello]=]\nlocal object = {}\nfunction object:compute(value)\n print(message)\n return value + LIMIT\nend\nobject:compute(1)\n",
+  "expected": [
+    [
+      "keyword",
+      "local"
+    ],
+    [
+      "keyword.return",
+      "return"
+    ],
+    [
+      "function.method",
+      "compute"
+    ],
+    [
+      "function.method.call",
+      "compute"
+    ],
+    [
+      "function.builtin",
+      "print"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "[=[hello]=]"
+    ],
+    [
+      "attribute",
+      "const"
+    ]
+  ],
+  "forbidden": [
+    [
+      "function.builtin",
+      "compute"
+    ],
+    [
+      "constant",
+      "value"
+    ]
+  ],
+  "injection_source": "ffi.cdef[[int add(int a, int b);]]\nprint[[ordinary text]]\n",
+  "injection_expected": [
+    [
+      "c",
+      "int add(int a, int b);"
+    ]
+  ],
+  "injection_forbidden": [
+    [
+      "c",
+      "ordinary text"
+    ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Switch parser, scanner and queries coherently to canonical tree-sitter-grammars/tree-sitter-lua.",
+    "Clear per-instance scanner payload before deserialize, including length0 reset; tested with independent scanner/parser instances and reset/reuse.",
+    "Normalize upstream legacy repeat/conditional/field/parameter/method/preproc and boolean captures to Runestone scopes; convert any-of? builtin list to equivalent anchored regex.",
+    "Use c injection for ffi.cdef string contents and preserve exact cdef predicate."
+  ],
+  "license_files": [
+    "Licenses/Updates/Lua.txt"
+  ],
+  "scanner_adaptations": [
+    "Reset payload before deserializing initial/short state; see lua_scanner_state.c."
+  ]
+}

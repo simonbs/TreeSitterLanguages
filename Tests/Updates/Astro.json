@@ -1,0 +1,83 @@
+{
+  "title": "Astro",
+  "member": "astro",
+  "symbol": "tree_sitter_astro",
+  "repo": "https://github.com/virchau13/tree-sitter-astro",
+  "revision": "213f6e6973d9b456c6e50e86f19f66877e7ef0ee",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Astro.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/virchau13/tree-sitter-astro",
+      "revision": "213f6e6973d9b456c6e50e86f19f66877e7ef0ee",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Update frontmatter/interpolation nodes for current grammar; supply CSS/SCSS and explicit script language injections with mutually exclusive default selection."
+  ],
+  "source": "---\nconst title: string = \"Hello\";\n---\n<html><h1 class=\"hero\">{title}</h1><Card count={2} /><style>.hero {color: red}</style></html>\n",
+  "expected": [
+    [
+      "tag",
+      "h1"
+    ],
+    [
+      "attribute",
+      "class"
+    ],
+    [
+      "string",
+      "hero"
+    ],
+    [
+      "punctuation.bracket",
+      "{"
+    ]
+  ],
+  "forbidden": [
+    [
+      "string",
+      "title"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering.",
+    "HTML interpolation follows upstream permissible_text boundaries; complex embedded JSX is not a complete JavaScript AST in the host grammar."
+  ],
+  "injection_expected": [
+    [
+      "injection.content",
+      "\nconst title: string = \"Hello\";"
+    ],
+    [
+      "injection.content",
+      "title"
+    ],
+    [
+      "css",
+      ".hero {color: red}"
+    ],
+    [
+      "scss",
+      "$c: red;"
+    ],
+    [
+      "typescript",
+      "let n: number = 1;"
+    ]
+  ],
+  "injection_forbidden": [
+    [
+      "css",
+      "$c: red;"
+    ],
+    [
+      "javascript",
+      "let n: number = 1;"
+    ]
+  ],
+  "injection_source": "---\nconst title: string = \"Hello\";\n---\n<h1>{title}</h1><style>.hero {color: red}</style><style lang=\"scss\">$c: red;</style><script lang=\"ts\">let n: number = 1;</script>"
+}
