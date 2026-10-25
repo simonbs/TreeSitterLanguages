@@ -29,7 +29,9 @@
     ]
   ],
   "forbidden": [],
-  "notes": [],
+  "notes": [
+    "Adapted external scanner mutable state from exported globals to independent calloc/free payloads, eliminating symbol collisions with Lua and cross-parser state contamination. Deserialize resets all state before restoring the unchanged three-byte serialized layout, including empty states."
+  ],
   "query_provenance": [
     {
       "repo": "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -38,6 +40,6 @@
     }
   ],
   "query_adaptations": [
-    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions."
   ]
 }

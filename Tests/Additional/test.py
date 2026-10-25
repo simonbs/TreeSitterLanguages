@@ -21,6 +21,7 @@ import re
 import shlex
 import shutil
 import subprocess
+import sys
 import tempfile
 
 
@@ -195,6 +196,9 @@ def main():
         for title in options.language or CASES:
             try:
                 check(title, output / 'runtime', root, output, options.verbose)
+                if title == 'Jsonnet':
+                    subprocess.run([sys.executable, str(root / 'Tests/Additional/test-jsonnet-scanner.py'),
+                                    '--runtime', str(output / 'runtime')], check=True)
                 if (root / 'Sources' / ('TreeSitter' + title + 'Queries') / 'injections.scm').exists():
                     check(title, output / 'runtime', root, output, options.verbose, 'injections')
             except (AssertionError, OSError, subprocess.CalledProcessError) as error:

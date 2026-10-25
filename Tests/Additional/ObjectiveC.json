@@ -57,6 +57,7 @@
     "Converted any-of? to anchored match? alternations, retaining exact string membership."
   ],
   "licenses": [
-    "Licenses/Additional/ObjectiveC-BaseC.txt"
+    "Licenses/Additional/ObjectiveC-BaseC.txt",
+    "Licenses/Additional/ObjectiveC.txt"
   ]
 }

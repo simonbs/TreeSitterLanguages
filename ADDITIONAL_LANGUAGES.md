@@ -59,19 +59,19 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 ### Bicep
 
 - Queries: [queries/highlights.scm](https://github.com/tree-sitter-grammars/tree-sitter-bicep/blob/bff59884307c0ab009bd5e81afd9324b46a6c0f9/queries/highlights.scm) at `bff59884307c0ab009bd5e81afd9324b46a6c0f9`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [Bicep-LICENSE.txt](Licenses/Additional/Bicep-LICENSE.txt).
 
 ### CMake
 
 - Queries: [queries/highlights.scm](https://github.com/uyha/tree-sitter-cmake/blob/58993af75218bc99a1f5a04c832a5937e7c422cb/queries/highlights.scm) at `58993af75218bc99a1f5a04c832a5937e7c422cb`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [CMake-LICENSE.txt](Licenses/Additional/CMake-LICENSE.txt).
 
 ### CUE
 
 - Queries: [queries/highlights.scm](https://github.com/cue-lang/tree-sitter-cue/blob/ba4356732fcf8b203f7f98cfb6e70390d5dc1da8/queries/highlights.scm) at `ba4356732fcf8b203f7f98cfb6e70390d5dc1da8`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [CUE-LICENSE.txt](Licenses/Additional/CUE-LICENSE.txt).
 
 ### D
@@ -90,7 +90,7 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 ### Dockerfile
 
 - Queries: [queries/highlights.scm](https://github.com/camdencheek/tree-sitter-dockerfile/blob/971acdd908568b4531b0ba28a445bf0bb720aba5/queries/highlights.scm) at `971acdd908568b4531b0ba28a445bf0bb720aba5`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Shell command regions use Bash highlighting for the default POSIX shell; custom SHELL directives are not interpreted.
 - Notices: [Dockerfile-LICENSE.txt](Licenses/Additional/Dockerfile-LICENSE.txt).
 
@@ -119,7 +119,7 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 ### GraphQL
 
 - Queries: [queries/graphql/highlights.scm](https://github.com/bkegley/tree-sitter-graphql/blob/5e66e961eee421786bdda8495ed1db045e06b5fe/queries/graphql/highlights.scm) at `5e66e961eee421786bdda8495ed1db045e06b5fe`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [GraphQL-LICENSE.txt](Licenses/Additional/GraphQL-LICENSE.txt).
 
 ### Groovy
@@ -131,7 +131,7 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 ### HCL
 
 - Queries: [runtime/queries/hcl/highlights.scm](https://github.com/nvim-treesitter/nvim-treesitter/blob/a2f694478be07f89c2d03cc17858a8745a400c4b/runtime/queries/hcl/highlights.scm) at `a2f694478be07f89c2d03cc17858a8745a400c4b`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [HCL-LICENSE.txt](Licenses/Additional/HCL-LICENSE.txt), [HCL-Queries.txt](Licenses/Additional/HCL-Queries.txt).
 
 ### Jinja
@@ -150,13 +150,14 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 ### Jsonnet
 
 - Queries: [runtime/queries/jsonnet/highlights.scm](https://github.com/nvim-treesitter/nvim-treesitter/blob/a2f694478be07f89c2d03cc17858a8745a400c4b/runtime/queries/jsonnet/highlights.scm) at `a2f694478be07f89c2d03cc17858a8745a400c4b`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
+- Adapted external scanner mutable state from exported globals to independent calloc/free payloads, eliminating symbol collisions with Lua and cross-parser state contamination. Deserialize resets all state before restoring the unchanged three-byte serialized layout, including empty states.
 - Notices: [Jsonnet-LICENSE.txt](Licenses/Additional/Jsonnet-LICENSE.txt), [Jsonnet-Queries.txt](Licenses/Additional/Jsonnet-Queries.txt).
 
 ### KDL
 
 - Queries: [queries/highlights.scm](https://github.com/tree-sitter-grammars/tree-sitter-kdl/blob/e8ff98a113e175b84b92ec2096820517c1e10a66/queries/highlights.scm) at `e8ff98a113e175b84b92ec2096820517c1e10a66`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [KDL-LICENSE.txt](Licenses/Additional/KDL-LICENSE.txt).
 
 ### Liquid
@@ -179,7 +180,7 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 ### Make
 
 - Queries: [queries/highlights.scm](https://github.com/tree-sitter-grammars/tree-sitter-make/blob/70613f3d812cbabbd7f38d104d60a409c4008b43/queries/highlights.scm) at `70613f3d812cbabbd7f38d104d60a409c4008b43`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Shell command regions use Bash highlighting for the default POSIX shell; custom SHELL directives are not interpreted.
 - Notices: [Make-LICENSE.txt](Licenses/Additional/Make-LICENSE.txt).
 
@@ -190,7 +191,7 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 - Inlined existing Runestone C highlight queries (base repository revision 9adbb839524e47e0eee8803f8e02d81b78ad1847).
 - Replaced unsupported has-ancestor? identifier heuristic with structural struct-field declarator captures; intentionally avoids treating arbitrary expressions/types within a struct as properties.
 - Converted any-of? to anchored match? alternations, retaining exact string membership.
-- Notices: [ObjectiveC-BaseC.txt](Licenses/Additional/ObjectiveC-BaseC.txt).
+- Notices: [ObjectiveC-BaseC.txt](Licenses/Additional/ObjectiveC-BaseC.txt), [ObjectiveC.txt](Licenses/Additional/ObjectiveC.txt).
 
 ### Pascal
 
@@ -201,13 +202,13 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 ### Proto
 
 - Queries: [queries/highlights.scm](https://github.com/coder3101/tree-sitter-proto/blob/18366491f37d43d6d5d02cbb1e79b650b5728145/queries/highlights.scm) at `18366491f37d43d6d5d02cbb1e79b650b5728145`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [Proto-LICENSE.txt](Licenses/Additional/Proto-LICENSE.txt).
 
 ### RON
 
 - Queries: [queries/highlights.scm](https://github.com/tree-sitter-grammars/tree-sitter-ron/blob/78938553b93075e638035f624973083451b29055/queries/highlights.scm) at `78938553b93075e638035f624973083451b29055`.
-- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character.
+- Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
 - Notices: [RON-LICENSE-APACHE.txt](Licenses/Additional/RON-LICENSE-APACHE.txt), [RON-LICENSE-MIT.txt](Licenses/Additional/RON-LICENSE-MIT.txt).
 
 ### Scala
