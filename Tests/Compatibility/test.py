@@ -59,6 +59,7 @@ def run(command):
 def main():
     if len(sys.argv) < 2:
         sys.exit("Usage: python3 Tests/Compatibility/test.py /path/to/tree-sitter [Language ...]")
+    run([sys.executable, ROOT / "scripts/check-language-support.py"])
     runtime = Path(sys.argv[1]).resolve() / "lib"
     selected = set(sys.argv[2:]) if len(sys.argv) > 2 else set(SAMPLES) | ADDITIONAL_LANGUAGES
     unknown = selected - set(SAMPLES) - ADDITIONAL_LANGUAGES

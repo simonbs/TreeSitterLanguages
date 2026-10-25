@@ -39,6 +39,44 @@ Furthermore the package contains the TreeSitterLanguagesCommon library which exp
 
 Nix and XML are also available using these three products. Their pinned sources, licenses, and query adaptations are documented in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
 
+### All Runestone languages
+
+Apps that use the full collection can depend on the `RunestoneLanguageSupport`
+product instead of listing every `TreeSitter{Language}Runestone` product:
+
+```swift
+.target(
+    name: "MyEditor",
+    dependencies: [
+        .product(name: "Runestone", package: "Runestone"),
+        .product(name: "RunestoneLanguageSupport", package: "TreeSitterLanguages")
+    ]
+)
+```
+
+Then import the umbrella to make every bundled language extension available:
+
+```swift
+import Runestone
+import RunestoneLanguageSupport
+
+let language = TreeSitterLanguage.swift
+```
+
+This opt-in product includes all grammar and query resource dependencies, including
+languages added to future package revisions. Use the individual products when you
+want to limit build time and bundled resources. The umbrella does not provide file
+extension detection or register injected languages; those remain the app's responsibility.
+Runestone itself remains independent of this package.
+
+The pinned Runestone revision includes the UTF-8 query-length fix required by
+Haskell highlights and other queries containing Unicode.
+
+Swift's `@_exported import` provides the re-exports. It is an underscored compiler
+feature, so the consumer tests cover its behavior with the supported toolchain.
+Run the iOS `RunestoneLanguageSupportTests` test target to check every factory and
+`python3 scripts/check-language-support.py` to check that exports stay complete.
+
 ## Compatibility
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
