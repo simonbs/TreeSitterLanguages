@@ -1,174 +1,168 @@
-; Variables
-(variable_declaration
-  .
-  (scope) @keyword)
-[
-(single_var_declaration)
-(scalar_variable)
-(array_variable)
-(hash_variable)
-(hash_variable)
-] @variable
+; Adapted for Runestone; pinned provenance and licenses: Tests/Updates/Perl.json
+((source_file . (comment) @keyword.directive)
+  (#match? @keyword.directive "^#!/"))
 
+[ "use" "no" "require" ] @keyword.import
 
-[
-(package_name)
-(special_scalar_variable)
-(special_array_variable)
-(special_hash_variable)
-(special_literal)
-(super)
-] @constant
+[ "if" "elsif" "unless" "else" ] @keyword.conditional
 
-(
-  [
-  (package_name)
-  (super)
-  ]
-  .
-  ("::" @operator)
-)
+(conditional_expression [ "?" ":" ] @keyword.conditional.ternary)
 
-(comments) @comment
-(pod_statement) @comment
+[ "while" "until" "for" "foreach" ] @keyword.repeat
+("continue" @keyword.repeat (block))
+
+[ "try" "catch" "finally" ] @keyword.exception
+
+"return" @keyword.return
+
+[ "sub" "method" "async" "extended" ] @keyword.function
+
+[ "map" "grep" "sort" ] @function.builtin
+
+[ "package" "class" "role" ] @keyword.import
 
 [
-(use_no_statement)
-(use_no_feature_statement)
-(use_no_if_statement)
-(use_no_version)
-(use_constant_statement)
-(use_parent_statement)
-] @include
+  "defer"
+  "do" "eval"
+  "my" "our" "local" "dynamically" "state" "field"
+  "last" "next" "redo" "goto"
+  "undef" "await"
+] @keyword
 
-(use_constant_statement
-  constant: (identifier) @constant)
+(yadayada) @keyword.exception
 
-[
-"require"
-] @include
+(phaser_statement phase: _ @keyword.phaser)
+(class_phaser_statement phase: _ @keyword.phaser)
 
-(method_invocation
-  .
-  (identifier) @variable)
 
-(method_invocation
-  (arrow_operator)
-  .
-  (identifier) @function)
-(method_invocation
-  function_name: (identifier) @function)
-(named_block_statement
-  function_name: (identifier) @function)
 
-(call_expression
-  function_name: (identifier) @function)
-(function_definition
-  name: (identifier) @function)
-[
-(function)
-(map)
-(grep)
-(bless)
-] @function
+(_ operator: _ @operator)
+"\\" @operator
 
 [
-"return"
-"sub"
-"package"
-"BEGIN"
-"END"
-] @keyword.function
+  "or" "xor" "and" "not"
+  "eq" "ne" "cmp" "lt" "le" "ge" "gt"
+  "isa"
+] @keyword.operator
+
+(eof_marker) @keyword.directive
+(data_section) @comment
+
+(pod) @comment
 
 [
-"("
-")"
-"["
-"]"
-"{"
-"}"
-] @punctuation.bracket
-(standard_input_to_variable) @punctuation.bracket
-
-[
-"=~"
-"or"
-"="
-"=="
-"+"
-"-"
-"."
-"//"
-"||"
-(arrow_operator)
-(hash_arrow_operator)
-(array_dereference)
-(hash_dereference)
-(to_reference)
-(type_glob)
-(hash_access_variable)
-(ternary_expression)
-(ternary_expression_in_hash)
-] @operator
-
-[
-(regex_option)
-(regex_option_for_substitution)
-(regex_option_for_transliteration)
-] @parameter
-
-(type_glob
-  (identifier) @variable)
-(
-  (scalar_variable)
-  .
-  ("->" @operator))
-
-[
-(word_list_qw)
-(command_qx_quoted)
-(string_single_quoted)
-(string_double_quoted)
-(string_qq_quoted)
-(bareword)
-(transliteration_tr_or_y)
-] @string
-
-[
-(regex_pattern_qr)
-(patter_matcher_m)
-(substitution_pattern_s)
-] @string.regex
-
-(escape_sequence) @string.escape
-
-[
-","
-(semi_colon)
-(start_delimiter)
-(end_delimiter)
-(ellipsis_statement)
-] @punctuation.delimiter
-
-[
-(integer)
-(floating_point)
-(scientific_notation)
-(hexadecimal)
+  (number)
+  (version)
 ] @number
 
 [
-(if_statement)
-(unless_statement)
-(if_simple_statement)
-(unless_simple_statement)
-] @conditional
+  (string_literal)
+  (interpolated_string_literal)
+  (quoted_word_list)
+  (command_string)
+  (heredoc_content)
+  (replacement)
+  (transliteration_content)
+] @string
 
-(foreach_statement) @repeat
-(foreach_statement
-  .
-  (scope) @keyword)
+[
+  (heredoc_token)
+  (command_heredoc_token)
+  (heredoc_end)
+] @string.special
 
-(function_attribute) @field
+[(escape_sequence) (escaped_delimiter)] @string.escape
 
-(function_signature) @type
+(_ modifiers: _ @constant.character)
+[
+ (quoted_regexp)
+ (match_regexp)
+ (regexp_content)
+] @string.regex
+
+(autoquoted_bareword) @string.special
+
+(use_statement (package) @type)
+(package_statement (package) @type)
+(class_statement (package) @type)
+(require_expression (bareword) @type)
+
+(subroutine_declaration_statement name: (bareword) @function)
+(method_declaration_statement name: (bareword) @function.method)
+(attribute_name) @attribute
+(attribute_value) @string
+
+(label) @string.special
+
+(statement_label label: _ @string.special)
+
+(relational_expression operator: "isa" right: (bareword) @type)
+
+(function) @function
+
+(function_call_expression (function) @function)
+(method_call_expression (method) @function.method)
+(method_call_expression invocant: (bareword) @type)
+
+(func0op_call_expression function: _ @function.builtin)
+(func1op_call_expression function: _ @function.builtin)
+
+([(function)(expression_statement (bareword))] @function.builtin
+ (#match? @function.builtin
+   "^(accept|atan2|bind|binmode|bless|crypt|chmod|chown|connect|die|dbmopen|exec|fcntl|flock|getpriority|getprotobynumber|gethostbyaddr|getnetbyaddr|getservbyname|getservbyport|getsockopt|glob|index|ioctl|join|kill|link|listen|mkdir|msgctl|msgget|msgrcv|msgsend|opendir|print|printf|push|pack|pipe|return|rename|rindex|read|recv|reverse|say|select|seek|semctl|semget|semop|send|setpgrp|setpriority|seekdir|setsockopt|shmctl|shmread|shmwrite|shutdown|socket|socketpair|split|sprintf|splice|substr|system|symlink|syscall|sysopen|sysseek|sysread|syswrite|tie|truncate|unlink|unpack|utime|unshift|vec|warn|waitpid|formline|open|sort)$"
+))
+
+(ERROR) @error
+
+(
+  [(varname) (filehandle)] @variable.builtin
+  (#match? @variable.builtin "^((ENV|ARGV|INC|ARGVOUT|SIG|STDIN|STDOUT|STDERR)|[_ab]|\\W|\\d+|\\^.*)$")
+)
+(filehandle (varname)) @variable
+
+[(array) (arraylen)] @variable.array
+(glob) @variable.builtin
+(scalar) @variable.scalar
+(hash) @variable.hash
+(amper_deref_expression [ "&" "*" ] @function)
+
+(glob_deref_expression "*" @variable.builtin)
+(glob_slot_expression "*" @variable.builtin)
+(scalar_deref_expression [ "$" "*"] @variable.scalar)
+
+; gotta be SUPER GENERIC so we can hit up string interp
+(_
+  [
+   array: (_) @variable.array
+   hash: (_) @variable.hash
+  ])
+(array_deref_expression [ "@" "*"] @variable.array)
+(arraylen_deref_expression [ "$#" "*"] @variable.array)
+(hash_deref_expression [ "%" "*"] @variable.hash)
+(array_element_expression array:(_) @variable.array)
+(slice_expression array:(_) @variable.array)
+
+
+
+(comment) @comment
+
+([ "=>" "," ";" "->" ] @punctuation.delimiter)
+
+(
+  [ "[" "]" "{" "}" "(" ")" ] @punctuation.bracket
+)
+
+(_
+  "{" @punctuation.special
+  (varname)
+  "}" @punctuation.special)
+
+(varname
+  (block
+    "{" @punctuation.special
+    "}" @punctuation.special))
+
+((_
+    (autoquoted_bareword)
+    (bareword) @constant)
+)

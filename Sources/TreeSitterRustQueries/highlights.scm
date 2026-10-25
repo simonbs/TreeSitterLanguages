@@ -1,8 +1,19 @@
+; Identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
 ; Identifier conventions
 
 ; Assume all-caps names are constants
 ((identifier) @constant
- (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+ (#match? @constant "^[A-Z][A-Z\\d_]+$"))
+
+; Assume uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z][a-zA-Z0-9_]*$")
+ (#not-match? @constructor "^[A-Z][A-Z0-9_]+$"))
 
 ; Assume that uppercase names in paths are types
 ((scoped_identifier
@@ -20,10 +31,6 @@
     name: (identifier) @type))
  (#match? @type "^[A-Z]"))
 
-; Assume other uppercase names are enum constructors
-((identifier) @constructor
- (#match? @constructor "^[A-Z]"))
-
 ; Assume all qualified names in struct patterns are enum constructors. (They're
 ; either that, or struct names; highlighting both as constructors seems to be
 ; the less glaring choice of error, visually.)
@@ -34,20 +41,20 @@
 ; Function calls
 
 (call_expression
-  function: (identifier) @function)
+  function: (identifier) @function.call)
 (call_expression
   function: (field_expression
     field: (field_identifier) @function.method))
 (call_expression
   function: (scoped_identifier
     "::"
-    name: (identifier) @function))
+    name: (identifier) @function.call))
 
 (generic_function
-  function: (identifier) @function)
+  function: (identifier) @function.call)
 (generic_function
   function: (scoped_identifier
-    name: (identifier) @function))
+    name: (identifier) @function.call))
 (generic_function
   function: (field_expression
     field: (field_identifier) @function.method))
@@ -58,17 +65,14 @@
 
 ; Function definitions
 
-(function_item (identifier) @function)
-(function_signature_item (identifier) @function)
-
-; Other identifiers
-
-(type_identifier) @type
-(primitive_type) @type.builtin
-(field_identifier) @property
+(function_item (identifier) @function.definition)
+(function_signature_item (identifier) @function.definition)
 
 (line_comment) @comment
 (block_comment) @comment
+
+(line_comment (doc_comment)) @comment.documentation
+(block_comment (doc_comment)) @comment.documentation
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -107,6 +111,7 @@
 "extern" @keyword
 "fn" @keyword
 "for" @keyword
+"gen" @keyword
 "if" @keyword
 "impl" @keyword
 "in" @keyword
@@ -117,6 +122,7 @@
 "mod" @keyword
 "move" @keyword
 "pub" @keyword
+"raw" @keyword
 "ref" @keyword
 "return" @keyword
 "static" @keyword
@@ -128,6 +134,7 @@
 "use" @keyword
 "where" @keyword
 "while" @keyword
+"yield" @keyword
 (crate) @keyword
 (mutable_specifier) @keyword
 (use_list (self) @keyword)
@@ -142,10 +149,10 @@
 (raw_string_literal) @string
 
 (boolean_literal) @constant.builtin
-(integer_literal) @constant.builtin
-(float_literal) @constant.builtin
+(integer_literal) @number
+(float_literal) @float
 
-(escape_sequence) @escape
+(escape_sequence) @string.escape
 
 (attribute_item) @attribute
 (inner_attribute_item) @attribute

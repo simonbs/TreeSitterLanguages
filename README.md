@@ -41,7 +41,7 @@ Furthermore the package contains the TreeSitterLanguagesCommon library which exp
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
 
-The bundled grammars use language ABI 13 or 14. Tree-sitter 0.27.1 supports both, so the runtime upgrade does not require regenerating the grammars or changing their syntax support. Each grammar retains its own generated parser header; the common library no longer exports a copy of the runtime's private structures.
+The refreshed grammars include language ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. The package pins the merged Runestone revision until a release containing it is available. See [the existing-language refresh](UPDATED_LANGUAGES.md) for exact source revisions, query adaptations, license notices, and validation. Each grammar retains its private generated parser header.
 
 The compatibility check compiles every bundled grammar against Tree-sitter 0.27.1, parses a representative sample, and compiles and executes every bundled query, including inherited highlight queries. Run it with a checkout of that Tree-sitter release:
 
@@ -78,7 +78,7 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-julia](https://github.com/tree-sitter/tree-sitter-julia)
 - [tree-sitter-latex](https://github.com/latex-lsp/tree-sitter-latex)
 - [tree-sitter-lua](https://github.com/tjdevries/tree-sitter-lua)
-- [tree-sitter-markdown](https://github.com/MDeiml/tree-sitter-markdown)
+- [tree-sitter-markdown](https://github.com/tree-sitter-grammars/tree-sitter-markdown)
 - [tree-sitter-ocaml](https://github.com/tree-sitter/tree-sitter-ocaml)
 - [tree-sitter-perl](https://github.com/ganezdragon/tree-sitter-perl)
 - [tree-sitter-php](https://github.com/tree-sitter/tree-sitter-php)
@@ -93,5 +93,5 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-swift](https://github.com/alex-pinkus/tree-sitter-swift)
 - [tree-sitter-toml](https://github.com/ikatyang/tree-sitter-toml)
 - [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
-- [tree-sitter-yaml](https://github.com/ikatyang/tree-sitter-yaml)
+- [tree-sitter-yaml](https://github.com/tree-sitter-grammars/tree-sitter-yaml)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)

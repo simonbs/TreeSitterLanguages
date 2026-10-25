@@ -1,0 +1,66 @@
+{
+  "title": "SCSS",
+  "member": "scss",
+  "symbol": "tree_sitter_scss",
+  "repo": "https://github.com/serenadeai/tree-sitter-scss",
+  "revision": "c478c6868648eff49eb04a4df90d703dc45b312a",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/SCSS.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/serenadeai/tree-sitter-scss",
+      "revision": "c478c6868648eff49eb04a4df90d703dc45b312a",
+      "path": "queries/highlights.scm"
+    },
+    {
+      "repo": "https://github.com/simonbs/TreeSitterLanguages",
+      "revision": "9adbb839524e47e0eee8803f8e02d81b78ad1847",
+      "path": "Sources/TreeSitterSCSSQueries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Parser/scanner already match upstream and are retained byte-for-byte. Preserve fixed #match? predicates; add SCSS variables, comments, directives and punctuation missing from CSS-derived upstream query."
+  ],
+  "source": "$space: 1rem;\n// reusable layout\n@mixin card($gap) { padding: $gap; &:hover { color: #fff; } }\n.card { @include card($space); }\n",
+  "expected": [
+    [
+      "variable",
+      "$space"
+    ],
+    [
+      "keyword",
+      "@mixin"
+    ],
+    [
+      "keyword",
+      "@include"
+    ],
+    [
+      "comment",
+      "// reusable layout"
+    ],
+    [
+      "property",
+      "padding"
+    ],
+    [
+      "string.special",
+      "#fff"
+    ]
+  ],
+  "forbidden": [
+    [
+      "variable",
+      "padding"
+    ],
+    [
+      "comment",
+      "$space"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering."
+  ]
+}

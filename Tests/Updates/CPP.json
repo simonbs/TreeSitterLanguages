@@ -1,0 +1,58 @@
+{
+  "title": "CPP",
+  "member": "cpp",
+  "symbol": "tree_sitter_cpp",
+  "repo": "https://github.com/tree-sitter/tree-sitter-cpp",
+  "revision": "c009222808634c1014f82438d4883753516a2c24",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-cpp",
+      "revision": "c009222808634c1014f82438d4883753516a2c24",
+      "paths": [
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "notes": [
+    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
+    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation."
+  ],
+  "source": "// Concepts, constraints, and raw literals\n#include <string>\ntemplate<typename T> concept Sized = requires(T x) { x.size(); };\nconstexpr int LIMIT = 4;\nint compute(int value) { auto text = R\"(hello)\"; return value + LIMIT; }\n",
+  "expected": [
+    [
+      "keyword",
+      "concept"
+    ],
+    [
+      "keyword",
+      "requires"
+    ],
+    [
+      "keyword",
+      "constexpr"
+    ],
+    [
+      "function.definition",
+      "compute"
+    ],
+    [
+      "string",
+      "R\"(hello)\""
+    ],
+    [
+      "number",
+      "4"
+    ]
+  ],
+  "forbidden": [
+    [
+      "constant",
+      "value"
+    ],
+    [
+      "constant",
+      "compute"
+    ]
+  ]
+}

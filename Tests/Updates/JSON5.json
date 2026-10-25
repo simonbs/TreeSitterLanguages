@@ -1,0 +1,65 @@
+{
+  "title": "JSON5",
+  "member": "json5",
+  "symbol": "tree_sitter_json5",
+  "repo": "https://github.com/Joakker/tree-sitter-json5",
+  "revision": "248b8564567087d7866be76569b182f6dd7e14e9",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/JSON5.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/Joakker/tree-sitter-json5",
+      "revision": "248b8564567087d7866be76569b182f6dd7e14e9",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Use legacy Runestone number/constant names; highlight every string and distinguish member keys from values; remove ineffective comment-language injection."
+  ],
+  "source": "// configuration\n{unquoted: \"value\", single: 'yes', list: [true, null, 0xFF, Infinity, NaN,],}\n",
+  "expected": [
+    [
+      "comment",
+      "// configuration"
+    ],
+    [
+      "property",
+      "unquoted"
+    ],
+    [
+      "string",
+      "'yes'"
+    ],
+    [
+      "number",
+      "0xFF"
+    ],
+    [
+      "number",
+      "Infinity"
+    ],
+    [
+      "constant.builtin",
+      "true"
+    ],
+    [
+      "constant.builtin",
+      "null"
+    ]
+  ],
+  "forbidden": [
+    [
+      "property",
+      "'yes'"
+    ],
+    [
+      "string",
+      "Infinity"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering."
+  ]
+}

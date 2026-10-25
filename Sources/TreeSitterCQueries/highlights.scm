@@ -1,3 +1,8 @@
+(identifier) @variable
+
+((identifier) @constant
+ (#match? @constant "^[A-Z][A-Z\\d_]*$"))
+
 "break" @keyword
 "case" @keyword
 "const" @keyword
@@ -47,8 +52,8 @@
 ">" @operator
 "||" @operator
 
-"." @delimiter
-";" @delimiter
+"." @punctuation.delimiter
+";" @punctuation.delimiter
 
 (string_literal) @string
 (system_lib_string) @string
@@ -57,25 +62,24 @@
 (number_literal) @number
 (char_literal) @number
 
-(call_expression
-  function: (identifier) @function)
-(call_expression
-  function: (field_expression
-    field: (field_identifier) @function))
-(function_declarator
-  declarator: (identifier) @function)
-(preproc_function_def
-  name: (identifier) @function.special)
-
 (field_identifier) @property
 (statement_identifier) @label
 (type_identifier) @type
 (primitive_type) @type
 (sized_type_specifier) @type
 
-((identifier) @constant
- (#match? @constant "^[A-Z][A-Z\\d_]*$"))
-
-(identifier) @variable
+(call_expression
+  function: (identifier) @function.call)
+(call_expression
+  function: (field_expression
+    field: (field_identifier) @function.call))
+(function_declarator
+  declarator: (identifier) @function.definition)
+(preproc_function_def
+  name: (identifier) @function.special)
 
 (comment) @comment
+
+; Includes C23 constexpr and other storage/qualifier keywords.
+(storage_class_specifier) @keyword
+(type_qualifier) @keyword

@@ -1,0 +1,94 @@
+{
+  "title": "Svelte",
+  "member": "svelte",
+  "symbol": "tree_sitter_svelte",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-svelte",
+  "revision": "ae5199db47757f785e43a14b332118a5474de1a2",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Svelte.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-svelte",
+      "revision": "ae5199db47757f785e43a14b332118a5474de1a2",
+      "path": "queries/highlights.scm"
+    },
+    {
+      "repo": "https://github.com/simonbs/TreeSitterLanguages",
+      "revision": "9adbb839524e47e0eee8803f8e02d81b78ad1847",
+      "path": "Sources/TreeSitterSvelteQueries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Keep existing Runestone HTML text formatting; migrate to current Svelte5 snippet/render syntax. Use svelte_raw_text for TypeScript-compatible template expressions. Guard default and type fallback so lang=ts cannot overlap JavaScript; retain inline style injection."
+  ],
+  "source": "<script lang=\"ts\" type=\"text/javascript\">let count: number = 1;</script>\n<style lang=\"scss\">$color: red; p { color: $color; }</style>\n{#snippet greeting(name)}<p class=\"greeting\">Hello {name}</p>{/snippet}\n{@render greeting(\"Ada\")}\n{#if count > 0}<strong>Active</strong>{:else}<em>Empty</em>{/if}\n",
+  "expected": [
+    [
+      "keyword",
+      "snippet"
+    ],
+    [
+      "keyword",
+      "render"
+    ],
+    [
+      "function",
+      "greeting"
+    ],
+    [
+      "keyword.conditional",
+      "if"
+    ],
+    [
+      "tag",
+      "p"
+    ],
+    [
+      "string",
+      "\"greeting\""
+    ],
+    [
+      "text.strong",
+      "Active"
+    ]
+  ],
+  "forbidden": [
+    [
+      "text.strong",
+      "Empty"
+    ],
+    [
+      "text.emphasis",
+      "Active"
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering."
+  ],
+  "injection_expected": [
+    [
+      "typescript",
+      "let count: number = 1;"
+    ],
+    [
+      "scss",
+      "$color: red; p { color: $color; }"
+    ],
+    [
+      "typescript",
+      "greeting(\"Ada\")"
+    ]
+  ],
+  "injection_forbidden": [
+    [
+      "javascript",
+      "let count: number = 1;"
+    ],
+    [
+      "css",
+      "$color: red; p { color: $color; }"
+    ]
+  ]
+}

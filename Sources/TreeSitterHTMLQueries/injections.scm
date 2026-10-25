@@ -1,7 +1,10 @@
-((script_element
-  (raw_text) @injection.content)
- (#set! injection.language "javascript"))
-
-((style_element
-  (raw_text) @injection.content)
- (#set! injection.language "css"))
+((script_element (start_tag) @_start (raw_text) @javascript)
+ (#not-match? @_start "\\b(lang|type)\\s*="))
+((script_element (start_tag (attribute (attribute_name) @_name [(attribute_value) @_value (quoted_attribute_value (attribute_value) @_value)])) (raw_text) @javascript)
+ (#eq? @_name "type") (#match? @_value "^(text/javascript|application/javascript|module)$"))
+((script_element (start_tag (attribute (attribute_name) @_name [(attribute_value) @_value (quoted_attribute_value (attribute_value) @_value)])) (raw_text) @json)
+ (#eq? @_name "type") (#match? @_value "^(application/ld\\+json|application/json|importmap|speculationrules)$"))
+((style_element (start_tag) @_start (raw_text) @css)
+ (#not-match? @_start "\\b(lang|type)\\s*="))
+((style_element (start_tag (attribute (attribute_name) @_name [(attribute_value) @_value (quoted_attribute_value (attribute_value) @_value)])) (raw_text) @css)
+ (#eq? @_name "type") (#match? @_value "^(text/css)$"))

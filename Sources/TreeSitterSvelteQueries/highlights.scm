@@ -38,31 +38,51 @@
   (quoted_attribute_value)
 ] @string
 
-[
-  (text)
-  (raw_text_expr)
-] @none
+
+; HTML captures and Runestone text formatting are defined above.
+
+(raw_text) @none
 
 [
-  (special_block_keyword)
-  (then)
-  (as)
+  "as"
+  "key"
+  "html"
+  "snippet"
+  "render"
 ] @keyword
+
+"const" @type.qualifier
+
+[
+  "if"
+  "else"
+  "then"
+] @keyword.conditional
+
+"each" @keyword.repeat
+
+[
+  "await"
+  "then"
+] @keyword.coroutine
+
+"catch" @keyword.exception
+
+"debug" @keyword.debug
 
 [
   "{"
   "}"
 ] @punctuation.bracket
 
-"=" @operator
-
 [
-  "<"
-  ">"
-  "</"
-  "/>"
   "#"
   ":"
   "/"
   "@"
 ] @tag.delimiter
+
+(snippet_name) @function
+
+(doctype) @constant
+(entity) @string.special

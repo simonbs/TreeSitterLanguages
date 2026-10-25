@@ -1,0 +1,75 @@
+{
+  "title": "LaTeX",
+  "member": "latex",
+  "symbol": "tree_sitter_latex",
+  "repo": "https://github.com/latex-lsp/tree-sitter-latex",
+  "revision": "fa8df448fc2c0192a8c2f8cfc97de53cb2b4ecb9",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/LaTeX.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/simonbs/TreeSitterLanguages",
+      "revision": "9adbb839524e47e0eee8803f8e02d81b78ad1847",
+      "path": "Sources/TreeSitterLaTeXQueries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Preserve Runestone formatting, update theorem/label/bibliography/hyperlink node shapes, replace unsupported any-of? with eq?, repair minted injection capture names and limit Asymptote C fallback to source_code."
+  ],
+  "source": "\\documentclass{article}\n\\usepackage{amsmath}\n\\title{A study}\n\\begin{document}\n\\section{Introduction}\nSome \\emph{italic} and \\textbf{bold} text. See \\ref{sec:intro}.\n\\label{sec:intro}\n\\[ x^2 + y^2 = z^2 \\]\n% example\n\\begin{minted}{python}\nprint(\"hello\")\n\\end{minted}\n\\end{document}\n\\url{https://example.com}\n",
+  "expected": [
+    [
+      "include",
+      "\\documentclass"
+    ],
+    [
+      "text.title",
+      "Introduction"
+    ],
+    [
+      "text.emphasis",
+      "italic"
+    ],
+    [
+      "text.strong",
+      "bold"
+    ],
+    [
+      "comment",
+      "% example"
+    ],
+    [
+      "text.reference",
+      "sec:intro"
+    ],
+    [
+      "text.uri",
+      "https://example.com"
+    ]
+  ],
+  "forbidden": [
+    [
+      "text.strong",
+      "italic"
+    ],
+    [
+      "text.emphasis",
+      "bold"
+    ]
+  ],
+  "injection_expected": [
+    [
+      "injection.language",
+      "python"
+    ],
+    [
+      "injection.content",
+      "\nprint(\"hello\")\n"
+    ]
+  ],
+  "notes": [
+    "Generated from pinned grammar.js with official tree-sitter CLI 0.27.1."
+  ]
+}

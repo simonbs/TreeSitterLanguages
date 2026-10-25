@@ -1,0 +1,76 @@
+{
+  "title": "Markdown",
+  "member": "markdown",
+  "symbol": "tree_sitter_markdown",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+  "revision": "41ff24a6c775492c543b09228aeb98d1cd2b3a0f",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Updates/Markdown.txt",
+    "Licenses/Updates/Markdown-nvim-treesitter.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+      "revision": "41ff24a6c775492c543b09228aeb98d1cd2b3a0f",
+      "path": "tree-sitter-markdown/queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Preserve Runestone text.* captures and inline language injection. Fix plus metadata language to TOML, add task markers and inline injection for table cells."
+  ],
+  "source": "# Heading\n\n> A quote with **strong** text.\n\n- [x] task\n\n```python\nprint(\"hello\")\n```\n\n| Name | Count |\n| --- | --- |\n| Ada | 2 |\n",
+  "expected": [
+    [
+      "text.title",
+      "Heading"
+    ],
+    [
+      "punctuation.special",
+      "#"
+    ],
+    [
+      "punctuation.delimiter",
+      "```"
+    ],
+    [
+      "punctuation.special",
+      "> "
+    ],
+    [
+      "punctuation.special",
+      "- "
+    ],
+    [
+      "punctuation.special",
+      "[x]"
+    ]
+  ],
+  "forbidden": [
+    [
+      "text.title",
+      "A quote with **strong** text."
+    ]
+  ],
+  "notes": [
+    "Native fixture verifies parse and representative capture semantics, not visual theme rendering.",
+    "Upstream highlight query credits nvim-treesitter; its Apache-2.0 notice is retained in addition to the grammar MIT license.",
+    "Scanner regression: Tests/Updates/markdown_scanner_regression.py checks deep nesting and incremental/fresh AST equality under AddressSanitizer.",
+    "TOML metadata injection includes +++ delimiters because the grammar exposes a single metadata leaf and Runestone has no query offset directive; embedded parser recovery is required."
+  ],
+  "injection_expected": [
+    [
+      "injection.language",
+      "python"
+    ],
+    [
+      "injection.content",
+      "print(\"hello\")\n"
+    ],
+    [
+      "injection.content",
+      "Heading"
+    ]
+  ],
+  "injection_forbidden": []
+}

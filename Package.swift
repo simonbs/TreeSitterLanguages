@@ -124,7 +124,7 @@ let package = Package(
         .library(name: "TreeSitterYAMLRunestone", targets: ["TreeSitterYAMLRunestone"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/simonbs/Runestone", from: "0.4.1")
+        .package(url: "https://github.com/simonbs/Runestone", revision: "31f640bf39917d1e5fd8e6bf1b065e42b0e57c4a")
     ],
     targets: [
         .target(name: "TreeSitterLanguagesCommon"),
@@ -239,7 +239,7 @@ let package = Package(
         .target(name: "TreeSitterTypeScript", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterTypeScriptQueries", resources: [.copy("highlights.scm"), .copy("locals.scm"), .copy("tags.scm")]),
         .target(name: "TreeSitterTypeScriptRunestone", dependencies: ["Runestone", "TreeSitterTypeScript", "TreeSitterTypeScriptQueries", "TreeSitterJavaScriptQueries"]),
-        .target(name: "TreeSitterYAML", exclude: ["src/schema.generated.cc"], cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterYAML", exclude: ["src/schema.core.c", "src/schema.json.c", "src/schema.legacy.c"], cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterYAMLQueries", resources: [.copy("highlights.scm")]),
         .target(name: "TreeSitterYAMLRunestone", dependencies: ["Runestone", "TreeSitterYAML", "TreeSitterYAMLQueries"])
     ]

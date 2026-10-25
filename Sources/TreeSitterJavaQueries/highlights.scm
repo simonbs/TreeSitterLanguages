@@ -1,3 +1,7 @@
+; Variables
+
+(identifier) @variable
+
 ; Methods
 
 (method_declaration
@@ -50,12 +54,12 @@
   (void_type)
 ] @type.builtin
 
-; Variables
+; Constants
 
 ((identifier) @constant
  (#match? @constant "^_*[A-Z][A-Z\\d_]+$"))
 
-(identifier) @variable
+; Builtins
 
 (this) @variable.builtin
 
@@ -73,6 +77,7 @@
   (character_literal)
   (string_literal)
 ] @string
+(escape_sequence) @string.escape
 
 [
   (true)
@@ -116,11 +121,13 @@
   "open"
   "opens"
   "package"
+  "permits"
   "private"
   "protected"
   "provides"
   "public"
   "requires"
+  "record"
   "return"
   "sealed"
   "static"
@@ -135,6 +142,8 @@
   "try"
   "uses"
   "volatile"
+  "when"
   "while"
   "with"
+  "yield"
 ] @keyword
