@@ -35,11 +35,22 @@ The package contains the following three libraries for each language.
 |TreeSitter{Language}Queries|The queries to be used with the language. For more information on queries, please refer to [Tree-sitter's documentation](https://tree-sitter.github.io/tree-sitter/syntax-highlighting#queries). The only reason this is a separate library and not part of the TreeSitter{Language} library is that C code and Swift code cannot be mixed in a library using Swift Package Manager.|
 |TreeSitter{Language}Runestone|Exposes the language to be used with [Runestone](https://github.com/simonbs/runestone). This library depends on the TreeSitter{Language} and TreeSitter{Language}Queries libraries and it is the only library you need to import when using Runestone. The library exposes the language as an extension on [TreeSitterLanguage](https://github.com/simonbs/Runestone/blob/main/Sources/Runestone/Language/TreeSitter/TreeSitterLanguage.swift) (e.g. `TreeSitterLanguage.javaScript`) that's ready to be used in Runestone. It also includes the indentation specification for select languages.|
 
-Furthermore the package contains the TreeSitterLanguagesCommon library which exposes base types from Tree-sitter like `TSLanguage`. This is useful when you need to refer to these types in your source code, for example if you return a `TSLanguage` from a function.
+Furthermore the package contains the TreeSitterLanguagesCommon library which exposes Tree-sitter's scalar types and an opaque `TSLanguage` declaration. The language structure belongs to the runtime and must not be accessed directly. With Tree-sitter 0.27.1, Swift APIs that pass languages use `OpaquePointer`, including the values returned by `tree_sitter_{language}()`.
 
 ## Compatibility
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
+
+The bundled grammars use language ABI 13 or 14. Tree-sitter 0.27.1 supports both, so the runtime upgrade does not require regenerating the grammars or changing their syntax support. Each grammar retains its own generated parser header; the common library no longer exports a copy of the runtime's private structures.
+
+The compatibility check compiles every bundled grammar against Tree-sitter 0.27.1, parses a representative sample, and compiles and executes every bundled query, including inherited highlight queries. Run it with a checkout of that Tree-sitter release:
+
+```sh
+git clone --depth 1 --branch v0.27.1 https://github.com/tree-sitter/tree-sitter.git /tmp/tree-sitter
+python3 Tests/Compatibility/test.py /tmp/tree-sitter
+```
+
+Pass language names after the checkout path to rerun a subset, for example `JSON Swift SCSS`. This checks runtime and query compatibility; the iOS package build separately checks the Swift Runestone integrations.
 
 ## Acknowledgements
 
