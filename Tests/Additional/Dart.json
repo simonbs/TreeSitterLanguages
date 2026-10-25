@@ -18,6 +18,14 @@
     [
       "string",
       "\"hello\""
+    ],
+    [
+      "function.definition",
+      "main"
+    ],
+    [
+      "function.call",
+      "print"
     ]
   ],
   "forbidden": [
@@ -32,6 +40,14 @@
     [
       "type",
       "count"
+    ],
+    [
+      "function",
+      "main"
+    ],
+    [
+      "function",
+      "print"
     ]
   ],
   "notes": [],
@@ -43,7 +59,8 @@
     }
   ],
   "query_adaptations": [
-    "Capture names normalized to Runestone conventions; editor spell-check captures omitted."
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted.",
+    "Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged."
   ],
   "licenses": [
     "Licenses/Additional/Dart.txt"
@@ -63,6 +80,18 @@
         [
           "number",
           "3.14"
+        ],
+        [
+          "function.definition",
+          "area"
+        ],
+        [
+          "function.definition",
+          "main"
+        ],
+        [
+          "function.call",
+          "print"
         ]
       ],
       "forbidden": []

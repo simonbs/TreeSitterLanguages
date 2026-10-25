@@ -18,6 +18,10 @@
     [
       "string",
       "'hello'"
+    ],
+    [
+      "function.call",
+      "WriteLn"
     ]
   ],
   "forbidden": [
@@ -43,7 +47,8 @@
     }
   ],
   "query_adaptations": [
-    "Capture names normalized to Runestone conventions; editor spell-check captures omitted."
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted.",
+    "Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged."
   ],
   "licenses": [
     "Licenses/Additional/Pascal.txt"
@@ -55,9 +60,30 @@
         [
           "keyword",
           "program"
+        ],
+        [
+          "function.definition",
+          "Square"
+        ],
+        [
+          "function.call",
+          "Square"
+        ],
+        [
+          "function.call",
+          "WriteLn"
         ]
       ],
-      "forbidden": []
+      "forbidden": [
+        [
+          "function",
+          "Square"
+        ],
+        [
+          "function",
+          "WriteLn"
+        ]
+      ]
     }
   ]
 }

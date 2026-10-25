@@ -22,6 +22,10 @@
     [
       "string",
       "@\"hello\""
+    ],
+    [
+      "function.method",
+      "answer"
     ]
   ],
   "forbidden": [
@@ -54,7 +58,8 @@
     "Capture names normalized to Runestone conventions; editor spell-check captures omitted.",
     "Inlined existing Runestone C highlight queries (base repository revision 9adbb839524e47e0eee8803f8e02d81b78ad1847).",
     "Replaced unsupported has-ancestor? identifier heuristic with structural struct-field declarator captures; intentionally avoids treating arbitrary expressions/types within a struct as properties.",
-    "Converted any-of? to anchored match? alternations, retaining exact string membership."
+    "Converted any-of? to anchored match? alternations, retaining exact string membership.",
+    "Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged."
   ],
   "licenses": [
     "Licenses/Additional/ObjectiveC-BaseC.txt",

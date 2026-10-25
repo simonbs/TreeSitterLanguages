@@ -225,17 +225,17 @@
 ; -- Procedure & function declarations
 
 ; foobar
-(declProc name: (identifier) @function)
+(declProc name: (identifier) @function.definition)
 ; foobar<t>
-(declProc name: (genericTpl entity: (identifier) @function))
+(declProc name: (genericTpl entity: (identifier) @function.definition))
 ; foo.bar
-(declProc name: (genericDot rhs: (identifier) @function))
+(declProc name: (genericDot rhs: (identifier) @function.definition))
 ; foo.bar<t>
-(declProc name: (genericDot rhs: (genericTpl entity: (identifier) @function)))
+(declProc name: (genericDot rhs: (genericTpl entity: (identifier) @function.definition)))
 
 ; Treat property declarations like functions
 
-(declProp name: (identifier) @function)
+(declProp name: (identifier) @function.definition)
 
 ; -- Function parameters
 
@@ -285,23 +285,23 @@
 ; detect all calls)
 
 ; foobar
-(exprCall entity: (identifier) @function)
+(exprCall entity: (identifier) @function.call)
 ; foobar<t>
-(exprCall entity: (exprTpl entity: (identifier) @function))
+(exprCall entity: (exprTpl entity: (identifier) @function.call))
 ; foo.bar
-(exprCall entity: (exprDot rhs: (identifier) @function))
+(exprCall entity: (exprDot rhs: (identifier) @function.call))
 ; foo.bar<t>
-(exprCall entity: (exprDot rhs: (exprTpl entity: (identifier) @function)))
+(exprCall entity: (exprDot rhs: (exprTpl entity: (identifier) @function.call)))
 
 ; -- Heuristic for procedure/function calls without parentheses
 ; (If a statement consists only of an identifier, assume it's a procedure)
 ; (This will still not match all procedure calls, and also may produce false
 ; positives in rare cases, but only for nonsensical code)
 
-(statement (identifier) @function)
-(statement (exprDot rhs: (identifier) @function))
-(statement (exprTpl entity: (identifier) @function))
-(statement (exprDot rhs: (exprTpl entity: (identifier) @function)))
+(statement (identifier) @function.call)
+(statement (exprDot rhs: (identifier) @function.call))
+(statement (exprTpl entity: (identifier) @function.call))
+(statement (exprDot rhs: (exprTpl entity: (identifier) @function.call)))
 
 ; -- Variable & constant declarations
 ; (This is only questionable because we cannot detect types of identifiers

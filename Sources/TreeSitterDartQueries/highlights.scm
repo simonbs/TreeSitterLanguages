@@ -74,8 +74,8 @@
 
 ; NOTE: This query is a bit of a work around for the fact that the dart grammar doesn't
 ; specifically identify a node as a function call
-(((identifier) @function (#match? @function "^_?[a-z]"))
- . (selector . (argument_part))) @function
+(((identifier) @function.call (#match? @function.call "^_?[a-z]"))
+ . (selector . (argument_part))) @function.call
 
 ; Operators and Tokens
 ; --------------------
@@ -155,13 +155,13 @@
 (scoped_identifier
   scope: (identifier) @type)
 (function_signature
-  name: (identifier) @function)
+  name: (identifier) @function.definition)
 (getter_signature
   "get" @keyword
-  (identifier) @function)
+  (identifier) @function.definition)
 (setter_signature
   "set" @keyword
-  name: (identifier) @function)
+  name: (identifier) @function.definition)
 (operator_signature
   "operator" @keyword)
 
@@ -202,12 +202,12 @@
     (identifier) @property))
 
 ((selector
-  (unconditional_assignable_selector (identifier) @function))
+  (unconditional_assignable_selector (identifier) @function.call))
   (selector (argument_part (arguments)))
 )
 
 (cascade_section
-  (cascade_selector (identifier) @function)
+  (cascade_selector (identifier) @function.call)
   (argument_part (arguments))
 )
 

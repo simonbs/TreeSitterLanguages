@@ -45,6 +45,7 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 
 - Queries: [queries/highlights.scm](https://github.com/UserNobody14/tree-sitter-dart/blob/0038280b774b65c1b89ba7fec50624d8baed9fe1/queries/highlights.scm) at `0038280b774b65c1b89ba7fec50624d8baed9fe1`.
 - Capture names normalized to Runestone conventions; editor spell-check captures omitted.
+- Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged.
 - Notices: [Dart.txt](Licenses/Additional/Dart.txt).
 
 ### Fish
@@ -67,6 +68,7 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 
 - Queries: [runtime/queries/hcl/highlights.scm](https://github.com/nvim-treesitter/nvim-treesitter/blob/a2f694478be07f89c2d03cc17858a8745a400c4b/runtime/queries/hcl/highlights.scm) at `a2f694478be07f89c2d03cc17858a8745a400c4b`.
 - Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.
+- Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged.
 - Notices: [HCL-LICENSE.txt](Licenses/Additional/HCL-LICENSE.txt), [HCL-Queries.txt](Licenses/Additional/HCL-Queries.txt).
 
 ### ObjectiveC
@@ -76,12 +78,14 @@ The queries are syntax-highlighting queries, not language servers or semantic va
 - Inlined existing Runestone C highlight queries (base repository revision 9adbb839524e47e0eee8803f8e02d81b78ad1847).
 - Replaced unsupported has-ancestor? identifier heuristic with structural struct-field declarator captures; intentionally avoids treating arbitrary expressions/types within a struct as properties.
 - Converted any-of? to anchored match? alternations, retaining exact string membership.
+- Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged.
 - Notices: [ObjectiveC-BaseC.txt](Licenses/Additional/ObjectiveC-BaseC.txt), [ObjectiveC.txt](Licenses/Additional/ObjectiveC.txt).
 
 ### Pascal
 
 - Queries: [queries/highlights.scm](https://github.com/Isopod/tree-sitter-pascal/blob/042119eca2e18a60e56317fb06ee3ba5c32cb447/queries/highlights.scm) at `042119eca2e18a60e56317fb06ee3ba5c32cb447`.
 - Capture names normalized to Runestone conventions; editor spell-check captures omitted.
+- Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged.
 - Notices: [Pascal.txt](Licenses/Additional/Pascal.txt).
 
 ### Proto

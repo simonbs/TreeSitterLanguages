@@ -61,12 +61,12 @@
 (char_literal) @number
 
 (call_expression
-  function: (identifier) @function)
+  function: (identifier) @function.call)
 (call_expression
   function: (field_expression
-    field: (field_identifier) @function))
+    field: (field_identifier) @function.call))
 (function_declarator
-  declarator: (identifier) @function)
+  declarator: (identifier) @function.definition)
 (preproc_function_def
   name: (identifier) @function.special)
 

@@ -96,7 +96,7 @@
         (identifier) @type))))
 
 (function_call
-  (identifier) @function)
+  (identifier) @function.call)
 
 (attribute
   (identifier) @property)

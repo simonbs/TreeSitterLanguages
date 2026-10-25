@@ -34,7 +34,8 @@
     }
   ],
   "query_adaptations": [
-    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions."
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions.",
+    "Use function.call and function.definition subscopes for contextual function names so generic variable/property captures cannot override function styling in custom themes; existing function.method/builtin/macro scopes remain unchanged."
   ],
   "additional_cases": [
     {
@@ -45,11 +46,16 @@
           "for"
         ],
         [
-          "function",
+          "function.call",
           "upper"
         ]
       ],
-      "forbidden": []
+      "forbidden": [
+        [
+          "function",
+          "upper"
+        ]
+      ]
     }
   ]
 }
