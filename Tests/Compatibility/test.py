@@ -9,6 +9,7 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
+ADDITIONAL_LANGUAGES = {"Clojure", "Fortran", "Kotlin", "Nix", "Org", "PowerShell", "XML"}
 SAMPLES = {
     "Astro": "<h1>Hello</h1>",
     "Bash": "echo hello\n",
@@ -59,7 +60,19 @@ def main():
     if len(sys.argv) < 2:
         sys.exit("Usage: python3 Tests/Compatibility/test.py /path/to/tree-sitter [Language ...]")
     runtime = Path(sys.argv[1]).resolve() / "lib"
-    samples = {name: SAMPLES[name] for name in sys.argv[2:]} if len(sys.argv) > 2 else SAMPLES
+    selected = set(sys.argv[2:]) if len(sys.argv) > 2 else set(SAMPLES) | ADDITIONAL_LANGUAGES
+    unknown = selected - set(SAMPLES) - ADDITIONAL_LANGUAGES
+    if unknown:
+        sys.exit(f"Unknown languages: {', '.join(sorted(unknown))}")
+    additional = sorted(selected & ADDITIONAL_LANGUAGES)
+    if additional:
+        command = [sys.executable, ROOT / "scripts/check-language-grammars.py", "--runtime", runtime]
+        for name in additional:
+            command.extend(["--language", name])
+        run(command)
+    samples = {name: sample for name, sample in SAMPLES.items() if name in selected}
+    if not samples:
+        return
     cc = os.environ.get("CC", "clang")
     cxx = os.environ.get("CXX", "clang++")
     with tempfile.TemporaryDirectory(prefix="treesitter-compatibility-") as temporary:
