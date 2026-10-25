@@ -70,16 +70,21 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### C
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c/blob/b780e47fc780ddc8da13afa35a3f4ed5c157823d/) at `b780e47fc780ddc8da13afa35a3f4ed5c157823d`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Use punctuation.delimiter scope instead of unsupported delimiter; add storage-class/type-qualifier keyword coverage (including C23 constexpr).
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [C.txt](Licenses/Updates/C.txt).
 
 ### CPP
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-cpp](https://github.com/tree-sitter/tree-sitter-cpp/blob/c009222808634c1014f82438d4883753516a2c24/) at `c009222808634c1014f82438d4883753516a2c24`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Notices: .
+- Query source: [https://github.com/tree-sitter/tree-sitter-c](https://github.com/tree-sitter/tree-sitter-c/blob/b780e47fc780ddc8da13afa35a3f4ed5c157823d/) at `b780e47fc780ddc8da13afa35a3f4ed5c157823d`.
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Continue combining C highlights before C++ highlights; normalize module to namespace.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [CPP.txt](Licenses/Updates/CPP.txt).
 
 ### CSS
 
@@ -92,9 +97,11 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### CSharp
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-c-sharp](https://github.com/tree-sitter/tree-sitter-c-sharp/blob/8c0abe0b84a3681d3e6852ce2e2a1eecb4f731c5/) at `8c0abe0b84a3681d3e6852ce2e2a1eecb4f731c5`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Map namespace captures to namespace; add standalone call captures and an interpolation none capture so string style does not leak into expressions.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [CSharp.txt](Licenses/Updates/CSharp.txt).
 
 ### Comment
 
@@ -119,9 +126,11 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### Go
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-go](https://github.com/tree-sitter/tree-sitter-go/blob/2346a3ab1bb3857b48b29d779a1ef9799a248cd7/) at `2346a3ab1bb3857b48b29d779a1ef9799a248cd7`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Map escape to string.escape; drop tag documentation stripping/adjacency directives while retaining untransformed doc and tag captures.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [Go.txt](Licenses/Updates/Go.txt).
 
 ### HTML
 
@@ -160,17 +169,21 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### Java
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-java](https://github.com/tree-sitter/tree-sitter-java/blob/e10607b45ff745f5f876bfa3e94fbcc6b44bdc11/) at `e10607b45ff745f5f876bfa3e94fbcc6b44bdc11`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Notices: .
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [Java.txt](Licenses/Updates/Java.txt).
 
 ### JavaScript
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript/blob/58404d8cf191d69f2674a8fd507bd5776f46cb11/) at `58404d8cf191d69f2674a8fd507bd5776f46cb11`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Omit local-dependent builtin specializations because Runestone does not evaluate local scopes; structural calls remain styled.
+- Map embedded interpolation to none to restore foreground inside template strings.
+- Preserve dynamic tagged-template language/content pairs using string_fragment ranges; omit unsupported combined/include-children/offset directives; regex uses regex capture and JSDoc injection is restricted to documentation comments.
+- Drop tag documentation stripping/adjacency directives; retain untransformed doc and tag captures.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [JavaScript.txt](Licenses/Updates/JavaScript.txt).
 
 ### Julia
 
@@ -191,11 +204,15 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### Lua
 
 - Query source: [https://github.com/tree-sitter-grammars/tree-sitter-lua](https://github.com/tree-sitter-grammars/tree-sitter-lua/blob/10fe0054734eec83049514ea2e718b2a56acd0c9/) at `10fe0054734eec83049514ea2e718b2a56acd0c9`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Canonical Lua replaces old global scanner state with per-instance payload; local adaptation clears payload before deserialize, including length0 reset.
-- Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Switch parser, scanner and queries coherently to canonical tree-sitter-grammars/tree-sitter-lua.
+- Clear per-instance scanner payload before deserialize, including length0 reset; tested with independent scanner/parser instances and reset/reuse.
+- Normalize upstream legacy repeat/conditional/field/parameter/method/preproc and boolean captures to Runestone scopes; convert any-of? builtin list to equivalent anchored regex.
+- Use c injection for ffi.cdef string contents and preserve exact cdef predicate.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Reset payload before deserializing initial/short state; see lua_scanner_state.c.
+- Notices: [Lua.txt](Licenses/Updates/Lua.txt).
 
 ### Markdown
 
@@ -226,11 +243,13 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### PHP
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-php](https://github.com/tree-sitter/tree-sitter-php/blob/58d5643086ae60e93a3746cca648363ee97c8761/) at `58d5643086ae60e93a3746cca648363ee97c8761`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Shared upstream scanner.h copied beside scanner.c and include path localized for independent SwiftPM target compilation.
-- Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Localize shared scanner.h include. Convert any-of? to an equivalent anchored match? alternation; module captures become namespace.
+- Use html injection on text nodes; Runestone injects the whole range and does not implement upstream combined metadata.
+- Add contextual PHP 8.4 get/set property-hook keyword highlighting.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [PHP.txt](Licenses/Updates/PHP.txt).
 
 ### Perl
 
@@ -242,9 +261,11 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### Python
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-python](https://github.com/tree-sitter/tree-sitter-python/blob/26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64/) at `26855eabccb19c6abf499fbc5b8dc7cc9ab8bc64`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Map escape to string.escape and embedded interpolation to none; add Python 3.12 type-alias soft-keyword capture.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [Python.txt](Licenses/Updates/Python.txt).
 
 ### R
 
@@ -261,19 +282,24 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### Ruby
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-ruby](https://github.com/tree-sitter/tree-sitter-ruby/blob/ad907a69da0c8a4f7a943a7fe012712208da6dee/) at `ad907a69da0c8a4f7a943a7fe012712208da6dee`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Pinned revision includes upstream heredoc serialization bounds fix; dedicated native regression checks oversized delimiter handling and bounded roundtrip.
-- Notices: .
+- Use upstream C scanner (replacing old C++ scanner); pinned revision contains the heredoc serialization bounds fix. Sanitizer regression covers near-limit/oversized delimiter states and roundtrip.
+- Omit local-dependent catch-all identifier/function/reference patterns; structural method captures remain. Bare ambiguous identifiers use normal variable styling.
+- Map escape to string.escape and embedded interpolation to none; drop tag documentation transformations while preserving raw docs/tags.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [Ruby.txt](Licenses/Updates/Ruby.txt).
 
 ### Rust
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust/blob/77a3747266f4d621d0757825e6b11edcbf991ca5/) at `77a3747266f4d621d0757825e6b11edcbf991ca5`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Removed accidental trailing apostrophe from upstream constant regex; changed stale if_let_expression indentation node to if_expression.
-- Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally.
-- Notices: .
+- Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.
+- Fix upstream constant regexp trailing apostrophe and exclude all-cap constants from constructor heuristic.
+- Map integer and float literals to number and float rather than constant.builtin.
+- Use rust captures for complete macro token-tree ranges; unsupported injection.include-children metadata is unnecessary because Runestone includes the entire captured range.
+- Replace removed if_let_expression indentation node with if_expression.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [Rust.txt](Licenses/Updates/Rust.txt).
 
 ### SCSS
 
@@ -301,10 +327,11 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### Swift
 
 - Query source: [https://github.com/alex-pinkus/tree-sitter-swift](https://github.com/alex-pinkus/tree-sitter-swift/blob/9e3b87f66f1fd2f3b931376fd3723ab788e337c3/) at `9e3b87f66f1fd2f3b931376fd3723ab788e337c3`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- parser.c generated from upstream HEAD with official Tree-sitter CLI 0.27.1 (default ABI15).
-- Notices: .
+- Generate parser.c from pinned upstream HEAD with official Tree-sitter CLI 0.27.1, ABI15.
+- Map variable.member to property, boolean to constant.builtin, and number.float to float; omit unsupported spell metadata capture.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [Swift.txt](Licenses/Updates/Swift.txt).
 
 ### TOML
 
@@ -316,18 +343,20 @@ Queries use Runestone capture names and supported predicates. Unsupported editor
 ### TSX
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript/blob/75b3874edb2dc714fb1fd77a32013d0f8699989f/) at `75b3874edb2dc714fb1fd77a32013d0f8699989f`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Shared upstream scanner.h copied beside scanner.c and include path localized for independent SwiftPM target compilation.
-- Notices: .
+- Query source: [https://github.com/tree-sitter/tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript/blob/58404d8cf191d69f2674a8fd507bd5776f46cb11/) at `58404d8cf191d69f2674a8fd507bd5776f46cb11`.
+- Continue combining current JavaScript, JSX and TypeScript highlights; use localized common scanner header.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [TSX.txt](Licenses/Updates/TSX.txt).
 
 ### TypeScript
 
 - Query source: [https://github.com/tree-sitter/tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript/blob/75b3874edb2dc714fb1fd77a32013d0f8699989f/) at `75b3874edb2dc714fb1fd77a32013d0f8699989f`.
-- Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.
-- Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.
-- Shared upstream scanner.h copied beside scanner.c and include path localized for independent SwiftPM target compilation.
-- Notices: .
+- Query source: [https://github.com/tree-sitter/tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript/blob/58404d8cf191d69f2674a8fd507bd5776f46cb11/) at `58404d8cf191d69f2674a8fd507bd5776f46cb11`.
+- Continue combining current JavaScript and TypeScript highlights; use localized common scanner header.
+- Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.
+- Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering.
+- Notices: [TypeScript.txt](Licenses/Updates/TypeScript.txt).
 
 ### YAML
 

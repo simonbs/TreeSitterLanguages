@@ -14,12 +14,19 @@
         "queries/locals.scm",
         "queries/highlights.scm"
       ]
+    },
+    {
+      "repo": "https://github.com/tree-sitter/tree-sitter-javascript",
+      "revision": "58404d8cf191d69f2674a8fd507bd5776f46cb11",
+      "paths": [
+        "queries/highlights.scm"
+      ],
+      "usage": "Inherited highlights"
     }
   ],
   "notes": [
-    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
-    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.",
-    "Shared upstream scanner.h copied beside scanner.c and include path localized for independent SwiftPM target compilation."
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
   ],
   "source": "// Const type parameters and satisfies\nfunction identity<const T>(value: T): T { return value; }\nconst options = {name: \"hello\", count: 42} satisfies {name: string; count: number};\n",
   "expected": [
@@ -57,5 +64,11 @@
       "constant",
       "options"
     ]
+  ],
+  "query_adaptations": [
+    "Continue combining current JavaScript and TypeScript highlights; use localized common scanner header."
+  ],
+  "license_files": [
+    "Licenses/Updates/TypeScript.txt"
   ]
 }

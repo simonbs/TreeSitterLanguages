@@ -16,8 +16,8 @@
     }
   ],
   "notes": [
-    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
-    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation."
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
   ],
   "source": "// Raw literals and collection expressions\nclass Example {\n string text = \"\"\"hello\"\"\";\n int[] values = [1, 2, 3];\n string Format(int value) => $\"Value {value + 1}\";\n int Compute(int value) { return value + values.Length; }\n}\n",
   "expected": [
@@ -55,5 +55,12 @@
       "string",
       "value"
     ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Map namespace captures to namespace; add standalone call captures and an interpolation none capture so string style does not leak into expressions."
+  ],
+  "license_files": [
+    "Licenses/Updates/CSharp.txt"
   ]
 }

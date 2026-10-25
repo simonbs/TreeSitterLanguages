@@ -16,10 +16,8 @@
     }
   ],
   "notes": [
-    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
-    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.",
-    "Removed accidental trailing apostrophe from upstream constant regex; changed stale if_let_expression indentation node to if_expression.",
-    "Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally."
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
   ],
   "source": "// Async functions and macro token trees\nconst LIMIT: usize = 42;\nasync fn compute(value: usize) -> usize {\n let message = r#\"hello\"#;\n println!(\"{}\", message);\n value + LIMIT\n}\n",
   "expected": [
@@ -56,6 +54,10 @@
     [
       "constant",
       "message"
+    ],
+    [
+      "constructor",
+      "LIMIT"
     ]
   ],
   "injection_expected": [
@@ -63,5 +65,15 @@
       "rust",
       "(\"{}\", message)"
     ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Fix upstream constant regexp trailing apostrophe and exclude all-cap constants from constructor heuristic.",
+    "Map integer and float literals to number and float rather than constant.builtin.",
+    "Use rust captures for complete macro token-tree ranges; unsupported injection.include-children metadata is unnecessary because Runestone includes the entire captured range.",
+    "Replace removed if_let_expression indentation node with if_expression."
+  ],
+  "license_files": [
+    "Licenses/Updates/Rust.txt"
   ]
 }

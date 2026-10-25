@@ -20,9 +20,8 @@
     }
   ],
   "notes": [
-    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
-    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.",
-    "Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally."
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
   ],
   "source": "/** Example function. */\nconst LIMIT = 42;\nclass Example { #value = 1; compute(value) { return `Hello ${value + LIMIT}`; } }\nfunction greet(value) { let console = value; return console; }\nconst pattern = /hello+/gi;\nconst markup = html`<b>Hello</b>`;\n",
   "expected": [
@@ -89,5 +88,15 @@
       "// Plain comment"
     ]
   ],
-  "injection_source": "/** Example function. */\nconst LIMIT = 42;\nclass Example { #value = 1; compute(value) { return `Hello ${value + LIMIT}`; } }\nfunction greet(value) { let console = value; return console; }\nconst pattern = /hello+/gi;\nconst markup = html`<b>Hello</b>`;\n// Plain comment\n"
+  "injection_source": "/** Example function. */\nconst LIMIT = 42;\nclass Example { #value = 1; compute(value) { return `Hello ${value + LIMIT}`; } }\nfunction greet(value) { let console = value; return console; }\nconst pattern = /hello+/gi;\nconst markup = html`<b>Hello</b>`;\n// Plain comment\n",
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Omit local-dependent builtin specializations because Runestone does not evaluate local scopes; structural calls remain styled.",
+    "Map embedded interpolation to none to restore foreground inside template strings.",
+    "Preserve dynamic tagged-template language/content pairs using string_fragment ranges; omit unsupported combined/include-children/offset directives; regex uses regex capture and JSDoc injection is restricted to documentation comments.",
+    "Drop tag documentation stripping/adjacency directives; retain untransformed doc and tag captures."
+  ],
+  "license_files": [
+    "Licenses/Updates/JavaScript.txt"
+  ]
 }
