@@ -16,7 +16,7 @@ Highlight queries come from the same revisions. `any-of?` predicates are convert
 
 Kotlin's upstream highlight query is derived from nvim-treesitter and retains its Apache-2.0 attribution; see `Licenses/KotlinQueries.txt`.
 
-Parser and scanner sources are copied from the pinned revisions. The XML scanner includes `../common/scanner.h` instead of `../../common/scanner.h` to match the SwiftPM target layout; its shared scanner header is included in the target. Public headers and Swift wrappers follow this package’s conventions.
+Parser and scanner sources are copied from the pinned revisions. Org’s `serialize`, `deserialize`, `getbullet`, and `scan` helpers are made file-local (`static`) so they can be linked alongside other grammars such as Svelte without duplicate symbols. The XML scanner includes `../common/scanner.h` instead of `../../common/scanner.h` to match the SwiftPM target layout; its shared scanner header is included in the target. Public headers and Swift wrappers follow this package’s conventions.
 
 Consumers distributing these grammars should include the applicable notices from `Licenses/` in their acknowledgements. Kotlin’s query additionally requires its Apache-2.0 notice.
 

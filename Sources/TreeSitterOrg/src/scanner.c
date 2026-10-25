@@ -72,7 +72,7 @@ static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
 
 static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
-unsigned serialize(Scanner *scanner, char *buffer) {
+static unsigned serialize(Scanner *scanner, char *buffer) {
     size_t i = 0;
 
     size_t indent_count = scanner->indent_length_stack->len - 1;
@@ -104,7 +104,7 @@ unsigned serialize(Scanner *scanner, char *buffer) {
     return i;
 }
 
-void deserialize(Scanner *scanner, const char *buffer, unsigned length) {
+static void deserialize(Scanner *scanner, const char *buffer, unsigned length) {
     VEC_CLEAR(scanner->section_stack);
     VEC_PUSH(scanner->section_stack, 0);
     VEC_CLEAR(scanner->indent_length_stack);
@@ -141,7 +141,7 @@ static bool in_error_recovery(const bool *valid_symbols) {
             valid_symbols[ENDOFFILE]);
 }
 
-Bullet getbullet(TSLexer *lexer) {
+static Bullet getbullet(TSLexer *lexer) {
     if (lexer->lookahead == '-') {
         advance(lexer);
         if (iswspace(lexer->lookahead))
@@ -193,7 +193,7 @@ Bullet getbullet(TSLexer *lexer) {
     return NOTABULLET;
 }
 
-bool scan(Scanner *scanner, TSLexer *lexer, const bool *valid_symbols) {
+static bool scan(Scanner *scanner, TSLexer *lexer, const bool *valid_symbols) {
     if (in_error_recovery(valid_symbols))
         return false;
 

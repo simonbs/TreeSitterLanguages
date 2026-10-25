@@ -8,7 +8,8 @@ removed automatically. The runtime source is copied before building so concurren
 runtime edits cannot change different language builds in this invocation.
 
 These tests check meaningful syntax and representative captures, including positive
-and negative predicate matches. Python evaluates the small eq?/match? predicate
+and negative predicate matches. Org is also linked with Svelte to catch scanner
+helper symbol collisions, and both parsers run from that shared library. Python evaluates the small eq?/match? predicate
 subset used here; this is not an integration test of Runestone's Swift evaluator,
 NSRegularExpression dialect, theme rendering, or incremental editing.
 """
@@ -103,11 +104,30 @@ class PredicateStep(C.Structure):
 def check(title, runtime, root, output, verbose):
     target = root / 'Sources' / ('TreeSitter' + title) / 'src'
     library = output / (title + '.so')
-    command = shlex.split(os.environ.get('CC', 'clang')) + [
-        '-shared', '-fPIC', '-O0', '-std=c11', '-D_DEFAULT_SOURCE',
-        '-I' + str(runtime / 'include'), '-I' + str(runtime / 'src'),
-        '-I' + str(target), str(runtime / 'src/lib.c'),
-    ] + [str(p) for p in sorted(target.rglob('*.c'))] + ['-o', str(library)]
+    compiler = shlex.split(os.environ.get('CC', 'clang'))
+    flags = ['-fPIC', '-O0', '-std=c11', '-D_DEFAULT_SOURCE']
+    runtime_includes = ['-I' + str(runtime / 'include'), '-I' + str(runtime / 'src')]
+    if title == 'Org':
+        # Org and Svelte previously exported colliding scan/serialize/deserialize
+        # helpers. Compile separately so each grammar uses its own parser headers,
+        # then link together as the app does; isolated language builds miss this.
+        objects = []
+        groups = [(runtime / 'src', [runtime / 'src/lib.c'])]
+        for name in ('Org', 'Svelte'):
+            directory = root / 'Sources' / ('TreeSitter' + name) / 'src'
+            groups.append((directory, sorted(directory.rglob('*.c'))))
+        for directory, sources in groups:
+            for source in sources:
+                obj = output / f'org-link-{len(objects)}.o'
+                command = compiler + flags + ['-I' + str(directory)] + runtime_includes
+                command += ['-c', str(source), '-o', str(obj)]
+                subprocess.run(command, check=True, capture_output=True, text=True)
+                objects.append(str(obj))
+        command = compiler + ['-shared'] + objects + ['-o', str(library)]
+    else:
+        command = compiler + ['-shared'] + flags + runtime_includes + [
+            '-I' + str(target), str(runtime / 'src/lib.c'),
+        ] + [str(p) for p in sorted(target.rglob('*.c'))] + ['-o', str(library)]
     subprocess.run(command, check=True, capture_output=True, text=True)
     lib = C.CDLL(str(library))
     ptr, uint = C.c_void_p, C.c_uint32
@@ -206,7 +226,19 @@ def check(title, runtime, root, output, verbose):
         if verbose:
             for capture in sorted(actual):
                 print(f'  {capture}')
-        print(f'{title}: PASS (parse, query predicates, {len(expected)} expected captures, {len(forbidden)} excluded captures)')
+        companion_result = ''
+        if title == 'Org':
+            svelte = bind('tree_sitter_svelte', [], ptr)()
+            assert parser_set_language(parser, svelte), 'runtime rejects companion Svelte ABI'
+            sample = b'<h1>Hello {name}</h1>\n'
+            companion_tree = parse(parser, None, sample, len(sample))
+            assert companion_tree, 'Svelte parser returned no tree'
+            try:
+                assert not has_error(root_node(companion_tree)), 'Svelte fails when linked with Org'
+            finally:
+                tree_delete(companion_tree)
+            companion_result = ', Svelte shared link and parse'
+        print(f'{title}: PASS (parse, query predicates, {len(expected)} expected captures, {len(forbidden)} excluded captures{companion_result})')
     finally:
         if cursor:
             cursor_delete(cursor)
