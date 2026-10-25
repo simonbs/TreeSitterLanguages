@@ -37,6 +37,8 @@ The package contains the following three libraries for each language.
 
 Furthermore the package contains the TreeSitterLanguagesCommon library which exposes Tree-sitter's scalar types and an opaque `TSLanguage` declaration. The language structure belongs to the runtime and must not be accessed directly. With Tree-sitter 0.27.1, Swift APIs that pass languages use `OpaquePointer`, including the values returned by `tree_sitter_{language}()`.
 
+Nix and XML are also available using these three products. Their pinned sources, licenses, and query adaptations are documented in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
+
 ## Compatibility
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
@@ -95,6 +97,8 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
 - [tree-sitter-yaml](https://github.com/tree-sitter-grammars/tree-sitter-yaml)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [tree-sitter-nix](https://github.com/nix-community/tree-sitter-nix)
+- [tree-sitter-xml](https://github.com/tree-sitter-grammars/tree-sitter-xml)
 
 ## Additional adopted languages
 
