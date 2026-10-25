@@ -15,8 +15,8 @@
     }
   ],
   "notes": [
-    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
-    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation."
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
   ],
   "source": "// C23 declarations and ordinary C calls\nconstexpr int LIMIT = 4;\nstruct Point { int value; };\nint compute(int value) { const char *message = \"hello\"; return value + LIMIT; }\n",
   "expected": [
@@ -54,5 +54,12 @@
       "constant",
       "compute"
     ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Use punctuation.delimiter scope instead of unsupported delimiter; add storage-class/type-qualifier keyword coverage (including C23 constexpr)."
+  ],
+  "license_files": [
+    "Licenses/Updates/C.txt"
   ]
 }

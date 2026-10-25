@@ -16,10 +16,8 @@
     }
   ],
   "notes": [
-    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
-    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.",
-    "Canonical Lua replaces old global scanner state with per-instance payload; local adaptation clears payload before deserialize, including length0 reset.",
-    "Injection query uses supported captures or tag/content pairs; unsupported combined/include-children/offset directives removed. Whole captured ranges are injected by Runestone; fragments exclude literal delimiters structurally."
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
   ],
   "source": "-- Attributes, long strings, methods and builtins\nlocal LIMIT <const> = 42\nlocal message = [=[hello]=]\nlocal object = {}\nfunction object:compute(value)\n print(message)\n return value + LIMIT\nend\nobject:compute(1)\n",
   "expected": [
@@ -78,5 +76,18 @@
       "c",
       "ordinary text"
     ]
+  ],
+  "query_adaptations": [
+    "Give contextual function captures .call/.definition subscopes so generic variable/property captures do not override function styling at the same range.",
+    "Switch parser, scanner and queries coherently to canonical tree-sitter-grammars/tree-sitter-lua.",
+    "Clear per-instance scanner payload before deserialize, including length0 reset; tested with independent scanner/parser instances and reset/reuse.",
+    "Normalize upstream legacy repeat/conditional/field/parameter/method/preproc and boolean captures to Runestone scopes; convert any-of? builtin list to equivalent anchored regex.",
+    "Use c injection for ffi.cdef string contents and preserve exact cdef predicate."
+  ],
+  "license_files": [
+    "Licenses/Updates/Lua.txt"
+  ],
+  "scanner_adaptations": [
+    "Reset payload before deserializing initial/short state; see lua_scanner_state.c."
   ]
 }

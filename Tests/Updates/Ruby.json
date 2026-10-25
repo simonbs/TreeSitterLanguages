@@ -17,9 +17,8 @@
     }
   ],
   "notes": [
-    "Parser, scanner, private headers and bundled queries refreshed together from the pinned revision. Existing public API and Runestone indentation configuration retained.",
-    "Capture names normalized to Runestone theme scopes; embedded interpolation uses none to restore normal foreground. Local-dependent builtin/reference heuristics omitted because Runestone does not evaluate local scope predicates; structural captures retained. Tag documentation transformation directives omitted because Runestone does not process tag documentation.",
-    "Pinned revision includes upstream heredoc serialization bounds fix; dedicated native regression checks oversized delimiter handling and bounded roundtrip."
+    "Parser, scanner, private headers and bundled queries use the pinned upstream revision, with listed local adaptations. Existing public API and useful indentation configuration retained.",
+    "Native fixtures check syntax, captures and supported predicates; they do not certify all syntax, incremental editing or Swift theme rendering."
   ],
   "source": "# Endless methods, interpolation and heredocs\nclass Example\n  LIMIT = 42\n  def compute(value) = \"hello #{value}\"\n  def message\n    <<~TEXT\nhello\nTEXT\n  end\nend\nexample = Example.new\nexample.compute(1)\n",
   "expected": [
@@ -61,5 +60,14 @@
       "keyword",
       "compute"
     ]
-  ]
+  ],
+  "query_adaptations": [
+    "Use upstream C scanner (replacing old C++ scanner); pinned revision contains the heredoc serialization bounds fix. Sanitizer regression covers near-limit/oversized delimiter states and roundtrip.",
+    "Omit local-dependent catch-all identifier/function/reference patterns; structural method captures remain. Bare ambiguous identifiers use normal variable styling.",
+    "Map escape to string.escape and embedded interpolation to none; drop tag documentation transformations while preserving raw docs/tags."
+  ],
+  "license_files": [
+    "Licenses/Updates/Ruby.txt"
+  ],
+  "scanner_regression": "Tests/Updates/ruby_scanner_bounds.c"
 }
