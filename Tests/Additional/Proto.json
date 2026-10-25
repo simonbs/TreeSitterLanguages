@@ -1,0 +1,42 @@
+{
+  "title": "Proto",
+  "member": "proto",
+  "symbol": "tree_sitter_proto",
+  "repo": "https://github.com/coder3101/tree-sitter-proto",
+  "revision": "18366491f37d43d6d5d02cbb1e79b650b5728145",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Additional/Proto-LICENSE.txt"
+  ],
+  "source": "syntax = \"proto3\";\nmessage Greeting { string name = 1; }\n// comment\n",
+  "expected": [
+    [
+      "keyword.type",
+      "message"
+    ],
+    [
+      "string",
+      "\"proto3\""
+    ],
+    [
+      "number",
+      "1"
+    ],
+    [
+      "comment",
+      "// comment"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/coder3101/tree-sitter-proto",
+      "revision": "18366491f37d43d6d5d02cbb1e79b650b5728145",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ]
+}

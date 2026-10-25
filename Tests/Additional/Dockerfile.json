@@ -1,0 +1,46 @@
+{
+  "title": "Dockerfile",
+  "member": "dockerfile",
+  "symbol": "tree_sitter_dockerfile",
+  "repo": "https://github.com/camdencheek/tree-sitter-dockerfile",
+  "revision": "971acdd908568b4531b0ba28a445bf0bb720aba5",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Additional/Dockerfile-LICENSE.txt"
+  ],
+  "source": "FROM alpine:latest\nENV NAME=\"hello\"\nRUN echo \"$NAME\"\n# comment\n",
+  "expected": [
+    [
+      "keyword",
+      "FROM"
+    ],
+    [
+      "keyword",
+      "RUN"
+    ],
+    [
+      "comment",
+      "# comment"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [
+    "Shell command regions use Bash highlighting for the default POSIX shell; custom SHELL directives are not interpreted."
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/camdencheek/tree-sitter-dockerfile",
+      "revision": "971acdd908568b4531b0ba28a445bf0bb720aba5",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ],
+  "injection_expected": [
+    [
+      "bash",
+      "echo \"$NAME\""
+    ]
+  ]
+}

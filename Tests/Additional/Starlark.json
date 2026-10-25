@@ -1,0 +1,39 @@
+{
+  "title": "Starlark",
+  "member": "starlark",
+  "symbol": "tree_sitter_starlark",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-starlark",
+  "revision": "a453dbf3ba433db0e5ec621a38a7e59d72e4dc69",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Additional/Starlark-LICENSE.txt",
+    "Licenses/Additional/Starlark-PythonQueries.txt"
+  ],
+  "source": "load(\"//tools:build.bzl\", \"rule\")\ndef greet(name):\n    return \"hello\"\ncount = 42\n# comment\n",
+  "expected": [
+    [
+      "keyword.function",
+      "def"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ],
+    [
+      "number",
+      "42"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-starlark",
+      "revision": "a453dbf3ba433db0e5ec621a38a7e59d72e4dc69",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ]
+}

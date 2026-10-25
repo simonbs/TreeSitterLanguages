@@ -1,0 +1,59 @@
+{
+  "title": "Scala",
+  "member": "scala",
+  "symbol": "tree_sitter_scala",
+  "repo": "https://github.com/tree-sitter/tree-sitter-scala",
+  "revision": "c76bab0092b622e34df4916d80b117436683d16e",
+  "license": "MIT",
+  "source": "object Main { val count = 42; val message = \"hello\" }\n",
+  "expected": [
+    [
+      "keyword",
+      "val"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "\"hello\""
+    ],
+    [
+      "type",
+      "count"
+    ],
+    [
+      "variable.builtin",
+      "count"
+    ],
+    [
+      "function.builtin",
+      "count"
+    ]
+  ],
+  "notes": [],
+  "query_provenance": [
+    {
+      "path": "queries/highlights.scm",
+      "repo": "https://github.com/tree-sitter/tree-sitter-scala",
+      "revision": "c76bab0092b622e34df4916d80b117436683d16e"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted."
+  ],
+  "licenses": [
+    "Licenses/Additional/Scala.txt"
+  ]
+}

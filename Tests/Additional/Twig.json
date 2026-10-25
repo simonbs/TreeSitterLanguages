@@ -1,0 +1,61 @@
+{
+  "title": "Twig",
+  "member": "twig",
+  "symbol": "tree_sitter_twig",
+  "repo": "https://github.com/gbprod/tree-sitter-twig",
+  "revision": "2208d2a3c3ee7ef378e97df2e51c18feb7ee9dfc",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/gbprod/tree-sitter-twig",
+      "revision": "2208d2a3c3ee7ef378e97df2e51c18feb7ee9dfc",
+      "path": "queries/highlights.scm"
+    },
+    {
+      "repo": "https://github.com/gbprod/tree-sitter-twig",
+      "revision": "2208d2a3c3ee7ef378e97df2e51c18feb7ee9dfc",
+      "path": "queries/injections.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Translate any-of?/not-any-of? into anchored match?/not-match? alternatives without removing conditions.",
+    "Map modern capture names to established Runestone names; remove spell/nospell editor controls.",
+    "Use direct language captures for injection regions; omit unsupported combined/include-children flags."
+  ],
+  "source": "{% if active %}<p>{{ user.name | upper }}</p>{% endif %}\n{# note #}\n",
+  "expected": [
+    [
+      "conditional",
+      "if"
+    ],
+    [
+      "variable",
+      "user.name"
+    ],
+    [
+      "function",
+      "upper"
+    ],
+    [
+      "comment",
+      "\n{# note #}"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [
+    "HTML content segments are injected individually; Runestone does not combine disjoint regions, so HTML spanning template boundaries may be incomplete."
+  ],
+  "injection_expected": [
+    [
+      "html",
+      "<p>"
+    ],
+    [
+      "html",
+      "</p>"
+    ]
+  ],
+  "licenses": [
+    "Licenses/Additional/Twig-LICENSE"
+  ]
+}

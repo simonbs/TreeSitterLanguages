@@ -1,0 +1,43 @@
+{
+  "title": "Jsonnet",
+  "member": "jsonnet",
+  "symbol": "tree_sitter_jsonnet",
+  "repo": "https://github.com/sourcegraph/tree-sitter-jsonnet",
+  "revision": "ddd075f1939aed8147b7aa67f042eda3fce22790",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Additional/Jsonnet-LICENSE.txt",
+    "Licenses/Additional/Jsonnet-Queries.txt"
+  ],
+  "source": "local count = 42; { name: \"hello\", enabled: true, count: count }\n",
+  "expected": [
+    [
+      "keyword",
+      "local"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ],
+    [
+      "constant.builtin",
+      "true"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "path": "runtime/queries/jsonnet/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ]
+}

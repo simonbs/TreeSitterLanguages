@@ -1,0 +1,38 @@
+{
+  "title": "Bicep",
+  "member": "bicep",
+  "symbol": "tree_sitter_bicep",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-bicep",
+  "revision": "bff59884307c0ab009bd5e81afd9324b46a6c0f9",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Additional/Bicep-LICENSE.txt"
+  ],
+  "source": "param name string = 'hello'\nvar count = 42\n// comment\n",
+  "expected": [
+    [
+      "keyword",
+      "param"
+    ],
+    [
+      "string",
+      "'hello'"
+    ],
+    [
+      "number",
+      "42"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-bicep",
+      "revision": "bff59884307c0ab009bd5e81afd9324b46a6c0f9",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ]
+}

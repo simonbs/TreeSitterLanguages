@@ -1,0 +1,49 @@
+{
+  "title": "D",
+  "member": "d",
+  "symbol": "tree_sitter_d",
+  "repo": "https://github.com/gdamore/tree-sitter-d",
+  "revision": "64f27931b4e6fdd75af1102c79bacbca68a8dacc",
+  "license": "MIT",
+  "source": "module example;\nvoid main() { int value = 42; string message = \"hello\"; }\n",
+  "expected": [
+    [
+      "keyword",
+      "module"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "\"hello\""
+    ]
+  ],
+  "notes": [
+    "Upstream nested comments limited to five levels; inline assembly parsed as token stream."
+  ],
+  "query_provenance": [
+    {
+      "path": "queries/highlights.scm",
+      "repo": "https://github.com/gdamore/tree-sitter-d",
+      "revision": "64f27931b4e6fdd75af1102c79bacbca68a8dacc"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted."
+  ],
+  "licenses": [
+    "Licenses/Additional/D.txt"
+  ]
+}

@@ -95,3 +95,9 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
 - [tree-sitter-yaml](https://github.com/ikatyang/tree-sitter-yaml)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+
+## Additional adopted languages
+
+AWK, Bicep, CMake, CUE, D, Dart, Dockerfile, Erlang, Fish, Glimmer, GraphQL, Groovy, HCL, Jinja, Jsonnet, KDL, Liquid, MATLAB, Make, ObjectiveC, Pascal, Proto, RON, Scala, Starlark, Tcl, Twig, Vim, Vue, Zig.
+
+See [additional language sources and compatibility](ADDITIONAL_LANGUAGES.md) for pinned upstream revisions, licenses, query adaptations, runtime requirements, and validation commands.

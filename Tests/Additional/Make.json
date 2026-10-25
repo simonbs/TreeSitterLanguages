@@ -1,0 +1,46 @@
+{
+  "title": "Make",
+  "member": "make",
+  "symbol": "tree_sitter_make",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-make",
+  "revision": "70613f3d812cbabbd7f38d104d60a409c4008b43",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Additional/Make-LICENSE.txt"
+  ],
+  "source": "NAME := hello\n.PHONY: all\nall:\n\techo $(NAME)\n# comment\n",
+  "expected": [
+    [
+      "function",
+      "all"
+    ],
+    [
+      "function.builtin",
+      ".PHONY"
+    ],
+    [
+      "comment",
+      "# comment"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [
+    "Shell command regions use Bash highlighting for the default POSIX shell; custom SHELL directives are not interpreted."
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-make",
+      "revision": "70613f3d812cbabbd7f38d104d60a409c4008b43",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ],
+  "injection_expected": [
+    [
+      "bash",
+      "echo $(NAME)"
+    ]
+  ]
+}

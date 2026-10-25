@@ -1,0 +1,38 @@
+{
+  "title": "GraphQL",
+  "member": "graphql",
+  "symbol": "tree_sitter_graphql",
+  "repo": "https://github.com/bkegley/tree-sitter-graphql",
+  "revision": "5e66e961eee421786bdda8495ed1db045e06b5fe",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Additional/GraphQL-LICENSE.txt"
+  ],
+  "source": "query Greeting { user(id: 42) { name } }\n# comment\n",
+  "expected": [
+    [
+      "keyword",
+      "query"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "property",
+      "name"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/bkegley/tree-sitter-graphql",
+      "revision": "5e66e961eee421786bdda8495ed1db045e06b5fe",
+      "path": "queries/graphql/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ]
+}

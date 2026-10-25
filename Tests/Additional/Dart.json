@@ -1,0 +1,51 @@
+{
+  "title": "Dart",
+  "member": "dart",
+  "symbol": "tree_sitter_dart",
+  "repo": "https://github.com/UserNobody14/tree-sitter-dart",
+  "revision": "0038280b774b65c1b89ba7fec50624d8baed9fe1",
+  "license": "MIT",
+  "source": "void main() { final count = 42; print(\"hello\"); }\n",
+  "expected": [
+    [
+      "keyword",
+      "final"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "\"hello\""
+    ],
+    [
+      "type",
+      "count"
+    ]
+  ],
+  "notes": [],
+  "query_provenance": [
+    {
+      "path": "queries/highlights.scm",
+      "repo": "https://github.com/UserNobody14/tree-sitter-dart",
+      "revision": "0038280b774b65c1b89ba7fec50624d8baed9fe1"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted."
+  ],
+  "licenses": [
+    "Licenses/Additional/Dart.txt"
+  ]
+}

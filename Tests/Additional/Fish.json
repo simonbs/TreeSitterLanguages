@@ -1,0 +1,52 @@
+{
+  "title": "Fish",
+  "member": "fish",
+  "symbol": "tree_sitter_fish",
+  "repo": "https://github.com/ram02z/tree-sitter-fish",
+  "revision": "b7f1d682941e0c62dfcd6bf9ef481638351bab16",
+  "license": "Unlicense",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/ram02z/tree-sitter-fish",
+      "revision": "b7f1d682941e0c62dfcd6bf9ef481638351bab16",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Translate any-of?/not-any-of? into anchored match?/not-match? alternatives without removing conditions.",
+    "Map modern capture names to established Runestone names; remove spell/nospell editor controls."
+  ],
+  "source": "function greet\n  echo \"hello\"\n  test 1 -eq 1\nend\n# note\n",
+  "expected": [
+    [
+      "keyword",
+      "function"
+    ],
+    [
+      "function",
+      "greet"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ],
+    [
+      "operator",
+      "-eq"
+    ],
+    [
+      "comment",
+      "# note"
+    ]
+  ],
+  "forbidden": [
+    [
+      "operator",
+      "echo"
+    ]
+  ],
+  "notes": [],
+  "licenses": [
+    "Licenses/Additional/Fish-LICENSE"
+  ]
+}

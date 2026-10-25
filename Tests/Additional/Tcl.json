@@ -1,0 +1,52 @@
+{
+  "title": "Tcl",
+  "member": "tcl",
+  "symbol": "tree_sitter_tcl",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-tcl",
+  "revision": "850a72ab6436e06645b33b11cfa60cbdb04b1f01",
+  "license": "MIT",
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-tcl",
+      "revision": "850a72ab6436e06645b33b11cfa60cbdb04b1f01",
+      "path": "queries/tcl/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Translate any-of?/not-any-of? into anchored match?/not-match? alternatives without removing conditions.",
+    "Map modern capture names to established Runestone names; remove spell/nospell editor controls."
+  ],
+  "source": "proc greet {name} {\n  puts \"hello\"\n}\nset count 42\n# note\n",
+  "expected": [
+    [
+      "keyword",
+      "proc"
+    ],
+    [
+      "function.builtin",
+      "puts"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ],
+    [
+      "comment",
+      "# note"
+    ]
+  ],
+  "forbidden": [
+    [
+      "function.builtin",
+      "greet"
+    ]
+  ],
+  "notes": [],
+  "licenses": [
+    "Licenses/Additional/Tcl-LICENSE"
+  ]
+}

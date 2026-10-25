@@ -1,0 +1,49 @@
+{
+  "title": "MATLAB",
+  "member": "matlab",
+  "symbol": "tree_sitter_matlab",
+  "repo": "https://github.com/acristoffers/tree-sitter-matlab",
+  "revision": "f03d0347acd8bb05d4edd8c845ac1718729e1fad",
+  "license": "MIT",
+  "source": "function value = example()\nvalue = 42;\nmessage = \"hello\";\nend\n",
+  "expected": [
+    [
+      "keyword",
+      "function"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "\"hello\""
+    ]
+  ],
+  "notes": [
+    "Upstream documents tokenization ambiguity for 1./a without spaces; .m also used by Objective-C."
+  ],
+  "query_provenance": [
+    {
+      "path": "queries/helix/highlights.scm",
+      "repo": "https://github.com/acristoffers/tree-sitter-matlab",
+      "revision": "f03d0347acd8bb05d4edd8c845ac1718729e1fad"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted."
+  ],
+  "licenses": [
+    "Licenses/Additional/MATLAB.txt"
+  ]
+}

@@ -113,6 +113,9 @@ def main():
         if failures:
             sys.exit(f"Failed: {', '.join(sorted(failures))}")
         print(f"All {len(samples)} languages passed.")
+    # Keep the added grammars in the existing CI job, with capture-level checks.
+    if len(sys.argv) == 2:
+        run([sys.executable, ROOT / "Tests/Additional/test.py", "--runtime", Path(sys.argv[1]).resolve()])
 
 
 if __name__ == "__main__":

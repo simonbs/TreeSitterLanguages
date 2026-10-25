@@ -1,0 +1,51 @@
+{
+  "title": "Pascal",
+  "member": "pascal",
+  "symbol": "tree_sitter_pascal",
+  "repo": "https://github.com/Isopod/tree-sitter-pascal",
+  "revision": "042119eca2e18a60e56317fb06ee3ba5c32cb447",
+  "license": "MIT",
+  "source": "program Example;\nvar value: Integer;\nbegin\n  value := 42;\n  WriteLn('hello');\nend.\n",
+  "expected": [
+    [
+      "keyword",
+      "begin"
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "string",
+      "'hello'"
+    ]
+  ],
+  "forbidden": [
+    [
+      "keyword",
+      "42"
+    ],
+    [
+      "number",
+      "'hello'"
+    ],
+    [
+      "keyword",
+      "WriteLn"
+    ]
+  ],
+  "notes": [],
+  "query_provenance": [
+    {
+      "path": "queries/highlights.scm",
+      "repo": "https://github.com/Isopod/tree-sitter-pascal",
+      "revision": "042119eca2e18a60e56317fb06ee3ba5c32cb447"
+    }
+  ],
+  "query_adaptations": [
+    "Capture names normalized to Runestone conventions; editor spell-check captures omitted."
+  ],
+  "licenses": [
+    "Licenses/Additional/Pascal.txt"
+  ]
+}

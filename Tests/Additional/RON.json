@@ -1,0 +1,43 @@
+{
+  "title": "RON",
+  "member": "ron",
+  "symbol": "tree_sitter_ron",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-ron",
+  "revision": "78938553b93075e638035f624973083451b29055",
+  "license": "MIT OR Apache-2.0",
+  "licenses": [
+    "Licenses/Additional/RON-LICENSE-APACHE.txt",
+    "Licenses/Additional/RON-LICENSE-MIT.txt"
+  ],
+  "source": "(name: \"hello\", count: 42, enabled: true)\n// comment\n",
+  "expected": [
+    [
+      "property",
+      "name"
+    ],
+    [
+      "string",
+      "\"hello\""
+    ],
+    [
+      "number",
+      "42"
+    ],
+    [
+      "constant.builtin",
+      "true"
+    ]
+  ],
+  "forbidden": [],
+  "notes": [],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-ron",
+      "revision": "78938553b93075e638035f624973083451b29055",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Map theme captures; remove editor spell metadata; convert any-of? to anchored match? and Lua patterns to equivalent regular expressions. Starlark field-name regex uses a non-uppercase initial character."
+  ]
+}
