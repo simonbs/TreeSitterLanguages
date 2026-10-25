@@ -40,10 +40,10 @@
 
 (apply_expression
   function: [
-    (variable_expression (identifier)) @function
+    (variable_expression (identifier)) @function.call
     (select_expression
       attrpath: (attrpath
-        attr: (identifier) @function .))])
+        attr: (identifier) @function.call .))])
 
 (unary_expression
   operator: _ @operator)
@@ -51,12 +51,8 @@
 (binary_expression
   operator: _ @operator)
 
-(variable_expression (identifier) @variable)
-
 (binding
   attrpath: (attrpath (identifier)) @property)
-
-(identifier) @property
 
 (inherit_from attrs: (inherited_attrs attr: (identifier) @property) )
 
@@ -76,7 +72,7 @@
   "}"
 ] @punctuation.bracket
 
-(identifier) @variable
+(variable_expression (identifier) @variable)
 
 [
   (string_expression)

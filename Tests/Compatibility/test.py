@@ -9,7 +9,7 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
-ADDITIONAL_LANGUAGES = {"Clojure", "Fortran", "Kotlin", "Nix", "Org", "PowerShell", "XML"}
+ADDITIONAL_LANGUAGES = {"Nix", "XML"}
 SAMPLES = {
     "Astro": "<h1>Hello</h1>",
     "Bash": "echo hello\n",

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Smoke-test new parser ABIs and shipped highlight queries using a local runtime.
+"""Check requested-language parsers and shipped highlight queries using a local runtime.
 
 Usage: python3 scripts/check-language-grammars.py --runtime /path/to/tree-sitter
 Requires Python 3 and a C compiler (CC, default clang); no Python dependencies.
@@ -8,14 +8,14 @@ removed automatically. The runtime source is copied before building so concurren
 runtime edits cannot change different language builds in this invocation.
 
 These tests check meaningful syntax and representative captures, including positive
-and negative predicate matches. Org is also linked with Svelte to catch scanner
-helper symbol collisions, and both parsers run from that shared library. Python evaluates the small eq?/match? predicate
-subset used here; this is not an integration test of Runestone's Swift evaluator,
+and negative predicate matches. Each parser is compiled once for its fixtures.
+Python evaluates the small eq?/match? predicate subset used here; this is not an integration test of Runestone's Swift evaluator,
 NSRegularExpression dialect, theme rendering, or incremental editing.
 """
 
 import argparse
 import ctypes as C
+import json
 import os
 from pathlib import Path
 import re
@@ -26,62 +26,7 @@ import tempfile
 
 
 # Expected and forbidden entries are (capture name, exact captured source text).
-CASES = {
-    'Clojure': (
-        '(defn greet [name] (str "Hi " name))\n; comment\n{:count 42 :enabled true :empty nil}\n',
-        {('string', '"Hi "'), ('number', '42'), ('constant', ':count'),
-         ('constant.builtin', 'true'), ('constant.builtin', 'nil'), ('comment', '; comment\n')},
-        set(),
-    ),
-    'Fortran': (
-        'program hello\n  implicit none\n  integer :: count = 42\n  ! comment\n'
-        '  logical :: enabled = .true.\n  print *, "Hello"\ncontains\n'
-        '  subroutine increment(value)\n    integer :: value\n'
-        '    value = value + 1\n  end subroutine increment\nend program hello\n',
-        {('number', '42'), ('string', '"Hello"'), ('comment', '! comment'),
-         ('constant.builtin', '.true.'), ('variable.parameter', 'value')},
-        set(),
-    ),
-    'Kotlin': (
-        'fun main() { val message: String = "Hello"; println(message); custom(message); '
-        "val mark = 'x'; try { custom(mark) } catch (error: Exception) { throw error } }\n"
-        '// comment\nclass Example\nval item: Example = Example()\n',
-        {('keyword.function', 'fun'), ('type.builtin', 'String'), ('function.builtin', 'println'),
-         ('comment', '// comment'), ('string', "'x'"), ('keyword.exception', 'try'),
-         ('keyword.exception', 'catch'), ('keyword.exception', 'throw')},
-        {('type.builtin', 'Example'), ('function.builtin', 'custom')},
-    ),
-    'Nix': (
-        '# comment\n{ pkgs }: let count = 42; in { hello = pkgs.hello; enabled = true; '
-        'value = builtins.toString count; custom = pkgs; }\n',
-        {('keyword', 'let'), ('number', '42'), ('variable.builtin', 'true'),
-         ('variable.builtin', 'builtins'), ('comment', '# comment')},
-        {('variable.builtin', 'pkgs'), ('function.builtin', 'pkgs')},
-    ),
-    'Org': (
-        '#+TITLE: Notes\n* TODO Heading :tag:\n:PROPERTIES:\n:ID: example\n:END:\n'
-        '** Ordinary heading\n',
-        {('keyword', 'TODO'), ('property', 'tag'), ('property', 'ID'), ('string', 'example')},
-        {('keyword', 'Ordinary')},
-    ),
-    'PowerShell': (
-        'function Get-Greeting { param([string]$Name); Write-Output -InputObject "Hi $Name" }\n'
-        '# comment\n$count = 42\n',
-        {('keyword', 'function'), ('function', 'Get-Greeting'), ('function', 'Write-Output'),
-         ('variable', '$Name'), ('number', '42'), ('comment', '# comment'),
-         ('variable.parameter', '-InputObject')},
-        set(),
-    ),
-    'XML': (
-        '<?xml version="1.0"?><root name="test"><child>Hello &amp; &custom;</child>'
-        '<![CDATA[<literal> & text]]><!-- comment --></root>\n',
-        {('tag', 'root'), ('tag', 'child'), ('property', 'name'), ('string', '"test"'),
-         ('constant.builtin', '&amp;'), ('constant', '&custom;'), ('comment', '<!-- comment -->'),
-         ('text.literal', '<literal> & text'), ('punctuation.delimiter', '<![CDATA['),
-         ('punctuation.delimiter', ']]>')},
-        {('constant.builtin', '&custom;')},
-    ),
-}
+LANGUAGES = ("Nix", "XML")
 
 
 class Node(C.Structure):
@@ -101,34 +46,17 @@ class PredicateStep(C.Structure):
     _fields_ = [('type', C.c_int), ('value_id', C.c_uint32)]
 
 
-def check(title, runtime, root, output, verbose):
+def check(title, runtime, root, output, verbose, case):
     target = root / 'Sources' / ('TreeSitter' + title) / 'src'
     library = output / (title + '.so')
     compiler = shlex.split(os.environ.get('CC', 'clang'))
     flags = ['-fPIC', '-O0', '-std=c11', '-D_DEFAULT_SOURCE']
     runtime_includes = ['-I' + str(runtime / 'include'), '-I' + str(runtime / 'src')]
-    if title == 'Org':
-        # Org and Svelte previously exported colliding scan/serialize/deserialize
-        # helpers. Compile separately so each grammar uses its own parser headers,
-        # then link together as the app does; isolated language builds miss this.
-        objects = []
-        groups = [(runtime / 'src', [runtime / 'src/lib.c'])]
-        for name in ('Org', 'Svelte'):
-            directory = root / 'Sources' / ('TreeSitter' + name) / 'src'
-            groups.append((directory, sorted(directory.rglob('*.c'))))
-        for directory, sources in groups:
-            for source in sources:
-                obj = output / f'org-link-{len(objects)}.o'
-                command = compiler + flags + ['-I' + str(directory)] + runtime_includes
-                command += ['-c', str(source), '-o', str(obj)]
-                subprocess.run(command, check=True, capture_output=True, text=True)
-                objects.append(str(obj))
-        command = compiler + ['-shared'] + objects + ['-o', str(library)]
-    else:
+    if not library.exists():
         command = compiler + ['-shared'] + flags + runtime_includes + [
             '-I' + str(target), str(runtime / 'src/lib.c'),
         ] + [str(p) for p in sorted(target.rglob('*.c'))] + ['-o', str(library)]
-    subprocess.run(command, check=True, capture_output=True, text=True)
+        subprocess.run(command, check=True, capture_output=True, text=True)
     lib = C.CDLL(str(library))
     ptr, uint = C.c_void_p, C.c_uint32
 
@@ -160,12 +88,14 @@ def check(title, runtime, root, output, verbose):
     parser, tree, query, cursor = parser_new(), None, None, None
     try:
         assert parser_set_language(parser, language), 'runtime rejects grammar ABI'
-        source, expected, forbidden = CASES[title]
+        source = case['source']
+        expected = {tuple(pair) for pair in case['expected']}
+        forbidden = {tuple(pair) for pair in case['forbidden']}
         source = source.encode('utf-8')
         tree = parse(parser, None, source, len(source))
         assert tree, 'parser returned no tree'
         node = root_node(tree)
-        assert not has_error(node), 'sample contains ERROR or missing nodes'
+        assert not has_error(node), f"{case['name']}: sample contains ERROR or missing nodes"
         query_source = (root / 'Sources' / ('TreeSitter' + title + 'Queries') / 'highlights.scm').read_bytes()
         offset, error = uint(), C.c_int()
         query = query_new(language, query_source, len(query_source), C.byref(offset), C.byref(error))
@@ -226,19 +156,7 @@ def check(title, runtime, root, output, verbose):
         if verbose:
             for capture in sorted(actual):
                 print(f'  {capture}')
-        companion_result = ''
-        if title == 'Org':
-            svelte = bind('tree_sitter_svelte', [], ptr)()
-            assert parser_set_language(parser, svelte), 'runtime rejects companion Svelte ABI'
-            sample = b'<h1>Hello {name}</h1>\n'
-            companion_tree = parse(parser, None, sample, len(sample))
-            assert companion_tree, 'Svelte parser returned no tree'
-            try:
-                assert not has_error(root_node(companion_tree)), 'Svelte fails when linked with Org'
-            finally:
-                tree_delete(companion_tree)
-            companion_result = ', Svelte shared link and parse'
-        print(f'{title}: PASS (parse, query predicates, {len(expected)} expected captures, {len(forbidden)} excluded captures{companion_result})')
+        print(f"{title}/{case['name']}: PASS (parse, query predicates, {len(expected)} expected captures, {len(forbidden)} excluded captures)")
     finally:
         if cursor:
             cursor_delete(cursor)
@@ -252,7 +170,7 @@ def check(title, runtime, root, output, verbose):
 def main():
     arguments = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     arguments.add_argument('--runtime', required=True, type=Path)
-    arguments.add_argument('--language', action='append', choices=CASES, help='limit checks; repeat for multiple languages')
+    arguments.add_argument('--language', action='append', choices=LANGUAGES, help='limit checks; repeat for multiple languages')
     arguments.add_argument('--verbose', action='store_true')
     options = arguments.parse_args()
     runtime = options.runtime.resolve()
@@ -265,9 +183,11 @@ def main():
     with tempfile.TemporaryDirectory(prefix='language-grammar-checks-') as temporary:
         output = Path(temporary)
         shutil.copytree(runtime, output / 'runtime')
-        for title in options.language or CASES:
+        for title in options.language or LANGUAGES:
             try:
-                check(title, output / 'runtime', root, output, options.verbose)
+                fixtures = json.loads((root / 'Tests/Requested' / (title + '.json')).read_text())
+                for case in fixtures:
+                    check(title, output / 'runtime', root, output, options.verbose, case)
             except (AssertionError, OSError, subprocess.CalledProcessError) as error:
                 failures.append(title)
                 print(f'{title}: FAIL: {error}')

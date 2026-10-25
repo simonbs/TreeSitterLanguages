@@ -37,7 +37,7 @@ The package contains the following three libraries for each language.
 
 Furthermore the package contains the TreeSitterLanguagesCommon library which exposes Tree-sitter's scalar types and an opaque `TSLanguage` declaration. The language structure belongs to the runtime and must not be accessed directly. With Tree-sitter 0.27.1, Swift APIs that pass languages use `OpaquePointer`, including the values returned by `tree_sitter_{language}()`.
 
-Clojure, Fortran, Kotlin, Nix, Org, PowerShell, and XML are also available using these three products. Their pinned sources, licenses, and query adaptations are documented in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
+Nix and XML are also available using these three products. Their pinned sources, licenses, and query adaptations are documented in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
 
 ## Compatibility
 
@@ -97,10 +97,5 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
 - [tree-sitter-yaml](https://github.com/ikatyang/tree-sitter-yaml)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [tree-sitter-clojure](https://github.com/clj-commons/tree-sitter-clojure)
-- [tree-sitter-fortran](https://github.com/stadelmanma/tree-sitter-fortran)
-- [tree-sitter-kotlin](https://github.com/fwcd/tree-sitter-kotlin)
 - [tree-sitter-nix](https://github.com/nix-community/tree-sitter-nix)
-- [tree-sitter-org](https://github.com/emiasims/tree-sitter-org)
-- [tree-sitter-powershell](https://github.com/wharflab/tree-sitter-powershell)
 - [tree-sitter-xml](https://github.com/tree-sitter-grammars/tree-sitter-xml)
