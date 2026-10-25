@@ -17,12 +17,14 @@ jobs:
         run: |
           git config --global url."https://github.com/".insteadOf git@github.com:
           git config --global url."https://".insteadOf git://
-      - name: Build
+      - name: Build and test Runestone language integrations
         run: |
-          xcodebuild\
+          xcodebuild test\
             -scheme TreeSitterLanguages-Package\
             -sdk iphonesimulator\
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro'\
+            -only-testing:RunestoneLanguageSupportTests\
+            -only-testing:RequestedLanguageHighlightTests
   compatibility:
     name: Tree-sitter 0.27.1 compatibility
     runs-on: ubuntu-latest
