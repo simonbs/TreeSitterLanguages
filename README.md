@@ -37,7 +37,7 @@ The package contains the following three libraries for each language.
 
 Furthermore the package contains the TreeSitterLanguagesCommon library which exposes Tree-sitter's scalar types and an opaque `TSLanguage` declaration. The language structure belongs to the runtime and must not be accessed directly. With Tree-sitter 0.27.1, Swift APIs that pass languages use `OpaquePointer`, including the values returned by `tree_sitter_{language}()`.
 
-Nix and XML are also available using these three products. Their pinned sources, licenses, and query adaptations are documented in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
+Pinned parser sources, licenses, query adaptations, and limitations are indexed in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
 
 ### All Runestone languages
 
@@ -69,19 +69,25 @@ want to limit build time and bundled resources. The umbrella does not provide fi
 extension detection or register injected languages; those remain the app's responsibility.
 Runestone itself remains independent of this package.
 
-The pinned Runestone revision includes the UTF-8 query-length fix required by
-Haskell highlights and other queries containing Unicode.
+## Code Folding
 
-Swift's `@_exported import` provides the re-exports. It is an underscored compiler
-feature, so the consumer tests cover its behavior with the supported toolchain.
-Run the iOS `RunestoneLanguageSupportTests` test target to check every factory and
-`python3 scripts/check-language-support.py` to check that exports stay complete.
+The Runestone libraries include folding queries for 44 languages. To show folding controls in the gutter, enable code folding on your text view:
+
+```swift
+textView.isCodeFoldingEnabled = true
+```
+
+Markdown supports sections with hash-prefixed or underline-style headings, as well as fenced code blocks.
+
+If you are creating a Runestone language manually, create a `TreeSitterLanguage.Query` from `Query.foldsFileURL` and pass it to the `foldsQuery` initializer parameter. This URL is optional. Comment, JSDoc, JSON5, MarkdownInline, R, and Regex do not include folding queries and return `nil`.
+
+The queries are copied from the grammar repositories and Neovim's nvim-treesitter. Refer to [Language Sources](LANGUAGE_SOURCES.md#folding-queries) for their revisions, licenses, and instructions on updating them.
 
 ## Compatibility
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
 
-The refreshed grammars include language ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. The package pins the merged Runestone revision until a release containing it is available. See [the existing-language refresh](UPDATED_LANGUAGES.md) for exact source revisions, query adaptations, license notices, and validation. Each grammar retains its private generated parser header.
+The grammars include ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. The package pins a Runestone revision that includes code folding. A release containing that API is required before switching to a versioned dependency. Each grammar retains its matching private generated parser header.
 
 The compatibility check compiles every bundled grammar against Tree-sitter 0.27.1, parses a representative sample, and compiles and executes every bundled query, including inherited highlight queries. Run it with a checkout of that Tree-sitter release:
 
@@ -142,4 +148,4 @@ Thanks to all the contributors to these repositories for their great effort in e
 
 Bicep, CMake, Dart, Fish, Glimmer, HCL, ObjectiveC, Pascal, Proto, Scala.
 
-See [additional language sources and compatibility](ADDITIONAL_LANGUAGES.md) for pinned upstream revisions, licenses, query adaptations, runtime requirements, and validation commands.
+See [language sources](LANGUAGE_SOURCES.md) for exact revisions and query adaptations.

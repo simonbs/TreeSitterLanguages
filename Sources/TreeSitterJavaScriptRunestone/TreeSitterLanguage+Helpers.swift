@@ -5,18 +5,20 @@ import TreeSitterJavaScriptQueries
 
 public extension TreeSitterLanguage {
     static var javaScript: TreeSitterLanguage {
+        let foldsQuery = TreeSitterJavaScriptQueries.Query.foldsFileURL.flatMap { TreeSitterLanguage.Query(contentsOf: $0) }
         let highlightsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterJavaScriptQueries.Query.highlightsFileURL)
         let injectionsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterJavaScriptQueries.Query.injectionsFileURL)
-        return TreeSitterLanguage(tree_sitter_javascript(), highlightsQuery: highlightsQuery, injectionsQuery: injectionsQuery, indentationScopes: .javaScript)
+        return TreeSitterLanguage(tree_sitter_javascript(), highlightsQuery: highlightsQuery, injectionsQuery: injectionsQuery, indentationScopes: .javaScript, foldsQuery: foldsQuery)
     }
 
     static var jsx: TreeSitterLanguage {
+        let foldsQuery = TreeSitterJavaScriptQueries.Query.foldsFileURL.flatMap { TreeSitterLanguage.Query(contentsOf: $0) }
         let highlightsQuery = combinedQuery(fromFilesAt: [
             TreeSitterJavaScriptQueries.Query.highlightsFileURL,
             TreeSitterJavaScriptQueries.Query.highlightsJSXFileURL
         ])
         let injectionsQuery = TreeSitterLanguage.Query(contentsOf: TreeSitterJavaScriptQueries.Query.injectionsFileURL)
-        return TreeSitterLanguage(tree_sitter_javascript(), highlightsQuery: highlightsQuery, injectionsQuery: injectionsQuery, indentationScopes: .javaScript)
+        return TreeSitterLanguage(tree_sitter_javascript(), highlightsQuery: highlightsQuery, injectionsQuery: injectionsQuery, indentationScopes: .javaScript, foldsQuery: foldsQuery)
     }
 }
 

@@ -1,6 +1,11 @@
 import Foundation
 
 public enum Query {
+    /// Optional folding rules; languages without a suitable source return nil.
+    public static var foldsFileURL: URL? {
+        return Bundle.module.url(forResource: "folds", withExtension: "scm")
+    }
+
     public static var highlightsJSXFileURL: URL {
         return url(named: "highlights-jsx")
     }

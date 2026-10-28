@@ -1,0 +1,439 @@
+{
+  "adaptations": {
+    "Markdown": [
+      "Remove generic section folds; derive heading sections in Runestone using fold.heading captures."
+    ]
+  },
+  "languages": {
+    "Astro": "nvim-astro",
+    "Bash": "nvim-bash",
+    "Bicep": "upstream-Bicep",
+    "C": "nvim-c",
+    "CMake": "upstream-CMake",
+    "CPP": "nvim-cpp",
+    "CSS": "nvim-css",
+    "CSharp": "nvim-c_sharp",
+    "Comment": null,
+    "Dart": "nvim-dart",
+    "Elixir": "nvim-elixir",
+    "Elm": "nvim-elm",
+    "Fish": "nvim-fish",
+    "Glimmer": "upstream-Glimmer",
+    "Go": "nvim-go",
+    "HCL": "nvim-hcl",
+    "HTML": "nvim-html",
+    "Haskell": "nvim-haskell",
+    "JSDoc": null,
+    "JSON": "nvim-json",
+    "JSON5": null,
+    "Java": "nvim-java",
+    "JavaScript": "nvim-javascript",
+    "Julia": "nvim-julia",
+    "LaTeX": "nvim-latex",
+    "Lua": "nvim-lua",
+    "Markdown": "nvim-markdown",
+    "MarkdownInline": null,
+    "Nix": "nvim-nix",
+    "OCaml": "nvim-ocaml",
+    "ObjectiveC": "upstream-ObjectiveC",
+    "PHP": "nvim-php",
+    "Pascal": "nvim-pascal",
+    "Perl": "upstream-Perl",
+    "Proto": "upstream-Proto",
+    "Python": "nvim-python",
+    "R": null,
+    "Regex": null,
+    "Ruby": "nvim-ruby",
+    "Rust": "nvim-rust",
+    "SCSS": "nvim-scss",
+    "SQL": "nvim-sql",
+    "Scala": "nvim-scala",
+    "Svelte": "upstream-Svelte",
+    "Swift": "upstream-Swift",
+    "TOML": "nvim-toml",
+    "TSX": "nvim-tsx",
+    "TypeScript": "nvim-typescript",
+    "XML": "nvim-xml",
+    "YAML": "nvim-yaml"
+  },
+  "nvim_revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+  "sources": {
+    "nvim-astro": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/astro/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "6928e1e9b85792862f41c8a0f92e872ff2d7a0c94b8f7c77fbac70bb3a01c1a2"
+    },
+    "nvim-bash": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/bash/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "49da7eddb5ec5b96e61a5b5090d78dfacd190bb037543278245a86677a85d2f0"
+    },
+    "nvim-c": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/c/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "f909cc918deec9a7845203a1c86d29b6177fbe0cb8603b83ef3d81b6a9276a59"
+    },
+    "nvim-c_sharp": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/c_sharp/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "596a82b2b891c67d59971ad7285bc651ea811f82a6a49041438a78d47709ddf3"
+    },
+    "nvim-cpp": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/cpp/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "a1e1ba255956cfb30e720b7ef251027339ec7305a25d6771e20fba611728fb0a"
+    },
+    "nvim-css": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/css/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "27753670bbafb11b56c19daec2598e26993aad7bcefe68d697051fd2c52c1df0"
+    },
+    "nvim-dart": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/dart/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "d384432be9fe066f6ef103e87288e4a797847189bdc414f977be71043d1cb0cf"
+    },
+    "nvim-ecma": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/ecma/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "a97b18e52b7bc8b70075ed1a78dad12e72e5e5ae769bb212d8276186a972dd91"
+    },
+    "nvim-elixir": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/elixir/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "8c22a77c509bad5febd90d78296bb6b4370a58251f1e23890b05b19d152cf126"
+    },
+    "nvim-elm": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/elm/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "85c185002bbb6a87207aa9e679525dc4192d092eb3c23ecbb82c0acfb99b5c20"
+    },
+    "nvim-fish": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/fish/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "ddf4248f88e8f99a82d1812a9d983bce35768ca0ff259f27328b5d0e3e6ef7f1"
+    },
+    "nvim-go": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/go/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "567972d1109b435df218c9308979c9d91ec9a477ebb841d2cd393e516f6b2369"
+    },
+    "nvim-haskell": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/haskell/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "f75e83e954df52fb3a261032d195ce799162f0797e5345e097cf19c1637285cf"
+    },
+    "nvim-hcl": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/hcl/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "b3a38c4fe75a4ef299498cc1aab31cf0b4e271ac6846708073e9bbe173e7f547"
+    },
+    "nvim-html": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/html/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "554602944873b08eec04ffe76ab79b5d4609f75394490c124397426a9b0d3e44"
+    },
+    "nvim-java": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/java/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "3046a1482b0936a2a3a869528fdf5ad279aac11cc1abe8180c497cb7557c98a6"
+    },
+    "nvim-javascript": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/javascript/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "b6473f9af85876eaca477fbe61462e80f316c5b12387be62fe1b40cae72914c2"
+    },
+    "nvim-json": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/json/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "7946e857230de4899bc8eed17744fe0672c404bfdcc53118dfdedd7bb509af92"
+    },
+    "nvim-jsx": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/jsx/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "2010b94da6016d00ebe18e31d321df127c11aa3fb75d39ae2e2a32d1fce042ff"
+    },
+    "nvim-julia": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/julia/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "c1ea196f45bb7b1b9da2c8b8802286fb5573877cf9b19d8a28c6cbf7b739fbef"
+    },
+    "nvim-latex": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/latex/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "2ad9c72c0dfc081aa32a3df30465a24219316736b71c67285a3e516a9a8d7fd0"
+    },
+    "nvim-lua": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/lua/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "4e18315fb845cb6cc08fa97798298cea72c636389e626c1f336452bc9ad37238"
+    },
+    "nvim-markdown": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/markdown/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "f9cb82eb75c5d3c6946903bb2318278d3ca378e507b14569d2bb8af8bba69b95"
+    },
+    "nvim-nix": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/nix/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "2264ebf5bfa732f402896dafe01f04c865340170347e38edc618c16af0c6b7c8"
+    },
+    "nvim-ocaml": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/ocaml/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "203437b7b10e5a859004ee006cf03e24a12d68d01c3961e87ec67550357d705d"
+    },
+    "nvim-pascal": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/pascal/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "c7614d8cc1386ff649c5d2bb261731178b791ff6f15bcdf7b40ed010e0bef160"
+    },
+    "nvim-php": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/php/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "28a611e72b425f496800fd568aeb8ce3211112b44fbb7fb5c2b4b757b3148339"
+    },
+    "nvim-php_only": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/php_only/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "1ef1d73c096f2aba7eac494864155dc1348099e5d54a56cf89fe36c35f23240b"
+    },
+    "nvim-python": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/python/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "7ea0eb74ffee66415a3b6fd51b47873b411bc80d8eb4dfb7aa6ffa0cf7fad1f3"
+    },
+    "nvim-ruby": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/ruby/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "bc365ae3bce5d0715563b5ca32f61b4f046de1c70f8c8b2978e7b8415cd354a0"
+    },
+    "nvim-rust": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/rust/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "e990d25ccf16b731621cda0536b517267396b02c33b2e6e3b3b3c6dfb6f4c000"
+    },
+    "nvim-scala": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/scala/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "3a6ee04e9605a8c4bd85e88752cc074998794179b7d34f587f8f2b036f486182"
+    },
+    "nvim-scss": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/scss/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "6b28c755e0fc12816e0353feed722c0bb30badadf0becd20fd5c602391b3ac2c"
+    },
+    "nvim-sql": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/sql/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "21163ae316e615e2b96da4ce0f4bcbc9f46a7ef28b5c09d8701a1d28ea28e8ef"
+    },
+    "nvim-toml": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/toml/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "b51d400c8ec94947adf98c1474364ae2210e80e71d144ce32ae276d36e993267"
+    },
+    "nvim-tsx": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/tsx/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "0631577ba119c6b1f9fbabe70d70ad17ae81e4e7d8afb0e2309bd8acee0f5f76"
+    },
+    "nvim-typescript": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/typescript/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "e5b1b0552e8312f1d048ecfaa9a7fc96e32533e3e173e9185dee563c473ae224"
+    },
+    "nvim-xml": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/xml/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "253ff7e7c187d28c9621e6e1328a09d7eda1707db2eca749899cacdd9a36e181"
+    },
+    "nvim-yaml": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/yaml/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "a7ff158e0d3a9ac4b8e2537c542e72071ffaeca0fd0a6d15c38744941fd98111"
+    },
+    "upstream-Bicep": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/Bicep-LICENSE.txt",
+      "path": "queries/folds.scm",
+      "repository": "tree-sitter-grammars/tree-sitter-bicep",
+      "revision": "bff59884307c0ab009bd5e81afd9324b46a6c0f9",
+      "sha256": "2449a2ab5d1c34a24ddaf4169a72bb7062ac5c21a3c5805ff713b7a30767507b"
+    },
+    "upstream-CMake": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/CMake-LICENSE.txt",
+      "path": "queries/folds.scm",
+      "repository": "uyha/tree-sitter-cmake",
+      "revision": "58993af75218bc99a1f5a04c832a5937e7c422cb",
+      "sha256": "dfe61366bf376b6717a3849eb219620aa1988fc58ae977738ecaaca4308e247b"
+    },
+    "upstream-Glimmer": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/Glimmer-LICENSE.md",
+      "path": "queries/glimmer/folds.scm",
+      "repository": "ember-tooling/tree-sitter-glimmer",
+      "revision": "c67a73679db2945a686ca45d3e5318d86138e72a",
+      "sha256": "f0be3c150b4fb64bfc572dd33e91299c5256bbb0cd346b151942f2945f45998e"
+    },
+    "upstream-ObjectiveC": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/ObjectiveC.txt",
+      "path": "queries/folds.scm",
+      "repository": "tree-sitter-grammars/tree-sitter-objc",
+      "revision": "181a81b8f23a2d593e7ab4259981f50122909fda",
+      "sha256": "ab98525c9291c1d2bfc1047ef321cd34c754f965526b7f1c4dc00c2e1f643ebf"
+    },
+    "upstream-Perl": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/Perl-LICENSE.txt",
+      "path": "queries/folds.scm",
+      "repository": "tree-sitter-perl/tree-sitter-perl",
+      "revision": "775e75a51c1230fccbde7d607cd6d424b0ce1016",
+      "sha256": "63e44b1ebaea7ee30cf95608867b2666b95fe43024f2e35823492054214e39cc"
+    },
+    "upstream-Proto": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/Proto-LICENSE.txt",
+      "path": "queries/folds.scm",
+      "repository": "coder3101/tree-sitter-proto",
+      "revision": "18366491f37d43d6d5d02cbb1e79b650b5728145",
+      "sha256": "2ffa9a7bc7687b92dca266a4a2462b9db3e03e1c9b45e27fe13dcadd842e4f34"
+    },
+    "upstream-Svelte": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/Svelte.txt",
+      "path": "queries/folds.scm",
+      "repository": "tree-sitter-grammars/tree-sitter-svelte",
+      "revision": "ae5199db47757f785e43a14b332118a5474de1a2",
+      "sha256": "2154c6829be58b9ce3486ad0c798c1a156f2535c273011baa8da31927a56efa9"
+    },
+    "upstream-Swift": {
+      "license": "MIT",
+      "notice": "Licenses/Folding/Swift.txt",
+      "path": "queries/folds.scm",
+      "repository": "alex-pinkus/tree-sitter-swift",
+      "revision": "9e3b87f66f1fd2f3b931376fd3723ab788e337c3",
+      "sha256": "4f00b0b392dce70a0127b67d1c7858f1074768125f3c1702b22acd036e5c9ba0"
+    }
+  },
+  "version": 1
+}
