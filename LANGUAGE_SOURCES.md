@@ -105,5 +105,26 @@ injections, and scanner regressions. Focused runners are available in
 The native `RunestoneLanguageSupportTests` and `RequestedLanguageHighlightTests`
 iOS targets cover Swift resource/factory wiring and production highlighter behavior.
 
-Folding provenance and reproduction are described in [README](README.md#folding-queries)
-and [`FoldingQueries/sources.json`](FoldingQueries/sources.json).
+## Folding queries
+
+[`FoldingQueries/sources.json`](FoldingQueries/sources.json) records pinned sources,
+SHA-256 checksums, and license notices. Original inputs remain in
+`FoldingQueries/Upstream`. The importer prefers grammar-hosted definitions and
+otherwise uses pinned nvim-treesitter queries, expanding `; inherits:` into
+standalone files:
+
+```sh
+python3 scripts/import-folding-queries.py
+python3 scripts/import-folding-queries.py --check
+python3 Tests/Folding/test.py --runtime /path/to/tree-sitter
+```
+
+Use `--download` to verify remote inputs against the manifest. Retain the notices
+in `Licenses/Folding`; grammar-hosted sources use MIT notices and Neovim queries
+use Apache-2.0. Generated files identify composition and adaptations.
+
+The consumer groups repeated `@fold` captures in one match and implements range
+operations such as Markdown's `#trim!` and Elm's `#not-has-parent?`. Markdown's
+original `(section) @fold` candidate is replaced by `@fold.heading` captures for
+ATX and Setext headings, so Runestone can derive mixed-style section boundaries.
+The original upstream query remains in the retained inputs.

@@ -7,4 +7,4 @@ Inherited query sections retain the license of their own source repository.
 
 The original queries are retained in `FoldingQueries/Upstream`. Generated queries
 identify source URLs and state that inheritance was expanded for Runestone.
-Markdown's additional adaptation is documented in [README](../../README.md#folding-queries).
+Markdown's additional adaptation is documented in [language sources](../../LANGUAGE_SOURCES.md#folding-queries).

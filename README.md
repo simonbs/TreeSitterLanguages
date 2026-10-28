@@ -69,14 +69,6 @@ want to limit build time and bundled resources. The umbrella does not provide fi
 extension detection or register injected languages; those remain the app's responsibility.
 Runestone itself remains independent of this package.
 
-The pinned Runestone revision includes the UTF-8 query-length fix required by
-Haskell highlights and other queries containing Unicode.
-
-Swift's `@_exported import` provides the re-exports. It is an underscored compiler
-feature, so the consumer tests cover its behavior with the supported toolchain.
-Run the iOS `RunestoneLanguageSupportTests` test target to check every factory and
-`python3 scripts/check-language-support.py` to check that exports stay complete.
-
 ## Folding queries
 
 `Query.foldsFileURL` is an optional URL passed to `TreeSitterLanguage.foldsQuery`.
@@ -84,27 +76,10 @@ Folding is available for 44 languages; Comment, JSDoc, JSON5, MarkdownInline, R,
 and Regex return `nil`. Runestone consumers enable controls with
 `textView.isCodeFoldingEnabled = true`.
 
-[`FoldingQueries/sources.json`](FoldingQueries/sources.json) records pinned sources,
-SHA-256 checksums, and license notices. Original inputs remain in
-`FoldingQueries/Upstream`. The importer prefers grammar-hosted definitions and
-otherwise uses pinned nvim-treesitter queries, expanding `; inherits:` into
-standalone files:
-
-```sh
-python3 scripts/import-folding-queries.py
-python3 scripts/import-folding-queries.py --check
-python3 Tests/Folding/test.py --runtime /path/to/tree-sitter
-```
-
-Use `--download` to verify remote inputs against the manifest. Retain the notices
-in `Licenses/Folding`; grammar-hosted sources use MIT notices and Neovim queries
-use Apache-2.0. Generated files identify composition and adaptations.
-
-The consumer groups repeated `@fold` captures in one match and implements range
-operations such as Markdown's `#trim!` and Elm's `#not-has-parent?`. Markdown's
-original `(section) @fold` candidate is replaced by `@fold.heading` captures for
-ATX and Setext headings, so Runestone can derive mixed-style section boundaries.
-The original upstream query remains in the retained inputs.
+Folding queries come from the grammar repositories and Neovim's nvim-treesitter.
+Markdown supports ATX and Setext sections as well as fenced code blocks.
+See [source and maintenance details](LANGUAGE_SOURCES.md#folding-queries) for
+pinned revisions, licenses, adaptations, and import commands.
 
 ## Compatibility
 
