@@ -87,7 +87,7 @@ The queries are copied from the grammar repositories and Neovim's nvim-treesitte
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
 
-The grammars include ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. This branch also depends on the folding API in Runestone’s `codex/code-folding` branch. Replace the branch requirement with a release containing that API before publishing a semantic-versioned package release. Each grammar retains its matching private generated parser header.
+The grammars include ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. The package pins a Runestone revision that includes code folding. A release containing that API is required before switching to a versioned dependency. Each grammar retains its matching private generated parser header.
 
 The compatibility check compiles every bundled grammar against Tree-sitter 0.27.1, parses a representative sample, and compiles and executes every bundled query, including inherited highlight queries. Run it with a checkout of that Tree-sitter release:
 
