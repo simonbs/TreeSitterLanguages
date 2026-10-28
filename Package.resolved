@@ -5,8 +5,8 @@
         "package": "Runestone",
         "repositoryURL": "https://github.com/simonbs/Runestone",
         "state": {
-          "branch": "main",
-          "revision": "e389c6654702d94f005f9f4799d0b654e2765460",
+          "branch": "codex/code-folding",
+          "revision": "0eb6956ecacf7317c9eb7f9142be2ee7580f2f5e",
           "version": null
         }
       }
