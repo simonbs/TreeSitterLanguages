@@ -9,6 +9,8 @@ jobs:
     name: Build
     runs-on: macos-14
     steps:
+      - name: Select Xcode 16.2
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -22,7 +24,7 @@ jobs:
           xcodebuild test\
             -scheme TreeSitterLanguages-Package\
             -sdk iphonesimulator\
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro'\
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.2'\
             -only-testing:RunestoneLanguageSupportTests\
             -only-testing:RequestedLanguageHighlightTests
   compatibility:
