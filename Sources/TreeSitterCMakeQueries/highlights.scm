@@ -1,4 +1,4 @@
-; Adapted for Runestone; provenance and license: ADDITIONAL_LANGUAGES.md
+; Adapted for Runestone; provenance and license: LANGUAGE_SOURCES.md
 (normal_command
   (identifier)
   (argument_list

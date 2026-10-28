@@ -37,7 +37,7 @@ The package contains the following three libraries for each language.
 
 Furthermore the package contains the TreeSitterLanguagesCommon library which exposes Tree-sitter's scalar types and an opaque `TSLanguage` declaration. The language structure belongs to the runtime and must not be accessed directly. With Tree-sitter 0.27.1, Swift APIs that pass languages use `OpaquePointer`, including the values returned by `tree_sitter_{language}()`.
 
-Nix and XML are also available using these three products. Their pinned sources, licenses, and query adaptations are documented in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
+Pinned parser sources, licenses, query adaptations, and limitations are indexed in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
 
 ### All Runestone languages
 
@@ -77,11 +77,40 @@ feature, so the consumer tests cover its behavior with the supported toolchain.
 Run the iOS `RunestoneLanguageSupportTests` test target to check every factory and
 `python3 scripts/check-language-support.py` to check that exports stay complete.
 
+## Folding queries
+
+`Query.foldsFileURL` is an optional URL passed to `TreeSitterLanguage.foldsQuery`.
+Folding is available for 44 languages; Comment, JSDoc, JSON5, MarkdownInline, R,
+and Regex return `nil`. Runestone consumers enable controls with
+`textView.isCodeFoldingEnabled = true`.
+
+[`FoldingQueries/sources.json`](FoldingQueries/sources.json) records pinned sources,
+SHA-256 checksums, and license notices. Original inputs remain in
+`FoldingQueries/Upstream`. The importer prefers grammar-hosted definitions and
+otherwise uses pinned nvim-treesitter queries, expanding `; inherits:` into
+standalone files:
+
+```sh
+python3 scripts/import-folding-queries.py
+python3 scripts/import-folding-queries.py --check
+python3 Tests/Folding/test.py --runtime /path/to/tree-sitter
+```
+
+Use `--download` to verify remote inputs against the manifest. Retain the notices
+in `Licenses/Folding`; grammar-hosted sources use MIT notices and Neovim queries
+use Apache-2.0. Generated files identify composition and adaptations.
+
+The consumer groups repeated `@fold` captures in one match and implements range
+operations such as Markdown's `#trim!` and Elm's `#not-has-parent?`. Markdown's
+original `(section) @fold` candidate is replaced by `@fold.heading` captures for
+ATX and Setext headings, so Runestone can derive mixed-style section boundaries.
+The original upstream query remains in the retained inputs.
+
 ## Compatibility
 
 The parser.c file of a language is generated using [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and a language generated with one version of the CLI may not be compatible with future versions of Tree-sitter. All languages in this repository are kept compatible with the version of Tree-sitter used by my [Runestone](https://github.com/simonbs/runestone) framework.
 
-The refreshed grammars include language ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. The package pins the merged Runestone revision until a release containing it is available. See [the existing-language refresh](UPDATED_LANGUAGES.md) for exact source revisions, query adaptations, license notices, and validation. Each grammar retains its private generated parser header.
+The grammars include ABI 15 and require Runestone’s Tree-sitter 0.27.1 integration. This branch also depends on the folding API in Runestone’s `codex/code-folding` branch. Replace the branch requirement with a release containing that API before publishing a semantic-versioned package release. Each grammar retains its matching private generated parser header.
 
 The compatibility check compiles every bundled grammar against Tree-sitter 0.27.1, parses a representative sample, and compiles and executes every bundled query, including inherited highlight queries. Run it with a checkout of that Tree-sitter release:
 
@@ -142,4 +171,4 @@ Thanks to all the contributors to these repositories for their great effort in e
 
 Bicep, CMake, Dart, Fish, Glimmer, HCL, ObjectiveC, Pascal, Proto, Scala.
 
-See [additional language sources and compatibility](ADDITIONAL_LANGUAGES.md) for pinned upstream revisions, licenses, query adaptations, runtime requirements, and validation commands.
+See [language sources](LANGUAGE_SOURCES.md) for exact revisions and query adaptations.
