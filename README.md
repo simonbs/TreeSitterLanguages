@@ -69,17 +69,19 @@ want to limit build time and bundled resources. The umbrella does not provide fi
 extension detection or register injected languages; those remain the app's responsibility.
 Runestone itself remains independent of this package.
 
-## Folding queries
+## Code Folding
 
-`Query.foldsFileURL` is an optional URL passed to `TreeSitterLanguage.foldsQuery`.
-Folding is available for 44 languages; Comment, JSDoc, JSON5, MarkdownInline, R,
-and Regex return `nil`. Runestone consumers enable controls with
-`textView.isCodeFoldingEnabled = true`.
+The Runestone libraries include folding queries for 44 languages. To show folding controls in the gutter, enable code folding on your text view:
 
-Folding queries come from the grammar repositories and Neovim's nvim-treesitter.
-Markdown supports ATX and Setext sections as well as fenced code blocks.
-See [source and maintenance details](LANGUAGE_SOURCES.md#folding-queries) for
-pinned revisions, licenses, adaptations, and import commands.
+```swift
+textView.isCodeFoldingEnabled = true
+```
+
+Markdown supports sections with hash-prefixed or underline-style headings, as well as fenced code blocks.
+
+If you are creating a Runestone language manually, create a `TreeSitterLanguage.Query` from `Query.foldsFileURL` and pass it to the `foldsQuery` initializer parameter. This URL is optional. Comment, JSDoc, JSON5, MarkdownInline, R, and Regex do not include folding queries and return `nil`.
+
+The queries are copied from the grammar repositories and Neovim's nvim-treesitter. Refer to [Language Sources](LANGUAGE_SOURCES.md#folding-queries) for their revisions, licenses, and instructions on updating them.
 
 ## Compatibility
 
