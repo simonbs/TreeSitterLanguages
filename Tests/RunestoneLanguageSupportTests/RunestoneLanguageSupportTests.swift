@@ -59,10 +59,15 @@ final class RunestoneLanguageSupportTests: XCTestCase {
             ("xml", .xml),
             ("yaml", .yaml),
         ]
+        let languagesWithoutFolding: Set<String> = ["comment", "jsDoc", "json5", "markdownInline", "r", "regex"]
         for (name, language) in languages {
             XCTAssertNotNil(language.highlightsQuery, "Missing highlights for \(name)")
+            XCTAssertEqual(language.foldsQuery != nil, !languagesWithoutFolding.contains(name), "Missing or unexpected folds for \(name)")
             language.prepare()
             XCTAssertNotNil(language.internalLanguage.highlightsQuery, "Invalid highlights for \(name)")
+            if language.foldsQuery != nil {
+                XCTAssertNotNil(language.internalLanguage.foldsQuery, "Invalid folds for \(name)")
+            }
             if language.injectionsQuery != nil {
                 XCTAssertNotNil(language.internalLanguage.injectionsQuery, "Invalid injections for \(name)")
             }

@@ -6,11 +6,12 @@ import TreeSitterJavaScriptQueries
 
 public extension TreeSitterLanguage {
     static var typeScript: TreeSitterLanguage {
+        let foldsQuery = TreeSitterTypeScriptQueries.Query.foldsFileURL.flatMap { TreeSitterLanguage.Query(contentsOf: $0) }
         let highlightsQuery = combinedQuery(fromFilesAt: [
             TreeSitterJavaScriptQueries.Query.highlightsFileURL,
             TreeSitterTypeScriptQueries.Query.highlightsFileURL
         ])
-        return TreeSitterLanguage(tree_sitter_typescript(), highlightsQuery: highlightsQuery)
+        return TreeSitterLanguage(tree_sitter_typescript(), highlightsQuery: highlightsQuery, foldsQuery: foldsQuery)
     }
 }
 
