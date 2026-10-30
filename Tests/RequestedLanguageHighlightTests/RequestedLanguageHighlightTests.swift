@@ -1,10 +1,55 @@
 @testable import Runestone
+import TreeSitterDiffRunestone
 import TreeSitterNixRunestone
 import TreeSitterXMLRunestone
 import UIKit
 import XCTest
 
 final class RequestedLanguageHighlightTests: XCTestCase {
+    func testDiffMarkersAndUnicodeAcrossLineEndings() {
+        let lines = [
+            "diff --git a/demo.txt b/demo.txt",
+            "index 1234567..abcdef0 100644",
+            "--- a/demo.txt", "+++ b/demo.txt", "@@ -1,3 +1,3 @@",
+            " context æøå", "-old value 😀", "+new value 😀",
+            "---old marker", "+++new marker"
+        ]
+        for ending in ["\n", "\r\n"] {
+            for finalNewline in [false, true] {
+                let source = lines.joined(separator: ending) + (finalNewline ? ending : "")
+                let result = highlight(source, language: .diff)
+                assertColor(.green, for: "+new value 😀", in: result)
+                assertColor(.red, for: "-old value 😀", in: result)
+                assertColor(.green, for: "+++new marker", in: result)
+                assertColor(.red, for: "---old marker", in: result)
+                assertColor(.black, for: " context æøå", in: result)
+                assertColor(.green, for: "+++ ", in: result)
+                assertColor(.red, for: "--- ", in: result)
+                assertColor(.brown, for: "b/demo.txt", occurrence: 1, in: result)
+                assertColor(.orange, for: "@@ -1,3 +1,3 @@", in: result)
+                assertColor(.cyan, for: "..", in: result)
+            }
+        }
+    }
+
+    func testDiffBinaryPayloadDirections() {
+        let source = "diff --git a/image.bin b/image.bin\nindex 1111111..2222222 100644\nGIT binary patch\nliteral 1\nA00000\n\nliteral 1\nB11111\n\n"
+        let result = highlight(source, language: .diff)
+        assertColor(.green, for: "A00000", in: result)
+        assertColor(.red, for: "B11111", in: result)
+    }
+
+    func testDiffStandaloneChangesAndComments() {
+        let source = "+\n-\n!changed\n>added\n<removed\n# comment\n"
+        let result = highlight(source, language: .diff)
+        assertColor(.green, for: "+", in: result)
+        assertColor(.red, for: "-", in: result)
+        assertColor(.orange, for: "!changed", in: result)
+        assertColor(.green, for: ">added", in: result)
+        assertColor(.red, for: "<removed", in: result)
+        assertColor(.gray, for: "# comment", in: result)
+    }
+
     func testNixContextualCapturesSurviveGenericIdentifierStyling() {
         let source = "# æøå\n{ pkgs }: let greet = name: name; in { message = greet \"Hej\"; package = pkgs.callPackage ./default.nix {}; enabled = true; }"
         let result = highlight(source, language: .nix)
@@ -82,6 +127,10 @@ private final class AuditTheme: Theme {
     let markedTextBackgroundColor = UIColor.white
 
     func textColor(for highlightName: String) -> UIColor? {
+        if highlightName == "diff.plus" { return .green }
+        if highlightName == "diff.minus" { return .red }
+        if highlightName == "diff.delta" || highlightName == "attribute" { return .orange }
+        if highlightName == "punctuation.special" { return .cyan }
         if highlightName == "constant.builtin" || highlightName == "variable.builtin" { return .purple }
         if highlightName == "text.literal" { return .brown }
         switch highlightName.split(separator: ".").first {

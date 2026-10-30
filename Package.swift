@@ -60,6 +60,9 @@ let package = Package(
         .library(name: "TreeSitterCSS", targets: ["TreeSitterCSS"]),
         .library(name: "TreeSitterCSSQueries", targets: ["TreeSitterCSSQueries"]),
         .library(name: "TreeSitterCSSRunestone", targets: ["TreeSitterCSSRunestone"]),
+        .library(name: "TreeSitterDiff", targets: ["TreeSitterDiff"]),
+        .library(name: "TreeSitterDiffQueries", targets: ["TreeSitterDiffQueries"]),
+        .library(name: "TreeSitterDiffRunestone", targets: ["TreeSitterDiffRunestone"]),
         .library(name: "TreeSitterElixir", targets: ["TreeSitterElixir"]),
         .library(name: "TreeSitterElixirQueries", targets: ["TreeSitterElixirQueries"]),
         .library(name: "TreeSitterElixirRunestone", targets: ["TreeSitterElixirRunestone"]),
@@ -177,6 +180,7 @@ let package = Package(
                 "TreeSitterCSharpRunestone",
                 "TreeSitterCommentRunestone",
                 "TreeSitterDartRunestone",
+                "TreeSitterDiffRunestone",
                 "TreeSitterElixirRunestone",
                 "TreeSitterElmRunestone",
                 "TreeSitterFishRunestone",
@@ -255,7 +259,7 @@ let package = Package(
         .target(name: "TreeSitterScalaQueries", resources: [.copy("highlights.scm"), .copy("folds.scm")]),
         .target(name: "TreeSitterScalaRunestone", dependencies: ["Runestone", "TreeSitterScala", "TreeSitterScalaQueries"]),
         .testTarget(name: "RequestedLanguageHighlightTests", dependencies: [
-            "Runestone", "TreeSitterNixRunestone", "TreeSitterXMLRunestone"
+            "Runestone", "TreeSitterNixRunestone", "TreeSitterXMLRunestone", "TreeSitterDiffRunestone"
         ]),
         .target(name: "TreeSitterLanguagesCommon"),
         .target(name: "TreeSitterAstro", cSettings: [.headerSearchPath("src")]),
@@ -279,6 +283,9 @@ let package = Package(
         .target(name: "TreeSitterCSS", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterCSSQueries", resources: [.copy("highlights.scm"), .copy("folds.scm")]),
         .target(name: "TreeSitterCSSRunestone", dependencies: ["Runestone", "TreeSitterCSS", "TreeSitterCSSQueries"]),
+        .target(name: "TreeSitterDiff", cSettings: [.headerSearchPath("src")]),
+        .target(name: "TreeSitterDiffQueries", resources: [.copy("highlights.scm"), .copy("folds.scm")]),
+        .target(name: "TreeSitterDiffRunestone", dependencies: ["Runestone", "TreeSitterDiff", "TreeSitterDiffQueries"]),
         .target(name: "TreeSitterElixir", cSettings: [.headerSearchPath("src")]),
         .target(name: "TreeSitterElixirQueries", resources: [.copy("highlights.scm"), .copy("tags.scm"), .copy("folds.scm")]),
         .target(name: "TreeSitterElixirRunestone", dependencies: ["Runestone", "TreeSitterElixir", "TreeSitterElixirQueries"]),
