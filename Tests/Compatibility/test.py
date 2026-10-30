@@ -18,6 +18,7 @@ SAMPLES = {
     "CSharp": "class Example { int value = 1; }",
     "CPP": "int main() { return 0; }",
     "CSS": "body { color: red; }",
+    "Diff": 'diff --git a/demo.txt b/demo.txt\nindex 1234567..abcdef0 100644\n--- a/demo.txt\n+++ b/demo.txt\n@@ -1,3 +1,3 @@\n context æøå\n-old value\n+new value\n',
     "Elixir": "value = 1\n",
     "Elm": "module Main exposing (value)\nvalue = 1\n",
     "Go": "package main\nfunc main() {}\n",
