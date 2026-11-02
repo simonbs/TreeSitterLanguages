@@ -15,6 +15,7 @@
     "CSharp": "nvim-c_sharp",
     "Comment": null,
     "Dart": "nvim-dart",
+    "Diff": "nvim-diff",
     "Elixir": "nvim-elixir",
     "Elm": "nvim-elm",
     "Fish": "nvim-fish",
@@ -113,6 +114,14 @@
       "repository": "nvim-treesitter/nvim-treesitter",
       "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "sha256": "d384432be9fe066f6ef103e87288e4a797847189bdc414f977be71043d1cb0cf"
+    },
+    "nvim-diff": {
+      "license": "Apache-2.0",
+      "notice": "Licenses/Folding/nvim-treesitter-APACHE-2.0.txt",
+      "path": "runtime/queries/diff/folds.scm",
+      "repository": "nvim-treesitter/nvim-treesitter",
+      "revision": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "sha256": "b693a814f49a74908c52c9d3c5e4955820a84700fd1d8b6fdbebd59b7a318b6e"
     },
     "nvim-ecma": {
       "license": "Apache-2.0",

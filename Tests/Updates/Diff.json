@@ -1,0 +1,132 @@
+{
+  "title": "Diff",
+  "member": "diff",
+  "symbol": "tree_sitter_diff",
+  "repo": "https://github.com/tree-sitter-grammars/tree-sitter-diff",
+  "revision": "6e74409a3d6142919347bb21f3ef4a2ce940ff2b",
+  "license": "MIT",
+  "licenses": [
+    "Licenses/Diff.txt"
+  ],
+  "query_provenance": [
+    {
+      "repo": "https://github.com/tree-sitter-grammars/tree-sitter-diff",
+      "revision": "6e74409a3d6142919347bb21f3ef4a2ce940ff2b",
+      "path": "queries/highlights.scm"
+    }
+  ],
+  "query_adaptations": [
+    "Remove diff-marker punctuation captures and their unsupported priority property so markers retain diff styling. Preserve index separator punctuation.",
+    "Remove the editor-specific spell capture."
+  ],
+  "source": "diff --git a/demo.txt b/demo.txt\nindex 1234567..abcdef0 100644\n--- a/demo.txt\n+++ b/demo.txt\n@@ -1,3 +1,3 @@\n context æøå\n-old value\n+new value\n---old marker\n+++new marker\n\\ No newline at end of file\n!changed\n# comment\ndiff --git a/image.bin b/image.bin\nindex 1111111..2222222 100644\nGIT binary patch\nliteral 1\nA00000\n\nliteral 1\nB11111\n\n",
+  "expected": [
+    [
+      "diff.plus",
+      "+new value"
+    ],
+    [
+      "diff.minus",
+      "-old value"
+    ],
+    [
+      "diff.plus",
+      "+++new marker"
+    ],
+    [
+      "diff.minus",
+      "---old marker"
+    ],
+    [
+      "diff.plus",
+      "+++ b/demo.txt"
+    ],
+    [
+      "diff.minus",
+      "--- a/demo.txt"
+    ],
+    [
+      "attribute",
+      "@@ -1,3 +1,3 @@"
+    ],
+    [
+      "constant",
+      "1234567"
+    ],
+    [
+      "number",
+      "100644"
+    ],
+    [
+      "punctuation.special",
+      ".."
+    ],
+    [
+      "string.special.path",
+      "b/demo.txt"
+    ],
+    [
+      "diff.delta",
+      "!changed"
+    ],
+    [
+      "comment",
+      "# comment"
+    ],
+    [
+      "diff.plus",
+      "A00000"
+    ],
+    [
+      "diff.minus",
+      "B11111"
+    ]
+  ],
+  "forbidden": [
+    [
+      "diff.plus",
+      "-old value"
+    ],
+    [
+      "diff.minus",
+      "+new value"
+    ],
+    [
+      "diff.plus",
+      " context æøå"
+    ],
+    [
+      "diff.minus",
+      " context æøå"
+    ],
+    [
+      "punctuation.special",
+      "+"
+    ],
+    [
+      "punctuation.special",
+      "-"
+    ],
+    [
+      "punctuation.special",
+      "+++"
+    ],
+    [
+      "punctuation.special",
+      "---"
+    ],
+    [
+      "diff.minus",
+      "A00000"
+    ],
+    [
+      "diff.plus",
+      "B11111"
+    ]
+  ],
+  "notes": [
+    "Diff structure highlighting only; upstream filename/offset injections are not included.",
+    "Filename captures intentionally specialize file-header styling. Theme colors are supplied by the consumer.",
+    "Native capture fixtures do not assert production styling; Swift regression tests exercise capture layering."
+  ]
+}

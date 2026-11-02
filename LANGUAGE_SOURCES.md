@@ -21,6 +21,7 @@ redistributing parsers or queries; query licenses can differ from parser license
 | [CSharp](Tests/Updates/CSharp.json) | [tree-sitter/tree-sitter-c-sharp@8c0abe0b84a3](https://github.com/tree-sitter/tree-sitter-c-sharp/tree/8c0abe0b84a3681d3e6852ce2e2a1eecb4f731c5) | MIT |
 | [CSS](Tests/Updates/CSS.json) | [tree-sitter/tree-sitter-css@dda5cfc5722c](https://github.com/tree-sitter/tree-sitter-css/tree/dda5cfc5722c429eaba1c910ca32c2c0c5bb1a3f) | MIT |
 | [Dart](Tests/Additional/Dart.json) | [UserNobody14/tree-sitter-dart@0038280b774b](https://github.com/UserNobody14/tree-sitter-dart/tree/0038280b774b65c1b89ba7fec50624d8baed9fe1) | MIT |
+| [Diff](Tests/Updates/Diff.json) | [tree-sitter-grammars/tree-sitter-diff@6e74409a3d61](https://github.com/tree-sitter-grammars/tree-sitter-diff/tree/6e74409a3d6142919347bb21f3ef4a2ce940ff2b) | MIT |
 | [Elixir](Tests/Updates/Elixir.json) | [elixir-lang/tree-sitter-elixir@cb32ccbe17c6](https://github.com/elixir-lang/tree-sitter-elixir/tree/cb32ccbe17c67037b09e31bf9beb22cdae6ed8e9) | Apache-2.0 |
 | [Elm](Tests/Updates/Elm.json) | [elm-tooling/tree-sitter-elm@e1e8fea161a1](https://github.com/elm-tooling/tree-sitter-elm/tree/e1e8fea161a1e66f3997855d316be2a43e4e956f) | MIT |
 | [Fish](Tests/Additional/Fish.json) | [ram02z/tree-sitter-fish@b7f1d682941e](https://github.com/ram02z/tree-sitter-fish/tree/b7f1d682941e0c62dfcd6bf9ef481638351bab16) | Unlicense |
@@ -77,6 +78,12 @@ anchored `match?` predicates, and markup captures use Runestone theme names.
 Nix restricts property/variable captures to their structural contexts and uses
 `function.call` for ordinary calls. Its `is-not? local` predicates are omitted
 because Runestone does not perform local-scope analysis.
+
+Diff retains semantic `diff.plus`, `diff.minus`, and `diff.delta` captures. Its highlight
+query omits the editor-specific `spell` capture and diff-marker punctuation patterns
+whose Neovim priority is not implemented by Runestone. Index separator punctuation
+and filename specialization are retained. Upstream filename/offset injections are
+not included.
 
 Known limitations in the selected grammars/queries:
 

@@ -9,6 +9,7 @@
 @_exported import TreeSitterCSharpRunestone
 @_exported import TreeSitterCommentRunestone
 @_exported import TreeSitterDartRunestone
+@_exported import TreeSitterDiffRunestone
 @_exported import TreeSitterElixirRunestone
 @_exported import TreeSitterElmRunestone
 @_exported import TreeSitterFishRunestone

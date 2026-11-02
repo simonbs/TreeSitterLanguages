@@ -17,6 +17,7 @@ final class RunestoneLanguageSupportTests: XCTestCase {
             ("cSharp", .cSharp),
             ("comment", .comment),
             ("dart", .dart),
+            ("diff", .diff),
             ("elixir", .elixir),
             ("elm", .elm),
             ("fish", .fish),

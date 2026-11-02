@@ -71,7 +71,7 @@ Runestone itself remains independent of this package.
 
 ## Code Folding
 
-The Runestone libraries include folding queries for 44 languages. To show folding controls in the gutter, enable code folding on your text view:
+The Runestone libraries include folding queries for 45 languages. To show folding controls in the gutter, enable code folding on your text view:
 
 ```swift
 textView.isCodeFoldingEnabled = true
@@ -111,6 +111,7 @@ Thanks to all the contributors to these repositories for their great effort in e
 - [tree-sitter-c-sharp](https://github.com/tree-sitter/tree-sitter-c-sharp)
 - [tree-sitter-cpp](https://github.com/tree-sitter/tree-sitter-cpp)
 - [tree-sitter-css](https://github.com/tree-sitter/tree-sitter-css)
+- [tree-sitter-diff](https://github.com/tree-sitter-grammars/tree-sitter-diff)
 - [tree-sitter-elixir](https://github.com/elixir-lang/tree-sitter-elixir)
 - [tree-sitter-elm](https://github.com/elm-tooling/tree-sitter-elm)
 - [tree-sitter-go](https://github.com/tree-sitter/tree-sitter-go)
