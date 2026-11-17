@@ -1,0 +1,1374 @@
+[
+  {
+    "module": "TreeSitterAstro",
+    "target": "MappedTreeSitterAstro",
+    "function": "tree_sitter_astro",
+    "grammar": "astro",
+    "resource": "astro-f80ed54671a96cfc",
+    "bytes": 10056,
+    "sha256": "f80ed54671a96cfc1f35be48a875420f41d97906a66a2aad871738d854ef981f",
+    "offsets": [
+      [
+        64,
+        236
+      ],
+      [
+        304,
+        5624
+      ],
+      [
+        5928,
+        644
+      ],
+      [
+        6576,
+        3480
+      ]
+    ],
+    "source_sha256": "64bba63bd3f101007ce4dffae94ce3e38b2793f40ddf39db101b7ecd5e612c29"
+  },
+  {
+    "module": "TreeSitterBash",
+    "target": "MappedTreeSitterBash",
+    "function": "tree_sitter_bash",
+    "grammar": "bash",
+    "resource": "bash-1cd5ffb043fe8494",
+    "bytes": 1087728,
+    "sha256": "1cd5ffb043fe849434a2d371717c2aa6aa8fe2a090ef8e0b22d6bd66b46e7cb9",
+    "offsets": [
+      [
+        64,
+        292880
+      ],
+      [
+        292944,
+        630150
+      ],
+      [
+        923096,
+        28192
+      ],
+      [
+        951288,
+        136440
+      ]
+    ],
+    "source_sha256": "5ad30bb1a260c76df5397490b8bd97e272e62ed9c99be36fa53da959d7667e7f"
+  },
+  {
+    "module": "TreeSitterBicep",
+    "target": "MappedTreeSitterBicep",
+    "function": "tree_sitter_bicep",
+    "grammar": "bicep",
+    "resource": "bicep-3b997d1e2dd3ad96",
+    "bytes": 114648,
+    "sha256": "3b997d1e2dd3ad96729676e9b33c8787af87e71fbb769067ac27d9bc0ed71228",
+    "offsets": [
+      [
+        64,
+        2718
+      ],
+      [
+        2784,
+        95928
+      ],
+      [
+        98712,
+        3296
+      ],
+      [
+        102008,
+        12640
+      ]
+    ],
+    "source_sha256": "58b162a365ec7f4473db3c84373117bb2687e7b021a321da6efd46299f41cdf8"
+  },
+  {
+    "module": "TreeSitterC",
+    "target": "MappedTreeSitterC",
+    "function": "tree_sitter_c",
+    "grammar": "c",
+    "resource": "c-7397a69384c45175",
+    "bytes": 508568,
+    "sha256": "7397a69384c45175c75dc4f6b24ac8260573cd0cd2446ea9592f4b35fa0c4ed5",
+    "offsets": [
+      [
+        64,
+        327600
+      ],
+      [
+        327664,
+        132412
+      ],
+      [
+        460080,
+        6240
+      ],
+      [
+        466320,
+        42248
+      ]
+    ],
+    "source_sha256": "f2883ff9b21f4a5bd5553c1b10366c418947d17a7bc6bf256124a7542f079dd2"
+  },
+  {
+    "module": "TreeSitterCMake",
+    "target": "MappedTreeSitterCMake",
+    "function": "tree_sitter_cmake",
+    "grammar": "cmake",
+    "resource": "cmake-60d94f2f124bd158",
+    "bytes": 54488,
+    "sha256": "60d94f2f124bd158e15b4539e476b75f05644d56e9a36ef5c5d1dd78844c391e",
+    "offsets": [
+      [
+        64,
+        384
+      ],
+      [
+        448,
+        37910
+      ],
+      [
+        38360,
+        3320
+      ],
+      [
+        41680,
+        12808
+      ]
+    ],
+    "source_sha256": "ece92c2e3fbf15634fb90fab91d0af749348c069d27208eeb10dcdd4e77fe5a2"
+  },
+  {
+    "module": "TreeSitterCPP",
+    "target": "MappedTreeSitterCPP",
+    "function": "tree_sitter_cpp",
+    "grammar": "cpp",
+    "resource": "cpp-dfa3bffa2f8377b3",
+    "bytes": 5296160,
+    "sha256": "dfa3bffa2f8377b35d80c6114ee576ec37104426addd3bed7117b3482e96b929",
+    "offsets": [
+      [
+        64,
+        4361640
+      ],
+      [
+        4361704,
+        748278
+      ],
+      [
+        5109984,
+        31632
+      ],
+      [
+        5141616,
+        154544
+      ]
+    ],
+    "source_sha256": "0007727b6e1fbc07657b6a4bf5dc39f524c6009fa347f9faaf180fa9ab17e999"
+  },
+  {
+    "module": "TreeSitterCSS",
+    "target": "MappedTreeSitterCSS",
+    "function": "tree_sitter_css",
+    "grammar": "css",
+    "resource": "css-2d6f637c894ad6c3",
+    "bytes": 41224,
+    "sha256": "2d6f637c894ad6c3983bfc867d4d1c44cd9b0b75f877c1f23328d71cb2f12812",
+    "offsets": [
+      [
+        64,
+        568
+      ],
+      [
+        632,
+        27386
+      ],
+      [
+        28024,
+        1760
+      ],
+      [
+        29784,
+        11440
+      ]
+    ],
+    "source_sha256": "2e5150071220012ee635ac9e2119f4f3a93e0b51a7a3b69ab0cd87c18cf5e51e"
+  },
+  {
+    "module": "TreeSitterCSharp",
+    "target": "MappedTreeSitterCSharp",
+    "function": "tree_sitter_c_sharp",
+    "grammar": "cSharp",
+    "resource": "c_sharp-42d33dbf086704b1",
+    "bytes": 5651088,
+    "sha256": "42d33dbf086704b166db73e8b26a676d1a0635f3086287384398b92536752dba",
+    "offsets": [
+      [
+        64,
+        4850900
+      ],
+      [
+        4850968,
+        680766
+      ],
+      [
+        5531736,
+        16080
+      ],
+      [
+        5547816,
+        103272
+      ]
+    ],
+    "source_sha256": "2549deeed0c8aeb84f42f9ccd3cf9de047a0c609387075a97784fddb2d1770cd"
+  },
+  {
+    "module": "TreeSitterComment",
+    "target": "MappedTreeSitterComment",
+    "function": "tree_sitter_comment",
+    "grammar": "comment",
+    "resource": "comment-dfde2243fe94f65d",
+    "bytes": 1440,
+    "sha256": "dfde2243fe94f65d07b3e96d8e398d4ac740725d52694d97c2759a8d245c84c4",
+    "offsets": [
+      [
+        64,
+        630
+      ],
+      [
+        696,
+        142
+      ],
+      [
+        840,
+        28
+      ],
+      [
+        872,
+        568
+      ]
+    ],
+    "source_sha256": "bb4ae2d22ac66a1bf48787102302cb9f3f139c34b616b3ff69efab8b4b734817"
+  },
+  {
+    "module": "TreeSitterDart",
+    "target": "MappedTreeSitterDart",
+    "function": "tree_sitter_dart",
+    "grammar": "dart",
+    "resource": "dart-4b4c68e8675be0c7",
+    "bytes": 1103512,
+    "sha256": "4b4c68e8675be0c7705bd4c9467db3a8aded2f1d6aaaa0ff910c8b9352525fad",
+    "offsets": [
+      [
+        64,
+        655776
+      ],
+      [
+        655840,
+        362064
+      ],
+      [
+        1017904,
+        14684
+      ],
+      [
+        1032592,
+        70920
+      ]
+    ],
+    "source_sha256": "9570f47f9912a4b169f5d959f6db06859087eb95c3f1203e312a33c12da66309"
+  },
+  {
+    "module": "TreeSitterDiff",
+    "target": "MappedTreeSitterDiff",
+    "function": "tree_sitter_diff",
+    "grammar": "diff",
+    "resource": "diff-f375af9551e991ff",
+    "bytes": 8360,
+    "sha256": "f375af9551e991ff2f5559e4a334b188b7c5a42a884b7799a3a90756cc11d9a4",
+    "offsets": [
+      [
+        64,
+        672
+      ],
+      [
+        736,
+        3298
+      ],
+      [
+        4040,
+        472
+      ],
+      [
+        4512,
+        3848
+      ]
+    ],
+    "source_sha256": "6f6d05925081724a1ea3d9179ce2cef0f0df59447844308cde7c38dd78d26f17"
+  },
+  {
+    "module": "TreeSitterElixir",
+    "target": "MappedTreeSitterElixir",
+    "function": "tree_sitter_elixir",
+    "grammar": "elixir",
+    "resource": "elixir-2920970c30dc1164",
+    "bytes": 1233864,
+    "sha256": "2920970c30dc11644aac215eaee70659078a1af42a7333dc6a0212008ea8e9cb",
+    "offsets": [
+      [
+        64,
+        510120
+      ],
+      [
+        510184,
+        616830
+      ],
+      [
+        1127016,
+        23668
+      ],
+      [
+        1150688,
+        83176
+      ]
+    ],
+    "source_sha256": "40c2d62393deb90537d0b8bf20f30c2c468c35667535353ab047b23300a2c6de"
+  },
+  {
+    "module": "TreeSitterElm",
+    "target": "MappedTreeSitterElm",
+    "function": "tree_sitter_elm",
+    "grammar": "elm",
+    "resource": "elm-9fc9642c26e127f8",
+    "bytes": 112440,
+    "sha256": "9fc9642c26e127f836541dc8abf59b2273afda24e03083ca9560f6c256d4e5d9",
+    "offsets": [
+      [
+        64,
+        8040
+      ],
+      [
+        8104,
+        82982
+      ],
+      [
+        91088,
+        4160
+      ],
+      [
+        95248,
+        17192
+      ]
+    ],
+    "source_sha256": "7c993bdabb63c6c6424fc0b433073c9000446a0e3de189d8a2ab93b33636369d"
+  },
+  {
+    "module": "TreeSitterFish",
+    "target": "MappedTreeSitterFish",
+    "function": "tree_sitter_fish",
+    "grammar": "fish",
+    "resource": "fish-20f20d6794875ecf",
+    "bytes": 49848,
+    "sha256": "20f20d6794875ecff82c41464512ae4f4e7af454f0ee0f20e1b7596a32de5ca0",
+    "offsets": [
+      [
+        64,
+        14136
+      ],
+      [
+        14200,
+        23088
+      ],
+      [
+        37288,
+        1692
+      ],
+      [
+        38984,
+        10864
+      ]
+    ],
+    "source_sha256": "c08e354154e77943264cc308071b1b00575b23e9c1a460a23020d724fec89429"
+  },
+  {
+    "module": "TreeSitterGlimmer",
+    "target": "MappedTreeSitterGlimmer",
+    "function": "tree_sitter_glimmer",
+    "grammar": "glimmer",
+    "resource": "glimmer-1af54dffa7736ed9",
+    "bytes": 19728,
+    "sha256": "1af54dffa7736ed906c7dde88d731347239b0ddcb8b609d823c6d0999ddace28",
+    "offsets": [
+      [
+        64,
+        316
+      ],
+      [
+        384,
+        10668
+      ],
+      [
+        11056,
+        1388
+      ],
+      [
+        12448,
+        7280
+      ]
+    ],
+    "source_sha256": "162c0b4188cc92c05f117eb97677789fea118c52a605a7c86ef8171389e88af2"
+  },
+  {
+    "module": "TreeSitterGo",
+    "target": "MappedTreeSitterGo",
+    "function": "tree_sitter_go",
+    "grammar": "go",
+    "resource": "go-d1604bc306662c6b",
+    "bytes": 167448,
+    "sha256": "d1604bc306662c6b3be48450452919df06896ddd9d1c9324fddd855295c8bea3",
+    "offsets": [
+      [
+        64,
+        12412
+      ],
+      [
+        12480,
+        124888
+      ],
+      [
+        137368,
+        5652
+      ],
+      [
+        143024,
+        24424
+      ]
+    ],
+    "source_sha256": "3dbf6ed1238b5dfcf2be4d2f2d4cb27a14d34f34d7784eccccbfd532fd4a6d85"
+  },
+  {
+    "module": "TreeSitterHCL",
+    "target": "MappedTreeSitterHCL",
+    "function": "tree_sitter_hcl",
+    "grammar": "hcl",
+    "resource": "hcl-326a17f126fbfc3f",
+    "bytes": 61696,
+    "sha256": "326a17f126fbfc3f95e5f01c52ad2e59202ab0a4cb43e1e6846926e53e1c7eb5",
+    "offsets": [
+      [
+        64,
+        484
+      ],
+      [
+        552,
+        49360
+      ],
+      [
+        49912,
+        2704
+      ],
+      [
+        52616,
+        9080
+      ]
+    ],
+    "source_sha256": "09ebb173def18078ed193fc933052f5942b39859eea27ff9301f721e96c7803a"
+  },
+  {
+    "module": "TreeSitterHTML",
+    "target": "MappedTreeSitterHTML",
+    "function": "tree_sitter_html",
+    "grammar": "html",
+    "resource": "html-21f7e00ddaa51f4f",
+    "bytes": 5160,
+    "sha256": "21f7e00ddaa51f4f64cd865be1d857b2e0204267a4e82f3890ee2b229acd37f0",
+    "offsets": [
+      [
+        64,
+        164
+      ],
+      [
+        232,
+        2530
+      ],
+      [
+        2768,
+        368
+      ],
+      [
+        3136,
+        2024
+      ]
+    ],
+    "source_sha256": "65768172733b3bbe461cbdc14ea928f00fbfcc51d8ac68f0a5c72071c6a0bbf1"
+  },
+  {
+    "module": "TreeSitterHaskell",
+    "target": "MappedTreeSitterHaskell",
+    "function": "tree_sitter_haskell",
+    "grammar": "haskell",
+    "resource": "haskell-52f4b127af7fdaa7",
+    "bytes": 3589648,
+    "sha256": "52f4b127af7fdaa74f5210f8df858619df84313c080fc7a897a32586c0e3e4d4",
+    "offsets": [
+      [
+        64,
+        2553972
+      ],
+      [
+        2554040,
+        885396
+      ],
+      [
+        3439440,
+        41936
+      ],
+      [
+        3481376,
+        108272
+      ]
+    ],
+    "source_sha256": "a136b31118c6767f3a9fbbb245adc559370eabd914b72b90438395542327a089"
+  },
+  {
+    "module": "TreeSitterJSDoc",
+    "target": "MappedTreeSitterJSDoc",
+    "function": "tree_sitter_jsdoc",
+    "grammar": "jsdoc",
+    "resource": "jsdoc-361458327a159f56",
+    "bytes": 5720,
+    "sha256": "361458327a159f56aeaaa4db5029819e72bab97961c1f5ceae328b3ffd0510fb",
+    "offsets": [
+      [
+        64,
+        172
+      ],
+      [
+        240,
+        2680
+      ],
+      [
+        2920,
+        388
+      ],
+      [
+        3312,
+        2408
+      ]
+    ],
+    "source_sha256": "97429822f412e07fbaf66fd489e22e7a25954fcee553f7611eda37e337a12353"
+  },
+  {
+    "module": "TreeSitterJSON",
+    "target": "MappedTreeSitterJSON",
+    "function": "tree_sitter_json",
+    "grammar": "json",
+    "resource": "json-a3e16c55c00521ee",
+    "bytes": 2008,
+    "sha256": "a3e16c55c00521ee27bce61b08d6f1dabe9fddcf09b34b51fa5bf649512fedd2",
+    "offsets": [
+      [
+        64,
+        350
+      ],
+      [
+        416,
+        720
+      ],
+      [
+        1136,
+        100
+      ],
+      [
+        1240,
+        768
+      ]
+    ],
+    "source_sha256": "9a266ae4a0305b8a2769bee90a14ac06914bdc83a509f16428311eac2845637e"
+  },
+  {
+    "module": "TreeSitterJSON5",
+    "target": "MappedTreeSitterJSON5",
+    "function": "tree_sitter_json5",
+    "grammar": "json5",
+    "resource": "json5-87f55adc1192f77f",
+    "bytes": 1584,
+    "sha256": "87f55adc1192f77f705aeed2ad8bf1b81ce30a711e3765206560cd3686ea8055",
+    "offsets": [
+      [
+        64,
+        294
+      ],
+      [
+        360,
+        512
+      ],
+      [
+        872,
+        96
+      ],
+      [
+        968,
+        616
+      ]
+    ],
+    "source_sha256": "6bde6fba1feae84e50003a2cd65c08c8b298f1c5817de493dcb4bcae3922098e"
+  },
+  {
+    "module": "TreeSitterJava",
+    "target": "MappedTreeSitterJava",
+    "function": "tree_sitter_java",
+    "grammar": "java",
+    "resource": "java-084a069a7d3856eb",
+    "bytes": 354680,
+    "sha256": "084a069a7d3856eb35feb7fb3f68179af37d113681fa9dce888606b680f868fc",
+    "offsets": [
+      [
+        64,
+        259840
+      ],
+      [
+        259904,
+        63400
+      ],
+      [
+        323304,
+        3916
+      ],
+      [
+        327224,
+        27456
+      ]
+    ],
+    "source_sha256": "4add5150cf4531eb5dd97f3343dcf65cd11704c84711348b328582b83424a0e4"
+  },
+  {
+    "module": "TreeSitterJavaScript",
+    "target": "MappedTreeSitterJavaScript",
+    "function": "tree_sitter_javascript",
+    "grammar": "javaScript",
+    "resource": "javascript-3f41d2c9aa7388bd",
+    "bytes": 354024,
+    "sha256": "3f41d2c9aa7388bdd8fd5c40fa63f5725d13200de634df83a0262402f0995963",
+    "offsets": [
+      [
+        64,
+        202014
+      ],
+      [
+        202080,
+        116100
+      ],
+      [
+        318184,
+        5932
+      ],
+      [
+        324120,
+        29904
+      ]
+    ],
+    "source_sha256": "67209ca7ef6e1a4f74e29e48b5928455f892fe1821a3960fbcd62f4e972f7384"
+  },
+  {
+    "module": "TreeSitterJulia",
+    "target": "MappedTreeSitterJulia",
+    "function": "tree_sitter_julia",
+    "grammar": "julia",
+    "resource": "julia-1729b37898d85147",
+    "bytes": 2437472,
+    "sha256": "1729b37898d8514767da17ba2214b1f3988d4ca170a05ecbb91c2077cadf03b4",
+    "offsets": [
+      [
+        64,
+        1985310
+      ],
+      [
+        1985376,
+        348150
+      ],
+      [
+        2333528,
+        16728
+      ],
+      [
+        2350256,
+        87216
+      ]
+    ],
+    "source_sha256": "420e28372baae12a7de3009a0dca532b5e99a23c3df9e24c82aa46e9a4e29914"
+  },
+  {
+    "module": "TreeSitterLaTeX",
+    "target": "MappedTreeSitterLaTeX",
+    "function": "tree_sitter_latex",
+    "grammar": "latex",
+    "resource": "latex-838142cd3493cbf5",
+    "bytes": 3228632,
+    "sha256": "838142cd3493cbf5c2a7197f3d6dacab062e9400ae7fd09e4763492a1aa34d7b",
+    "offsets": [
+      [
+        64,
+        3082758
+      ],
+      [
+        3082824,
+        46638
+      ],
+      [
+        3129464,
+        8000
+      ],
+      [
+        3137464,
+        91168
+      ]
+    ],
+    "source_sha256": "756296929ff85d5fe1a60e2fe536d0e0f81f3b1c15cada4eb5f4a6510d104897"
+  },
+  {
+    "module": "TreeSitterLua",
+    "target": "MappedTreeSitterLua",
+    "function": "tree_sitter_lua",
+    "grammar": "lua",
+    "resource": "lua-161d492f16772d63",
+    "bytes": 34376,
+    "sha256": "161d492f16772d63653514c577435509c9d562218f88d20f408e2496be13a507",
+    "offsets": [
+      [
+        64,
+        572
+      ],
+      [
+        640,
+        25860
+      ],
+      [
+        26504,
+        1120
+      ],
+      [
+        27624,
+        6752
+      ]
+    ],
+    "source_sha256": "933206d96a78f7785c13b2600182f1527dcd755c200b1271bb5bc4d8da4b17b3"
+  },
+  {
+    "module": "TreeSitterNix",
+    "target": "MappedTreeSitterNix",
+    "function": "tree_sitter_nix",
+    "grammar": "nix",
+    "resource": "nix-ee4007035398a813",
+    "bytes": 56744,
+    "sha256": "ee4007035398a81328bed3e0365037e75cc774c1b6beb87c8ac9f332a3be531d",
+    "offsets": [
+      [
+        64,
+        432
+      ],
+      [
+        496,
+        45238
+      ],
+      [
+        45736,
+        2156
+      ],
+      [
+        47896,
+        8848
+      ]
+    ],
+    "source_sha256": "2b1d7945441b83e324cd225663481d35e51cd9ae84189cc7e69f58a11ecb85ad"
+  },
+  {
+    "module": "TreeSitterOCaml",
+    "target": "MappedTreeSitterOCaml",
+    "function": "tree_sitter_ocaml",
+    "grammar": "ocaml",
+    "resource": "ocaml-61ab8ea270d50045",
+    "bytes": 4533464,
+    "sha256": "61ab8ea270d500453e4615a6a2f05cc7ff02ed58c815d3f942a467a62aed7a9b",
+    "offsets": [
+      [
+        64,
+        3515202
+      ],
+      [
+        3515272,
+        830606
+      ],
+      [
+        4345880,
+        41132
+      ],
+      [
+        4387016,
+        146448
+      ]
+    ],
+    "source_sha256": "f76cc46f96f9ed152354743539cc642dcb6a67343795dd9d548fc4d0b0ebce74"
+  },
+  {
+    "module": "TreeSitterObjectiveC",
+    "target": "MappedTreeSitterObjectiveC",
+    "function": "tree_sitter_objc",
+    "grammar": "objectiveC",
+    "resource": "objc-58eb557d6cef5915",
+    "bytes": 5073688,
+    "sha256": "58eb557d6cef5915c3bf47ff117ecc80e201595c77d3641472e7728ab3e300e1",
+    "offsets": [
+      [
+        64,
+        4821570
+      ],
+      [
+        4821640,
+        132064
+      ],
+      [
+        4953704,
+        10712
+      ],
+      [
+        4964416,
+        109272
+      ]
+    ],
+    "source_sha256": "9a02110d10eb9e28ea507312f8639c16790cfb5760ce9aad757d564ea571ef8a"
+  },
+  {
+    "module": "TreeSitterPHP",
+    "target": "MappedTreeSitterPHP",
+    "function": "tree_sitter_php",
+    "grammar": "php",
+    "resource": "php-24f1748e39dee22e",
+    "bytes": 980216,
+    "sha256": "24f1748e39dee22e197862bda8e63e256b752bf049dbea906b25423e69f2cdd9",
+    "offsets": [
+      [
+        64,
+        736100
+      ],
+      [
+        736168,
+        187866
+      ],
+      [
+        924040,
+        10476
+      ],
+      [
+        934520,
+        45696
+      ]
+    ],
+    "source_sha256": "8a42ccdbb0f18c934de610baab4cdf8f89086bc8f5a7dc89fb60350d61912e73"
+  },
+  {
+    "module": "TreeSitterPascal",
+    "target": "MappedTreeSitterPascal",
+    "function": "tree_sitter_pascal",
+    "grammar": "pascal",
+    "resource": "pascal-03055674b81431b3",
+    "bytes": 652936,
+    "sha256": "03055674b81431b3103acbc71a072a129c121ee7502ef3790f0f5baa79385894",
+    "offsets": [
+      [
+        64,
+        415520
+      ],
+      [
+        415584,
+        167954
+      ],
+      [
+        583544,
+        8620
+      ],
+      [
+        592168,
+        60768
+      ]
+    ],
+    "source_sha256": "d7a5f5c04880fac79e0eb1841cbbc00d7e305863efe56d83c9754fba70385329"
+  },
+  {
+    "module": "TreeSitterPerl",
+    "target": "MappedTreeSitterPerl",
+    "function": "tree_sitter_perl",
+    "grammar": "perl",
+    "resource": "perl-fe36e2f340e50ac5",
+    "bytes": 4473888,
+    "sha256": "fe36e2f340e50ac59897ac1c89bb16ee66e6b00a3ecf1567de0b3d6eb350cca6",
+    "offsets": [
+      [
+        64,
+        4273360
+      ],
+      [
+        4273424,
+        117766
+      ],
+      [
+        4391192,
+        8332
+      ],
+      [
+        4399528,
+        74360
+      ]
+    ],
+    "source_sha256": "c31fa55439047403a837e384c4b64cd6d4054b0760e55ed365650c059902f02b"
+  },
+  {
+    "module": "TreeSitterProto",
+    "target": "MappedTreeSitterProto",
+    "function": "tree_sitter_proto",
+    "grammar": "proto",
+    "resource": "proto-8c4d3f9b093340c9",
+    "bytes": 23424,
+    "sha256": "8c4d3f9b093340c9f3200eb82b33b6fdedd72e740d739c17f196209a088f6a8e",
+    "offsets": [
+      [
+        64,
+        548
+      ],
+      [
+        616,
+        13634
+      ],
+      [
+        14256,
+        1488
+      ],
+      [
+        15744,
+        7680
+      ]
+    ],
+    "source_sha256": "587b7a01e8acb35bdac0d2a95b4d155ddcb6eab4b68ec1dea678d7353297c1f8"
+  },
+  {
+    "module": "TreeSitterPython",
+    "target": "MappedTreeSitterPython",
+    "function": "tree_sitter_python",
+    "grammar": "python",
+    "resource": "python-6c219ce8ec7bc5d0",
+    "bytes": 387856,
+    "sha256": "6c219ce8ec7bc5d0ab2960b59031db202de62e4f3ca6fed9124e349a6ae29c36",
+    "offsets": [
+      [
+        64,
+        101010
+      ],
+      [
+        101080,
+        236018
+      ],
+      [
+        337104,
+        10412
+      ],
+      [
+        347520,
+        40336
+      ]
+    ],
+    "source_sha256": "53a7bd87ba22c4fdbb8566a2caf848a1478f3ac9d47a1b32677a71de75d75db6"
+  },
+  {
+    "module": "TreeSitterR",
+    "target": "MappedTreeSitterR",
+    "function": "tree_sitter_r",
+    "grammar": "r",
+    "resource": "r-fff804160bc36106",
+    "bytes": 441080,
+    "sha256": "fff804160bc36106925403228faef94db1d9e3d79531e4bc37ad1d9293a625cd",
+    "offsets": [
+      [
+        64,
+        110160
+      ],
+      [
+        110224,
+        288510
+      ],
+      [
+        398736,
+        6828
+      ],
+      [
+        405568,
+        35512
+      ]
+    ],
+    "source_sha256": "43ec2413de8aec823c76e6994991fe07d9877e019ab2e1892534a76ce81a0771"
+  },
+  {
+    "module": "TreeSitterRegex",
+    "target": "MappedTreeSitterRegex",
+    "function": "tree_sitter_regex",
+    "grammar": "regex",
+    "resource": "regex-67df58f4d1410745",
+    "bytes": 11968,
+    "sha256": "67df58f4d141074524d2fde9f3cf077628ed6fcc0523ec7986caa4790d355405",
+    "offsets": [
+      [
+        64,
+        1976
+      ],
+      [
+        2040,
+        5270
+      ],
+      [
+        7312,
+        496
+      ],
+      [
+        7808,
+        4160
+      ]
+    ],
+    "source_sha256": "ddf28eb5ad0dd0898b9ed0f2593852edac639a339a410d9e93350e472859700f"
+  },
+  {
+    "module": "TreeSitterRuby",
+    "target": "MappedTreeSitterRuby",
+    "function": "tree_sitter_ruby",
+    "grammar": "ruby",
+    "resource": "ruby-b821393d5f745957",
+    "bytes": 1979312,
+    "sha256": "b821393d5f74595736f2a03b4b77da1442b7b1d935bb56fc08cd6e5667003b13",
+    "offsets": [
+      [
+        64,
+        1504592
+      ],
+      [
+        1504656,
+        389854
+      ],
+      [
+        1894512,
+        15284
+      ],
+      [
+        1909800,
+        69512
+      ]
+    ],
+    "source_sha256": "4ce468358b6f4e25a35c8cf6bc0eaf60665bc22d602f8c939323c2347255cd15"
+  },
+  {
+    "module": "TreeSitterRust",
+    "target": "MappedTreeSitterRust",
+    "function": "tree_sitter_rust",
+    "grammar": "rust",
+    "resource": "rust-0abf8372dfd57902",
+    "bytes": 1022848,
+    "sha256": "0abf8372dfd57902799b9b23828ba93fed1690bc3184cf0d072f494587e78c81",
+    "offsets": [
+      [
+        64,
+        746928
+      ],
+      [
+        746992,
+        204066
+      ],
+      [
+        951064,
+        11044
+      ],
+      [
+        962112,
+        60736
+      ]
+    ],
+    "source_sha256": "9602518f9e57919910bf0e777e52f6bfc9325d4c182e998bdb4efd5682b76e4a"
+  },
+  {
+    "module": "TreeSitterSCSS",
+    "target": "MappedTreeSitterSCSS",
+    "function": "tree_sitter_scss",
+    "grammar": "scss",
+    "resource": "scss-3a39bdaae917aab3",
+    "bytes": 46048,
+    "sha256": "3a39bdaae917aab3f6220d098c25bac058d79eacabada436537c970b684500e7",
+    "offsets": [
+      [
+        64,
+        4770
+      ],
+      [
+        4840,
+        28172
+      ],
+      [
+        33016,
+        1972
+      ],
+      [
+        34992,
+        11056
+      ]
+    ],
+    "source_sha256": "40fc07e8edbe45145cfe96ea47293336826aa38267feb17ad302125c4e3c4307"
+  },
+  {
+    "module": "TreeSitterSQL",
+    "target": "MappedTreeSitterSQL",
+    "function": "tree_sitter_sql",
+    "grammar": "sql",
+    "resource": "sql-55cc9b66b42c5a0a",
+    "bytes": 11358368,
+    "sha256": "55cc9b66b42c5a0a2292e707f58bd83d0b33a296663c37253efe3e145e47c5d4",
+    "offsets": [
+      [
+        64,
+        8705664
+      ],
+      [
+        8705728,
+        2149970
+      ],
+      [
+        10855704,
+        102584
+      ],
+      [
+        10958288,
+        400080
+      ]
+    ],
+    "source_sha256": "fb9ef88770ea84789f2b7893e21969bc766e9390ce9960e0f98dae706a3f2cb2"
+  },
+  {
+    "module": "TreeSitterScala",
+    "target": "MappedTreeSitterScala",
+    "function": "tree_sitter_scala",
+    "grammar": "scala",
+    "resource": "scala-571cd0d533aa28dd",
+    "bytes": 3604696,
+    "sha256": "571cd0d533aa28dd2c45eeaaa2b8535b04d4dbc372614eff15f0ecdebc788185",
+    "offsets": [
+      [
+        64,
+        2027108
+      ],
+      [
+        2027176,
+        1293022
+      ],
+      [
+        3320200,
+        64268
+      ],
+      [
+        3384472,
+        220224
+      ]
+    ],
+    "source_sha256": "8116d925eb2931b2c6850aa92ba02d7877af90dc3a9401663d25dab73eacb271"
+  },
+  {
+    "module": "TreeSitterSvelte",
+    "target": "MappedTreeSitterSvelte",
+    "function": "tree_sitter_svelte",
+    "grammar": "svelte",
+    "resource": "svelte-9aba821d722ee363",
+    "bytes": 23448,
+    "sha256": "9aba821d722ee3631f326c5dc8f866eb5c76970ee705feaab736232cf3a147ca",
+    "offsets": [
+      [
+        64,
+        472
+      ],
+      [
+        536,
+        15440
+      ],
+      [
+        15976,
+        1372
+      ],
+      [
+        17352,
+        6096
+      ]
+    ],
+    "source_sha256": "76778ca4d425582cad25f725c6dbea6b87c1710a8f4089c24eadfbd516d2ef03"
+  },
+  {
+    "module": "TreeSitterSwift",
+    "target": "MappedTreeSitterSwift",
+    "function": "tree_sitter_swift",
+    "grammar": "swift",
+    "resource": "swift-6e2a51ad1cc65e91",
+    "bytes": 3615240,
+    "sha256": "6e2a51ad1cc65e91a53f0d59fda820e9bc56200ed724aa33cdcea2ab376a8c95",
+    "offsets": [
+      [
+        64,
+        2646756
+      ],
+      [
+        2646824,
+        790540
+      ],
+      [
+        3437368,
+        36752
+      ],
+      [
+        3474120,
+        141120
+      ]
+    ],
+    "source_sha256": "9742107dbb3b7bf3b804ade88bad11f1ab62ef0b60b803842fe14dd6a3b655db"
+  },
+  {
+    "module": "TreeSitterTOML",
+    "target": "MappedTreeSitterTOML",
+    "function": "tree_sitter_toml",
+    "grammar": "toml",
+    "resource": "toml-8a81984835231583",
+    "bytes": 10848,
+    "sha256": "8a81984835231583255d45cf6242a3cdd934923e514e5b94f7ab9403124a07db",
+    "offsets": [
+      [
+        64,
+        264
+      ],
+      [
+        328,
+        6530
+      ],
+      [
+        6864,
+        600
+      ],
+      [
+        7464,
+        3384
+      ]
+    ],
+    "source_sha256": "1991a2608e6f0214e563fe5f762e8df72954dc69a3dd9a1e22ea8a870e4052c3"
+  },
+  {
+    "module": "TreeSitterTSX",
+    "target": "MappedTreeSitterTSX",
+    "function": "tree_sitter_tsx",
+    "grammar": "tsx",
+    "resource": "tsx-46546d2f27f76ff9",
+    "bytes": 1350632,
+    "sha256": "46546d2f27f76ff932b151ba358e8c0bf5901ca6aef541b2d3a1acd0394ecc1e",
+    "offsets": [
+      [
+        64,
+        917262
+      ],
+      [
+        917328,
+        334742
+      ],
+      [
+        1252072,
+        19276
+      ],
+      [
+        1271352,
+        79280
+      ]
+    ],
+    "source_sha256": "1902cb53fa7ff5179df89b2eea863165e84c8cc866226419dc26921d8c055885"
+  },
+  {
+    "module": "TreeSitterTypeScript",
+    "target": "MappedTreeSitterTypeScript",
+    "function": "tree_sitter_typescript",
+    "grammar": "typeScript",
+    "resource": "typescript-19c698cff20525d8",
+    "bytes": 1325152,
+    "sha256": "19c698cff20525d82cd9a87469b969bd20e26a80125e7316a0dccc9d666f068a",
+    "offsets": [
+      [
+        64,
+        897136
+      ],
+      [
+        897200,
+        332510
+      ],
+      [
+        1229712,
+        18708
+      ],
+      [
+        1248424,
+        76728
+      ]
+    ],
+    "source_sha256": "74fe453edd70f4eae9af0a1050cbd7943d8971d59165b6aaebbaa0a0b716d1aa"
+  },
+  {
+    "module": "TreeSitterXML",
+    "target": "MappedTreeSitterXML",
+    "function": "tree_sitter_xml",
+    "grammar": "xml",
+    "resource": "xml-28342cada29c0774",
+    "bytes": 23080,
+    "sha256": "28342cada29c077443bd39b31882cd9515e3fb84aecf28d5eae59ddd6bb64384",
+    "offsets": [
+      [
+        64,
+        572
+      ],
+      [
+        640,
+        10356
+      ],
+      [
+        11000,
+        1972
+      ],
+      [
+        12976,
+        10104
+      ]
+    ],
+    "source_sha256": "e00f74ae7edcfc5e0cf9dc551a41a02e88a86dad9d6d13820e292bde794cdd94"
+  },
+  {
+    "module": "TreeSitterYAML",
+    "target": "MappedTreeSitterYAML",
+    "function": "tree_sitter_yaml",
+    "grammar": "yaml",
+    "resource": "yaml-d8548835192f2b51",
+    "bytes": 139288,
+    "sha256": "d8548835192f2b51e7c3301ff085e48b9ea88d824976a0a46168535a69549406",
+    "offsets": [
+      [
+        64,
+        57792
+      ],
+      [
+        57856,
+        54642
+      ],
+      [
+        112504,
+        5932
+      ],
+      [
+        118440,
+        20848
+      ]
+    ],
+    "source_sha256": "02c5d32e95fa018a3c3ba7d7134d84bb7d5595c8874aa7ae6582745d9b40dede"
+  }
+]

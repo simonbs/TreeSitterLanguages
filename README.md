@@ -39,6 +39,61 @@ Furthermore the package contains the TreeSitterLanguagesCommon library which exp
 
 Pinned parser sources, licenses, query adaptations, and limitations are indexed in [LANGUAGE_SOURCES.md](LANGUAGE_SOURCES.md).
 
+### Memory-mapped grammars
+
+Mac apps that embed the complete grammar collection can select the optional
+MappedTreeSitterLanguages product. It provides the 49 grammars other than the two
+Markdown grammars, whose existing products can be used alongside it. Native C
+products and Runestone language wrappers keep their existing APIs.
+
+~~~swift
+import MappedTreeSitterLanguages
+
+if let language = MappedTreeSitterLanguages.language(.swift) {
+    // Pass this pointer to the Tree-sitter runtime.
+}
+~~~
+
+The first request for a grammar maps its immutable tables directly from the
+package resource bundle. Access is thread-safe, and repeated calls return the
+same pointer. The pointer and mapping remain valid for the process lifetime.
+Missing, invalid, or inaccessible resources and allocation failures return nil.
+Both arm64 and x86_64 use the same committed table bytes. The bundle occupies
+about 64 MiB and includes versioned headers tied to each generated parser.
+
+SwiftPM owns resource lookup through Bundle.module. When an app and extension
+share this product through a framework, place the
+TreeSitterLanguages_MappedTreeSitterLanguages.bundle resource bundle inside that
+framework's Resources directory and remove the automatically propagated copies
+from the app and extension. The generated bundle accessor also searches the
+framework containing its BundleFinder class. Verify this placement in an archived
+app so every consumer loads the same bundled files.
+
+After changing canonical parser sources, regenerate the mapped targets and tables
+with the following command on an Apple silicon Mac with Rosetta available.
+
+~~~sh
+python3 scripts/generate-mapped-grammars.py --architectures arm64 x86_64
+~~~
+
+The generator reuses canonical scanner sources and headers through small C
+includes. MappedGrammars.json records source and resource hashes and table
+alignment. Commit the generated Swift/C sources, manifest declarations, inventory,
+and resources together. The following checks run on the host architecture.
+
+~~~sh
+python3 scripts/generate-mapped-grammars.py --check
+python3 scripts/check-mapped-grammars.py
+swift test --package-path Tests/Mapped
+~~~
+
+The C check covers exact table parity, concurrent mapping, missing and truncated
+files, and resource-header failures. The standalone Swift consumer tests cover
+package-owned resource lookup and concurrent first access without importing the
+UIKit Runestone module. On Apple silicon, add --architectures arm64 x86_64 to the
+C checks to cover both slices. With an arm64-only SwiftPM test helper, run the
+compiled x86_64 XCTest bundle with arch -x86_64 and Xcode's universal xctest runner.
+
 ### All Runestone languages
 
 Apps that use the full collection can depend on the `RunestoneLanguageSupport`
