@@ -41,3 +41,18 @@ jobs:
           path: .tree-sitter
       - name: Parse samples and execute bundled queries
         run: python3 Tests/Compatibility/test.py .tree-sitter
+
+  mapped:
+    name: Mapped grammar resources
+    runs-on: macos-14
+    steps:
+      - name: Select Xcode 16.2
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Verify generated tables and loaders
+        run: python3 scripts/generate-mapped-grammars.py --check
+      - name: Compare native and mapped table contents
+        run: python3 scripts/check-mapped-grammars.py
+      - name: Test package resource lookup and concurrent initialization
+        run: swift test --package-path Tests/Mapped --jobs 4
