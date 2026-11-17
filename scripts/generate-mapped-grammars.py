@@ -23,7 +23,7 @@ def write(path, text):
     path.write_text(text)
 
 
-def export(source, output, architecture):
+def export(source, output, architecture, function):
     exporter = output / "export.c"
     statements = []
     for name in TABLES:
@@ -39,7 +39,12 @@ def export(source, output, architecture):
     subprocess.run(['xcrun', 'clang', '-w', '-arch', architecture, '-Os', '-I', source,
                     exporter, *scanners, '-o', binary], check=True)
     result = subprocess.run(['arch', '-' + architecture, binary], check=True, capture_output=True)
-    return result.stdout, [tuple(map(int, line.split())) for line in result.stderr.splitlines()]
+    symbols = subprocess.check_output(['xcrun', 'nm', '-gjU', binary], text=True).splitlines()
+    excluded = {'__mh_execute_header', '_main', '_' + function}
+    exports = sorted(symbol[1:] for symbol in symbols if symbol not in excluded)
+    if not all(re.fullmatch(r'[A-Za-z_]\w*', symbol) for symbol in exports):
+        raise ValueError('Unexpected external scanner symbol')
+    return result.stdout, [tuple(map(int, line.split())) for line in result.stderr.splitlines()], exports
 
 
 def transform(code, function, offsets, size, header):
@@ -115,10 +120,10 @@ def main():
         function = re.search(r'const TSLanguage\s*\*\s*(tree_sitter_\w+)\((?:void)?\)\s*\{', code)[1]
         work = output / module
         work.mkdir(parents=True, exist_ok=True)
-        arm_data, offsets = export(source, work, args.architectures[0])
+        arm_data, offsets, scanner_symbols = export(source, work, args.architectures[0], function)
         for architecture in args.architectures[1:]:
-            other_data, other_offsets = export(source, work, architecture)
-            if arm_data != other_data or offsets != other_offsets:
+            other_data, other_offsets, other_symbols = export(source, work, architecture, function)
+            if arm_data != other_data or offsets != other_offsets or scanner_symbols != other_symbols:
                 raise ValueError(f'{module} tables differ between architectures')
         header = b'TSMAP001' + hashlib.sha256(code.encode()).digest() + bytes(24)
         arm_data = header + arm_data
@@ -130,9 +135,14 @@ def main():
         generated[resources / (resource + '.tables')] = arm_data
         target_name = 'Mapped' + module
         target = root / 'Sources' / target_name
-        scanner_text = code + ''.join(path.read_text() for path in source.rglob('*.c') if path.name != 'parser.c')
-        scanner_symbols = sorted(set(re.findall(r'\btree_sitter_\w+_external_scanner_\w+\b', scanner_text)))
-        scanner_defines = ''.join(f'#define {symbol} mapped_{symbol}\n' for symbol in scanner_symbols)
+        # Namespace every external scanner function and data symbol so native and
+        # mapped products can coexist. The compiled exporter also finds globals
+        # declared in shared scanner headers.
+        scanner_defines = ''.join(
+            f'#define {symbol} ' + ('mapped_' + symbol if symbol.startswith(function + '_')
+                                    else 'mapped_' + function + '_' + symbol) + '\n'
+            for symbol in scanner_symbols
+        )
         generated[target / 'src/parser.c'] = (scanner_defines + transform(code, function, offsets, len(arm_data), header)).encode()
         for scanner in source.rglob('*.c'):
             relative = str(scanner.relative_to(original))
